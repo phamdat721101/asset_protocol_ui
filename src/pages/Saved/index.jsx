@@ -34,7 +34,7 @@ const SavedPage = () => {
                   className="text-black-900 text-lg tracking-[0.18px]"
                   size="txtOutfitSemiBold18"
                 >
-                  Kevin Cranel
+                  PQD
                 </Text>
                 <Text
                   className="text-gray-500 text-sm tracking-[0.14px]"
@@ -364,7 +364,7 @@ const SavedPage = () => {
               className="sm:text-3xl md:text-[32px] text-[34px] text-black-900 tracking-[0.34px]"
               size="txtUrbanistSemiBold34"
             >
-              Saved
+              Investments
             </Text>
             <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between mt-5 rounded-[14px] w-full">
               <div className="flex md:flex-1 sm:flex-col flex-row gap-6 items-center justify-between rounded-[14px] w-[45%] md:w-full">
@@ -399,7 +399,7 @@ const SavedPage = () => {
                   variant="outline"
                 >
                   <div className="font-medium text-base text-left tracking-[0.16px]">
-                    Collection
+                    Favorite
                   </div>
                 </Button>
                 <Button
@@ -479,13 +479,13 @@ const SavedPage = () => {
                       className="text-base text-black-900 tracking-[0.16px]"
                       size="txtUrbanistSemiBold16"
                     >
-                      Diehard BATTERY-SILVER
+                      PQD investment
                     </Text>
                     <Text
                       className="mt-1 text-gray-500 text-xs tracking-[0.12px]"
                       size="txtUrbanistMedium12Gray500"
                     >
-                      By Ralph Edwards
+                      By PQD capital
                     </Text>
                   </div>
                   <div className="flex flex-row items-center justify-between w-full">
@@ -494,7 +494,7 @@ const SavedPage = () => {
                         className="text-[10px] text-gray-500 tracking-[0.10px]"
                         size="txtOutfitRegular10"
                       >
-                        Current Bid
+                        Current Profit
                       </Text>
                       <div className="flex flex-row font-urbanist gap-1.5 items-center justify-start mt-1 w-[92%] md:w-full">
                         <Img
@@ -518,246 +518,7 @@ const SavedPage = () => {
                       size="xs"
                       variant="fill"
                     >
-                      Place a Bid
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white-A700 flex flex-1 flex-col gap-5 items-center justify-start p-1.5 rounded-[15px] shadow-bs1 w-full">
-                <div
-                  className="bg-cover bg-no-repeat flex flex-col h-[140px] items-end justify-start p-2 rounded-[12px] w-full"
-                  style={{
-                    backgroundImage: "url('images/img_group33978_8.png')",
-                  }}
-                >
-                  <div className="flex flex-row gap-2 items-center justify-end mb-[94px] w-[51%] md:w-full">
-                    <Text
-                      className="bg-gray-900_26 h-7 justify-center pl-2.5 sm:pr-5 pr-[30px] py-[7px] rounded-[14px] text-white-A700 text-xs tracking-[0.12px] w-[75px]"
-                      size="txtUrbanistMedium12WhiteA700"
-                    >
-                      Ended
-                    </Text>
-                    <Button
-                      className="flex h-[30px] items-center justify-center rounded-[50%] w-[30px]"
-                      shape="circle"
-                      color="gray_900_26"
-                      size="xs"
-                      variant="fill"
-                    >
-                      <Img
-                        className="h-[18px]"
-                        src="images/img_favorite_30X30.svg"
-                        alt="favorite Two"
-                      />
-                    </Button>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-[18px] items-start justify-start mb-3 w-[94%] md:w-full">
-                  <div className="flex flex-col items-start justify-start">
-                    <Text
-                      className="text-base text-black-900 tracking-[0.16px]"
-                      size="txtUrbanistSemiBold16"
-                    >
-                      Bosch Spark Plug
-                    </Text>
-                    <Text
-                      className="mt-1 text-gray-500 text-xs tracking-[0.12px]"
-                      size="txtUrbanistMedium12Gray500"
-                    >
-                      By Guy Hawkins
-                    </Text>
-                  </div>
-                  <div className="flex flex-row items-center justify-between w-full">
-                    <div className="flex flex-col font-outfit items-start justify-start">
-                      <Text
-                        className="text-[10px] text-gray-500 tracking-[0.10px]"
-                        size="txtOutfitRegular10"
-                      >
-                        Fixed Price
-                      </Text>
-                      <div className="flex flex-row font-urbanist gap-1.5 items-center justify-start mt-1 w-[91%] md:w-full">
-                        <Img
-                          className="h-4 w-4"
-                          src="images/img_sort.svg"
-                          alt="sort One"
-                        />
-                        <Text
-                          className="text-black-900 text-sm tracking-[0.14px]"
-                          size="txtUrbanistMedium14Black900"
-                        >
-                          8,99 ETH
-                        </Text>
-                      </div>
-                    </div>
-                    <Button
-                      className="common-pointer cursor-pointer font-medium font-urbanist min-w-[88px] rounded-lg text-center text-xs tracking-[0.12px]"
-                      onClick={() => navigate("/marketdetail")}
-                      shape="round"
-                      color="gray_900"
-                      size="xs"
-                      variant="fill"
-                    >
-                      Place a Bid
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white-A700 flex flex-1 flex-col gap-5 items-center justify-start p-1.5 rounded-[15px] shadow-bs1 w-full">
-                <div
-                  className="bg-cover bg-no-repeat flex flex-col h-[140px] items-end justify-start p-2 rounded-[12px] w-full"
-                  style={{
-                    backgroundImage: "url('images/img_group33978_9.png')",
-                  }}
-                >
-                  <div className="flex flex-row gap-2 items-center justify-end mb-[94px] w-[51%] md:w-full">
-                    <Text
-                      className="bg-gray-900_26 h-7 justify-center pl-2.5 sm:pr-5 pr-[30px] py-[7px] rounded-[14px] text-white-A700 text-xs tracking-[0.12px] w-[75px]"
-                      size="txtUrbanistMedium12WhiteA700"
-                    >
-                      Ended
-                    </Text>
-                    <Button
-                      className="flex h-[30px] items-center justify-center rounded-[50%] w-[30px]"
-                      shape="circle"
-                      color="gray_900_26"
-                      size="xs"
-                      variant="fill"
-                    >
-                      <Img
-                        className="h-[18px]"
-                        src="images/img_favorite_30X30.svg"
-                        alt="favorite Three"
-                      />
-                    </Button>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-[18px] items-start justify-start mb-3 w-[94%] md:w-full">
-                  <div className="flex flex-col items-start justify-start">
-                    <Text
-                      className="text-base text-black-900 tracking-[0.16px]"
-                      size="txtUrbanistSemiBold16"
-                    >
-                      Valvoline Engine Oil
-                    </Text>
-                    <Text
-                      className="mt-1 text-gray-500 text-xs tracking-[0.12px]"
-                      size="txtUrbanistMedium12Gray500"
-                    >
-                      By Albert Flores
-                    </Text>
-                  </div>
-                  <div className="flex flex-row items-center justify-between w-full">
-                    <div className="flex flex-col font-outfit items-start justify-start">
-                      <Text
-                        className="text-[10px] text-gray-500 tracking-[0.10px]"
-                        size="txtOutfitRegular10"
-                      >
-                        Fixed Price
-                      </Text>
-                      <div className="flex flex-row font-urbanist gap-1.5 items-center justify-start mt-1 w-[97%] md:w-full">
-                        <Img
-                          className="h-4 w-4"
-                          src="images/img_sort.svg"
-                          alt="sort Two"
-                        />
-                        <Text
-                          className="text-black-900 text-sm tracking-[0.14px]"
-                          size="txtUrbanistMedium14Black900"
-                        >
-                          51,23 ETH
-                        </Text>
-                      </div>
-                    </div>
-                    <Button
-                      className="common-pointer cursor-pointer font-medium font-urbanist min-w-[88px] rounded-lg text-center text-xs tracking-[0.12px]"
-                      onClick={() => navigate("/marketdetail")}
-                      shape="round"
-                      color="gray_900"
-                      size="xs"
-                      variant="fill"
-                    >
-                      Place a Bid
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white-A700 flex flex-1 flex-col gap-5 items-center justify-start p-1.5 rounded-[15px] shadow-bs1 w-full">
-                <div
-                  className="bg-cover bg-no-repeat flex flex-col h-[140px] items-end justify-start p-2 rounded-[12px] w-full"
-                  style={{
-                    backgroundImage: "url('images/img_group33978_10.png')",
-                  }}
-                >
-                  <div className="flex flex-row gap-2 items-center justify-end mb-[94px] w-[51%] md:w-full">
-                    <Button
-                      className="cursor-pointer font-medium min-w-[75px] rounded-[14px] text-center text-xs tracking-[0.12px]"
-                      color="gray_900_26"
-                      size="xs"
-                      variant="fill"
-                    >
-                      2h 4m 32s
-                    </Button>
-                    <Button
-                      className="flex h-[30px] items-center justify-center rounded-[50%] w-[30px]"
-                      shape="circle"
-                      color="gray_900_26"
-                      size="xs"
-                      variant="fill"
-                    >
-                      <Img
-                        className="h-[18px]"
-                        src="images/img_favorite_30X30.svg"
-                        alt="favorite Four"
-                      />
-                    </Button>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-[18px] items-start justify-start mb-3 w-[94%] md:w-full">
-                  <div className="flex flex-col items-start justify-start">
-                    <Text
-                      className="text-base text-black-900 tracking-[0.16px]"
-                      size="txtUrbanistSemiBold16"
-                    >
-                      Fram Oil Filter
-                    </Text>
-                    <Text
-                      className="mt-1 text-gray-500 text-xs tracking-[0.12px]"
-                      size="txtUrbanistMedium12Gray500"
-                    >
-                      By Jerome Bell
-                    </Text>
-                  </div>
-                  <div className="flex flex-row items-center justify-between w-full">
-                    <div className="flex flex-col font-outfit items-start justify-start">
-                      <Text
-                        className="text-[10px] text-gray-500 tracking-[0.10px]"
-                        size="txtOutfitRegular10"
-                      >
-                        Current Bid
-                      </Text>
-                      <div className="flex flex-row font-urbanist gap-1.5 items-center justify-start mt-1 w-full">
-                        <Img
-                          className="h-4 w-4"
-                          src="images/img_sort.svg"
-                          alt="sort Three"
-                        />
-                        <Text
-                          className="text-black-900 text-sm tracking-[0.14px]"
-                          size="txtUrbanistMedium14Black900"
-                        >
-                          25,00 ETH
-                        </Text>
-                      </div>
-                    </div>
-                    <Button
-                      className="common-pointer cursor-pointer font-medium font-urbanist min-w-[88px] rounded-lg text-center text-xs tracking-[0.12px]"
-                      onClick={() => navigate("/marketdetail")}
-                      shape="round"
-                      color="gray_900"
-                      size="xs"
-                      variant="fill"
-                    >
-                      Place a Bid
+                      Close
                     </Button>
                   </div>
                 </div>

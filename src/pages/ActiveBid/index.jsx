@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Img, Input, List, SelectBox, Text } from "components";
 
 import { CloseSVG } from "../../assets/images";
+import Sidebar1 from "components/Sidebar1";
 
 const userTwoOptionsList = [
   { label: "Option1", value: "option1" },
@@ -21,267 +22,7 @@ const ActiveBidPage = () => {
   return (
     <>
       <div className="bg-white-A700 flex sm:flex-col md:flex-col flex-row font-outfit sm:gap-5 md:gap-5 items-start mx-auto w-full">
-        <Sidebar className="!sticky !w-[302px] flex h-screen md:hidden justify-start overflow-auto md:px-5 top-[0]">
-          <div className="bg-gray-50 border-gray-100 border-r-[1.5px] border-solid flex flex-col gap-[50px] items-start justify-start p-[18px] w-full">
-            <div className="flex flex-row gap-3.5 items-start justify-start ml-4 md:ml-[0] mt-4 w-[67%] md:w-full">
-              <Img
-                className="h-14 md:h-auto rounded-[50%] w-14"
-                src="images/img_ellipse1015.png"
-                alt="Ellipse1015"
-              />
-              <div className="flex flex-col gap-1.5 items-start justify-start mt-1">
-                <Text
-                  className="text-black-900 text-lg tracking-[0.18px]"
-                  size="txtOutfitSemiBold18"
-                >
-                  Kevin Cranel
-                </Text>
-                <Text
-                  className="text-gray-500 text-sm tracking-[0.14px]"
-                  size="txtOutfitRegular14"
-                >
-                  @kecrane
-                </Text>
-              </div>
-            </div>
-            <div className="flex flex-col font-urbanist gap-[30px] items-center justify-start w-full">
-              <div className="flex flex-col gap-4 justify-start w-full">
-                <Text
-                  className="ml-4 md:ml-[0] text-gray-901 text-xs tracking-[0.12px]"
-                  size="txtUrbanistMedium12Gray901"
-                >
-                  GENERAL
-                </Text>
-                <div className="flex flex-col gap-2 items-center justify-start w-full">
-                  <div
-                    className="common-pointer flex flex-col items-start justify-start p-2.5 w-full"
-                    onClick={() => navigate("/")}
-                  >
-                    <div className="flex flex-row gap-[18px] items-center justify-start ml-1.5 md:ml-[0] w-[54%] md:w-full">
-                      <Img
-                        className="h-6 w-6"
-                        src="images/img_clock_1.svg"
-                        alt="clock"
-                      />
-                      <Text
-                        className="text-gray-500 text-lg tracking-[0.18px]"
-                        size="txtUrbanistMedium18"
-                      >
-                        Dashboard
-                      </Text>
-                    </div>
-                  </div>
-                  <div
-                    className="common-pointer flex flex-col items-start justify-start p-2.5 w-full"
-                    onClick={() => navigate("/message")}
-                  >
-                    <div className="flex flex-row gap-[18px] items-center justify-start ml-1.5 md:ml-[0] w-[47%] md:w-full">
-                      <Img
-                        className="h-6 w-6"
-                        src="images/img_car.svg"
-                        alt="car"
-                      />
-                      <Text
-                        className="text-gray-500 text-lg tracking-[0.18px]"
-                        size="txtUrbanistMedium18"
-                      >
-                        Message
-                      </Text>
-                    </div>
-                  </div>
-                  <div
-                    className="common-pointer flex flex-col items-start justify-start p-2.5 w-full"
-                    onClick={() => navigate("/settings")}
-                  >
-                    <div className="flex flex-row gap-[18px] items-center justify-start ml-1.5 md:ml-[0] w-[45%] md:w-full">
-                      <Img
-                        className="h-6 w-6"
-                        src="images/img_settings.svg"
-                        alt="settings"
-                      />
-                      <Text
-                        className="text-gray-500 text-lg tracking-[0.18px]"
-                        size="txtUrbanistMedium18"
-                      >
-                        Settings
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col gap-4 justify-start w-full">
-                <Text
-                  className="ml-4 md:ml-[0] text-gray-901 text-xs tracking-[0.12px]"
-                  size="txtUrbanistMedium12Gray901"
-                >
-                  MARKETPLACE
-                </Text>
-                <div className="flex flex-col gap-2 items-center justify-start w-full">
-                  <div
-                    className="common-pointer flex flex-col items-start justify-start p-2.5 w-full"
-                    onClick={() => navigate("/market")}
-                  >
-                    <div className="flex flex-row gap-[18px] items-center justify-start ml-1.5 md:ml-[0] w-[41%] md:w-full">
-                      <Img
-                        className="h-6 w-6"
-                        src="images/img_user.svg"
-                        alt="user"
-                      />
-                      <Text
-                        className="text-gray-500 text-lg tracking-[0.18px]"
-                        size="txtUrbanistMedium18"
-                      >
-                        Market
-                      </Text>
-                    </div>
-                  </div>
-                  <div className="bg-gray-900_5f flex flex-col font-outfit items-start justify-start p-2.5 rounded-[10px] w-full">
-                    <div className="flex flex-row gap-[18px] items-center justify-start ml-1.5 md:ml-[0] w-[51%] md:w-full">
-                      <Img
-                        className="h-6 w-6"
-                        src="images/img_camera_24X24.svg"
-                        alt="camera"
-                      />
-                      <Text
-                        className="text-gray-900 text-lg tracking-[0.18px]"
-                        size="txtOutfitMedium18"
-                      >
-                        Active Bid
-                      </Text>
-                    </div>
-                  </div>
-                  <div
-                    className="common-pointer flex flex-col font-urbanist items-start justify-start p-2.5 w-full"
-                    onClick={() => navigate("/saved")}
-                  >
-                    <div className="flex flex-row gap-[18px] items-center justify-start ml-1.5 md:ml-[0] w-[39%] md:w-full">
-                      <Img
-                        className="h-6 w-6"
-                        src="images/img_clock.svg"
-                        alt="clock One"
-                      />
-                      <Text
-                        className="text-gray-500 text-lg tracking-[0.18px]"
-                        size="txtUrbanistMedium18"
-                      >
-                        Saved
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col gap-4 justify-start w-full">
-                <Text
-                  className="ml-4 md:ml-[0] text-gray-901 text-xs tracking-[0.12px]"
-                  size="txtUrbanistMedium12Gray901"
-                >
-                  MY PROFILE
-                </Text>
-                <div className="flex flex-col gap-2 items-center justify-start w-full">
-                  <div
-                    className="common-pointer flex flex-col items-start justify-start p-2.5 w-full"
-                    onClick={() => navigate("/myprofilecollection")}
-                  >
-                    <div className="flex flex-row gap-[18px] items-center justify-start ml-1.5 md:ml-[0] w-1/2 md:w-full">
-                      <Img
-                        className="h-6 w-6"
-                        src="images/img_user_24X24.svg"
-                        alt="user One"
-                      />
-                      <Text
-                        className="text-gray-500 text-lg tracking-[0.18px]"
-                        size="txtUrbanistMedium18"
-                      >
-                        Collection
-                      </Text>
-                    </div>
-                  </div>
-                  <div
-                    className="common-pointer flex flex-col items-start justify-start p-2.5 w-full"
-                    onClick={() => navigate("/myprofilewallet")}
-                  >
-                    <div className="flex flex-row gap-[18px] items-center justify-start ml-1.5 md:ml-[0] w-[38%] md:w-full">
-                      <Img
-                        className="h-6 w-6"
-                        src="images/img_computer.svg"
-                        alt="computer"
-                      />
-                      <Text
-                        className="text-gray-500 text-lg tracking-[0.18px]"
-                        size="txtUrbanistMedium18"
-                      >
-                        Wallet
-                      </Text>
-                    </div>
-                  </div>
-                  <div
-                    className="common-pointer flex flex-col items-start justify-start p-2.5 w-full"
-                    onClick={() => navigate("/myprofilehistory")}
-                  >
-                    <div className="flex flex-row gap-[18px] items-end justify-start ml-1.5 md:ml-[0] w-2/5 md:w-full">
-                      <Img
-                        className="h-6 w-6"
-                        src="images/img_clock_24X24.svg"
-                        alt="clock Two"
-                      />
-                      <Text
-                        className="mt-[5px] text-gray-500 text-lg tracking-[0.18px]"
-                        size="txtUrbanistMedium18"
-                      >
-                        History
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="font-urbanist h-[258px] md:h-[264px] mb-[18px] ml-4 md:ml-[0] relative w-[88%]">
-              <div className="absolute bg-gray-900 bottom-[0] h-[233px] inset-x-[0] mx-auto rounded-[15px] w-[234px]"></div>
-              <div className="absolute flex flex-col gap-3.5 inset-x-[0] items-center justify-start mx-auto top-[0] w-[91%]">
-                <Button
-                  className="flex h-[50px] items-center justify-center shadow-bs w-[50px]"
-                  shape="circle"
-                  color="white_A700"
-                  size="lg"
-                  variant="fill"
-                >
-                  <Img
-                    className="h-6"
-                    src="images/img_question.svg"
-                    alt="question"
-                  />
-                </Button>
-                <Text
-                  className="text-lg text-white-A700 tracking-[0.18px]"
-                  size="txtUrbanistSemiBold18"
-                >
-                  Help Center
-                </Text>
-                <div className="flex flex-col gap-[30px] items-center justify-start w-full">
-                  <Text
-                    className="leading-[180.00%] text-center text-gray-400 text-sm tracking-[0.14px]"
-                    size="txtUrbanistRegular14"
-                  >
-                    <>
-                      Having trouble in Enefti?
-                      <br />
-                      Please contact us for more question
-                    </>
-                  </Text>
-                  <Button
-                    className="cursor-pointer font-medium min-w-[206px] text-center text-sm tracking-[0.14px]"
-                    shape="round"
-                    color="white_A700"
-                    size="lg"
-                    variant="fill"
-                  >
-                    Go To Help Center
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Sidebar>
+        <Sidebar1 className="!sticky !w-[302px] flex h-screen md:hidden justify-start overflow-auto md:px-5 top-[0]" />
         <div className="flex flex-1 flex-col gap-[34px] items-center justify-start md:px-5 w-full">
           <div className="bg-white-A700 flex md:flex-col flex-row md:gap-10 items-center justify-between outline outline-gray-100 p-[34px] sm:px-5 w-full">
             <Input
@@ -364,7 +105,7 @@ const ActiveBidPage = () => {
               className="sm:text-3xl md:text-[32px] text-[34px] text-black-900 tracking-[0.34px]"
               size="txtUrbanistSemiBold34"
             >
-              Active Bid
+              Active Services
             </Text>
             <div className="flex sm:flex-col flex-row sm:gap-5 items-center justify-start mt-5 rounded-[14px] w-full">
               <Button
@@ -494,13 +235,13 @@ const ActiveBidPage = () => {
                       className="text-base text-black-900 tracking-[0.16px]"
                       size="txtUrbanistSemiBold16"
                     >
-                      Dayco Serpentine Belt
+                      Forex Capital
                     </Text>
                     <Text
                       className="mt-1 text-gray-500 text-xs tracking-[0.12px]"
                       size="txtUrbanistMedium12Gray500"
                     >
-                      By Marvin McKinney
+                      By PQD capital
                     </Text>
                   </div>
                   <div className="flex flex-row items-center justify-between w-full">
@@ -509,7 +250,7 @@ const ActiveBidPage = () => {
                         className="text-[10px] text-gray-500 tracking-[0.10px]"
                         size="txtOutfitRegular10"
                       >
-                        Your Bid
+                        Price per share
                       </Text>
                       <div className="flex flex-row font-urbanist gap-1.5 items-center justify-start mt-1 w-[97%] md:w-full">
                         <Img
@@ -533,12 +274,12 @@ const ActiveBidPage = () => {
                       size="xs"
                       variant="fill"
                     >
-                      Place a Bid
+                      Invest
                     </Button>
                   </div>
                 </div>
               </div>
-              <div className="bg-white-A700 flex flex-1 flex-col gap-5 items-center justify-start p-1.5 rounded-[15px] shadow-bs1 w-full">
+              {/* <div className="bg-white-A700 flex flex-1 flex-col gap-5 items-center justify-start p-1.5 rounded-[15px] shadow-bs1 w-full">
                 <div
                   className="bg-cover bg-no-repeat flex flex-col h-[140px] items-end justify-start p-2 rounded-[12px] w-full"
                   style={{
@@ -618,8 +359,8 @@ const ActiveBidPage = () => {
                     </Button>
                   </div>
                 </div>
-              </div>
-              <div className="bg-white-A700 flex flex-1 flex-col gap-5 items-center justify-start p-1.5 rounded-[15px] shadow-bs1 w-full">
+              </div> */}
+              {/* <div className="bg-white-A700 flex flex-1 flex-col gap-5 items-center justify-start p-1.5 rounded-[15px] shadow-bs1 w-full">
                 <div
                   className="bg-cover bg-no-repeat flex flex-col h-[140px] items-end justify-start p-2 rounded-[12px] w-full"
                   style={{
@@ -699,8 +440,8 @@ const ActiveBidPage = () => {
                     </Button>
                   </div>
                 </div>
-              </div>
-              <div className="bg-white-A700 flex flex-1 flex-col gap-5 items-center justify-start p-1.5 rounded-[15px] shadow-bs1 w-full">
+              </div> */}
+              {/* <div className="bg-white-A700 flex flex-1 flex-col gap-5 items-center justify-start p-1.5 rounded-[15px] shadow-bs1 w-full">
                 <div
                   className="bg-cover bg-no-repeat flex flex-col h-[140px] items-end justify-start p-2 rounded-[12px] w-full"
                   style={{
@@ -780,7 +521,7 @@ const ActiveBidPage = () => {
                     </Button>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </List>
           </div>
         </div>

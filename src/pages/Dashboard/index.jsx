@@ -28,7 +28,7 @@ const DashboardPage = () => {
                   className="text-black-900 text-lg tracking-[0.18px]"
                   size="txtOutfitSemiBold18"
                 >
-                  Kevin Cranel
+                  PQD
                 </Text>
                 <Text
                   className="text-gray-500 text-sm tracking-[0.14px]"
@@ -105,7 +105,7 @@ const DashboardPage = () => {
                   className="ml-4 md:ml-[0] text-gray-901 text-xs tracking-[0.12px]"
                   size="txtUrbanistMedium12Gray901"
                 >
-                  MARKETPLACE
+                  EXPLORE
                 </Text>
                 <div className="flex flex-col gap-2 items-center justify-start w-full">
                   <div
@@ -140,7 +140,7 @@ const DashboardPage = () => {
                         className="text-gray-500 text-lg tracking-[0.18px]"
                         size="txtUrbanistMedium18"
                       >
-                        Active Bid
+                        Active Services
                       </Text>
                     </div>
                   </div>
@@ -186,7 +186,7 @@ const DashboardPage = () => {
                         className="text-gray-500 text-lg tracking-[0.18px]"
                         size="txtUrbanistMedium18"
                       >
-                        Collection
+                        Services
                       </Text>
                     </div>
                   </div>
