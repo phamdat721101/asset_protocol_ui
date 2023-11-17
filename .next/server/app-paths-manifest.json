@@ -1,7 +1,7 @@
 {
   "/_not-found": "app/_not-found.js",
-  "/page": "app/page.js",
   "/portfolio/[slug]/page": "app/portfolio/[slug]/page.js",
-  "/maple/page": "app/maple/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/maple/page": "app/maple/page.js"
 }

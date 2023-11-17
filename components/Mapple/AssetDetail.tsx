@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import AssetCategory from "./AssetCategory";
+import AssetTitle from "./AssetTitle";
 import Tabx from "./Tab";
 import Formx from "./Form";
 
@@ -57,7 +57,7 @@ const AssetDetail = () => {
   const cancelButtonRef = useRef(null);
   return (
     <div className="container m-auto grid">
-      <AssetCategory />
+      <AssetTitle />
       
       <Tabs value="html">
                         <TabsHeader>

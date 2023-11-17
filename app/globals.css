@@ -15,13 +15,13 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -171,4 +171,19 @@ body {
   row-gap: 0.625rem;
   --tw-text-opacity: 1;
   color: rgb(43 44 53/var(--tw-text-opacity));
+}
+
+.footer__copyrights-link {
+  display: flex;
+  flex: 1 1 0%;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.box-shadow__bottom {
+  box-shadow:rgba(16, 24, 40, 0.1) 0px 4px 6px -1px, rgba(16, 24, 40, 0.1) 0px 2px 4px -2px
+}
+
+.box-shadow__top {
+  box-shadow: 0 0 10px 5px rgba(16, 24, 40, 0.1);
 }

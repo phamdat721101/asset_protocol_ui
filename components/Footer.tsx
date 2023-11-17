@@ -1,29 +1,23 @@
-import React from "react"
-import Image from 'next/image';
+import React from "react";
 
 const Footer = () => {
-    return (
-        <div className="mt-20">
-        <footer
-  className="bg-neutral-200 text-center dark:bg-neutral-700 lg:text-left">
-  <div className="p-4 text-center text-neutral-700 dark:text-neutral-200">
-    © 2023 Copyright:
-    <a
-      className="text-neutral-800 dark:text-neutral-400"
-      href="https://tailwind-elements.com/"
-      >OpenFinz</a>
-     {/* <Image
-      priority
-      src="{TwitterIcon}"
-      height={32}
-      width={32}
-      alt="Follow us on Twitter"
-    /> */}
-    {/* <TwitterIcon className="abc"/> */}
-  </div>
-</footer>
-</div>
-    )   
-}
+  return (
+    <footer className="bg-white box-shadow__top mt-10">
+      <div className="container m-auto">
+        <div className="flex justify-between items-center flex-wrap sm:px-16 px-6 py-10">
+          <p>@2023 - Bản quyền của công ty DigiTrust </p>
+          <div className="footer__copyrights-link">
+            <a className="text-gray-500" href="/">
+              Chính sách quyền riêng tư
+            </a>
+            <a className="text-gray-500" href="/">
+              Điều khoản &amp; Điều kiện
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;
