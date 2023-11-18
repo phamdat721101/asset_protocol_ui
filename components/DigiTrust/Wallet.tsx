@@ -1,0 +1,139 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import Link from 'next/link'
+import axios from "axios";
+
+interface Data {
+  data: Transaction[];
+}
+
+interface Transaction {
+  tx_hash: string;
+  type: string;
+  url: string;
+  amount: string;
+}
+
+async function getTransactions(wallet: string) {
+  const response = await axios.get(
+    "https://test-vercel-seven-ivory.vercel.app/v1/history?wallet=" + wallet
+  );
+  return response.data.data;
+}
+
+const Wallet = () => {
+  const [transactions, setTransactions] = useState<Transaction[] | null>(null);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const wallet =
+        "0x20cc2eb9d2559127da7c3eebd70169d5c95ff7eda490498951d32a3c53c50622";
+
+      const transactions = await getTransactions(wallet);
+      setTransactions(transactions);
+      //   const transactionsData = transactions;
+
+      //   if (transactionsData) {
+      //     const formattedTransactions = transactionsData.map((transaction) => ({
+      //       tx_hash: transaction.txHash,
+      //       type: transaction.type,
+      //       url: transaction.url,
+      //       amount: transaction.amount,
+      //     }));
+
+      //   } else {
+      //     console.error("No transactions found for this wallet");
+      //   }
+      //   if (transactionsData) {
+      //     const formattedTransactions = transactionsData.map((transaction:Transaction) => ({
+      //       tx_hash: transaction.tx_hash,
+      //       type: transaction.type,
+      //       url: transaction.url,
+      //       amount: transaction.amount,
+      //     }));
+      //     setTransactions(formattedTransactions);
+      //   } else {
+      //     console.error("No transactions found for this wallet");
+      //   }
+    };
+
+    fetchProducts().catch(console.log);
+  }, []);
+
+  return (
+    <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-24">
+      {transactions ? (
+        <div>
+          <div className="rounded-t mb-0 px-4 py-3 border-0">
+            <div className="flex flex-wrap items-center">
+              <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+                <h3 className="font-semibold text-base text-blueGray-700">
+                  Lịch sử giao dịch
+                </h3>
+              </div>
+              {/* <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                  <button
+                    class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                  >
+                    See all
+                  </button>
+                </div> */}
+            </div>
+          </div>
+          
+            <div
+              className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded "
+            >
+              <div className="block w-full overflow-x-auto">
+                <table className="items-center bg-transparent w-full border-collapse ">
+                  <thead>
+                    <tr>
+                      <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                        
+                      </th>
+                      <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                        Mã giao dịch
+                      </th>
+                      <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                        Số lượng
+                      </th>
+                      <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                        Vào lúc
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                  {transactions.map((transaction) => (
+                    <tr key={transaction.tx_hash}>
+                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                        {transaction.type}
+                      </th>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                      <Link href={transaction.url}>{transaction.tx_hash}</Link>
+
+                      </td>
+                      <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        {transaction.amount}
+                      </td>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
+                        11:59:00 09:00:00
+                      </td>
+                    </tr>
+                    
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          
+        </div>
+      ) : (
+        <p>Loading transactions...</p>
+      )}
+    </div>
+  );
+};
+
+export default Wallet;

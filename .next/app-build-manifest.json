@@ -1,53 +1,16 @@
 {
   "pages": {
-    "/_not-found": [
-      "static/chunks/webpack-d99bf7dcb8fecf9d.js",
-      "static/chunks/fd9d1056-266c723c34741663.js",
-      "static/chunks/472-5cc7cfee02050afb.js",
-      "static/chunks/main-app-f555333568d2c3b4.js",
-      "static/chunks/app/_not-found-d9d171ff089490e1.js"
+    "/portfolio/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/portfolio/[slug]/page.css",
+      "static/chunks/app/portfolio/[slug]/page.js"
     ],
     "/layout": [
-      "static/chunks/webpack-d99bf7dcb8fecf9d.js",
-      "static/chunks/fd9d1056-266c723c34741663.js",
-      "static/chunks/472-5cc7cfee02050afb.js",
-      "static/chunks/main-app-f555333568d2c3b4.js",
-      "static/css/ee1db24e586f0987.css",
-      "static/chunks/app/layout-1ab0373688369f8d.js"
-    ],
-    "/portfolio/[slug]/page": [
-      "static/chunks/webpack-d99bf7dcb8fecf9d.js",
-      "static/chunks/fd9d1056-266c723c34741663.js",
-      "static/chunks/472-5cc7cfee02050afb.js",
-      "static/chunks/main-app-f555333568d2c3b4.js",
-      "static/chunks/cebd11e7-437954deaa6a3e53.js",
-      "static/chunks/832-f75ba9bb67a6397f.js",
-      "static/chunks/691-e0e1850f97698de9.js",
-      "static/chunks/502-5a76683cbac917d5.js",
-      "static/css/d364f4dcdbb8825f.css",
-      "static/chunks/app/portfolio/[slug]/page-c573fcc369c0ce70.js"
-    ],
-    "/page": [
-      "static/chunks/webpack-d99bf7dcb8fecf9d.js",
-      "static/chunks/fd9d1056-266c723c34741663.js",
-      "static/chunks/472-5cc7cfee02050afb.js",
-      "static/chunks/main-app-f555333568d2c3b4.js",
-      "static/chunks/cebd11e7-437954deaa6a3e53.js",
-      "static/chunks/832-f75ba9bb67a6397f.js",
-      "static/chunks/502-5a76683cbac917d5.js",
-      "static/css/d364f4dcdbb8825f.css",
-      "static/chunks/app/page-27a1e0aedae66ca7.js"
-    ],
-    "/maple/page": [
-      "static/chunks/webpack-d99bf7dcb8fecf9d.js",
-      "static/chunks/fd9d1056-266c723c34741663.js",
-      "static/chunks/472-5cc7cfee02050afb.js",
-      "static/chunks/main-app-f555333568d2c3b4.js",
-      "static/chunks/cebd11e7-437954deaa6a3e53.js",
-      "static/chunks/832-f75ba9bb67a6397f.js",
-      "static/chunks/502-5a76683cbac917d5.js",
-      "static/css/d364f4dcdbb8825f.css",
-      "static/chunks/app/maple/page-55d7bb9c2c09fef9.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
     ]
   }
 }

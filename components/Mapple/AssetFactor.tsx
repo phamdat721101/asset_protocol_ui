@@ -8,7 +8,7 @@ const AssetFactor = ({icon, factor}:any) => {
           {icon}
           <p className="ml-[4px] text-xs leading-4 text-center">{factor.name}</p>
         </div>
-        <p className="w-full break-words hyphens-auto text-center text-base font-medium">{factor.title}</p>
+        <p className="w-full break-words hyphens-auto text-center text-base font-medium">{factor.value}</p>
       </div>
     </div>
   );

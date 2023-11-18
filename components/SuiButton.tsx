@@ -5,7 +5,7 @@ function SuiButton() {
   const { currentAccount } = useWalletKit();
   return (
     <ConnectButton
-      connectText={"Connect MathWallet"}
+      connectText={"Kết nối ví SUI"}
      
     />
   );

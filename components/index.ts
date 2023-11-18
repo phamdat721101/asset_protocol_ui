@@ -5,6 +5,8 @@ import Footer from './Footer'
 import SuiWallet from './SuiWallet'
 import SuiButton from './SuiWallet'
 import DepositForm from './DepositForm'
+import DigiTrustWallet from './DigiTrust/Wallet'
+import MappleTab from "./Mapple/Tab";
 
 export {
     MappleAssetBox,
@@ -12,5 +14,7 @@ export {
     Footer,
     Header,
     SuiWallet,
-    DepositForm
+    DepositForm,
+    DigiTrustWallet,
+    MappleTab
 }
