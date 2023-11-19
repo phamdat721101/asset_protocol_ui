@@ -23,17 +23,17 @@ const WithdrawForm = () => {
 
     const txb = new TransactionBlock();
     const contractAddress =
-      "0x7e3cee9f0eb68d0aca0f590411b172593690d6f40c1ef0ca64da9194508d4291";
+      "0xe86865464e4030acefff7ec23be26d0d8a95a18f140113d73ea1c645080f5a3b";
     const contractModule = "vault";
     const contractMethod = "pay_to_beneficiary";
     txb.moveCall({
       target: `${contractAddress}::${contractModule}::${contractMethod}`,
       arguments: [
         txb.object(
-          "0x240c7f4fe449e79388c0bc2aad4c9baee92068b1c6f180caa81111fd506af578"
+          "0x225cdc024c933921d6360f3463b0233241779480a7a5c5c67e270fbe9bcf9581"
         ),
         txb.object(
-          "0xc8694cc09f1c5a9f89cb06e213d81128ac5dc6e8d72e9efe60ea54e874bffde5"
+          "0xf51cc71cf315af1601b03cf961b5c769a94d5ee9527fc1ebc56d0f2f21b742c3"
         ),
         txb.pure(amount),
       ],

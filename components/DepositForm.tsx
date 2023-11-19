@@ -36,7 +36,7 @@ const DepositForm = () => {
 
     const txb = new TransactionBlock();
     const contractAddress =
-      "0x7e3cee9f0eb68d0aca0f590411b172593690d6f40c1ef0ca64da9194508d4291";
+      "0xe86865464e4030acefff7ec23be26d0d8a95a18f140113d73ea1c645080f5a3b";
     const contractModule = "vault";
     const contractMethod = "deposit";
     const coin = txb.splitCoins(txb.gas, [amount]);
@@ -44,7 +44,7 @@ const DepositForm = () => {
       target: `${contractAddress}::${contractModule}::${contractMethod}`,
       arguments: [
         txb.object(
-          "0x240c7f4fe449e79388c0bc2aad4c9baee92068b1c6f180caa81111fd506af578"
+          "0x225cdc024c933921d6360f3463b0233241779480a7a5c5c67e270fbe9bcf9581"
         ),
         coin,
       ],

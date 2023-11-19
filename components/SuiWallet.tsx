@@ -34,7 +34,7 @@ const SuiWallet = () => {
 
     const txb = new TransactionBlock();
     const contractAddress =
-      "0x7e3cee9f0eb68d0aca0f590411b172593690d6f40c1ef0ca64da9194508d4291";
+      "0xe86865464e4030acefff7ec23be26d0d8a95a18f140113d73ea1c645080f5a3b";
     const contractModule = "vault";
     const contractMethod = "deposit";
     const coin = txb.splitCoins(txb.gas, [100000]);
@@ -68,7 +68,7 @@ const SuiWallet = () => {
   const withdraw = async() => {
     const txb = new TransactionBlock();
     const contractAddress =
-      "0x7e3cee9f0eb68d0aca0f590411b172593690d6f40c1ef0ca64da9194508d4291";
+      "0xe86865464e4030acefff7ec23be26d0d8a95a18f140113d73ea1c645080f5a3b";
     const contractModule = "vault";
     const contractMethod = "pay_to_beneficiary";
    // const coin = txb.splitCoins(txb.gas, [100000]);

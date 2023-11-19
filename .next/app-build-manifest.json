@@ -12,6 +12,12 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/wallet/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/wallet/[slug]/page.css",
+      "static/chunks/app/wallet/[slug]/page.js"
+    ],
     "/portfolio/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
