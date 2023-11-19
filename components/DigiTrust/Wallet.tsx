@@ -119,7 +119,7 @@ const Wallet = (wallet:any) => {
         </div>
       ) : (
 
-        <p>Loading transactions...</p>
+        <p>Dữ liêu đang được cập nhật...</p>
       )}
     </div>
   );
