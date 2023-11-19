@@ -37,7 +37,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <h6 className="text-lg font-semibold mb-2">Đặc điểm</h6>
                 <ul>
                   <li>Tài sản</li>
-                  <li>gói này có khả năng giúp bạn 1 bước thành triệu phú</li>
+                  <li>afdsfdsf</li>
                 </ul>
               </div>
               <div className="w-full flex flex-wrap flex-col bg-white p-2 rounded-lg mt-5">

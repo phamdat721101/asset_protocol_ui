@@ -2,61 +2,49 @@
 import React, { useEffect, useState } from "react";
 import Link from 'next/link'
 import axios from "axios";
+import { formatAddress } from '@mysten/sui.js/utils';
+import { ConnectButton, useWalletKit } from "@mysten/wallet-kit";
 
-interface Data {
-  data: Transaction[];
-}
+
 
 interface Transaction {
   tx_hash: string;
   type: string;
   url: string;
   amount: string;
+  timestamp: string;
 }
 
 async function getTransactions(wallet: string) {
   const response = await axios.get(
     "https://test-vercel-seven-ivory.vercel.app/v1/history?wallet=" + wallet
   );
-  return response.data.data;
+  return response.data;
 }
 
-const Wallet = () => {
+function parseTime(timestamp:any) {
+  
+}
+
+const Wallet = (wallet:any) => {
   const [transactions, setTransactions] = useState<Transaction[] | null>(null);
+ // const { currentAccount } = useWalletKit();
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      const wallet =
-        "0x20cc2eb9d2559127da7c3eebd70169d5c95ff7eda490498951d32a3c53c50622";
+    const fetchTransactions = async () => {
 
-      const transactions = await getTransactions(wallet);
+      const transactions = await getTransactions(wallet.wallet);
+      // if(transactions){
+      //   transactions.array.forEach(item => {
+      //     item.timestamp = new Date (item.timestamp);
+      //     console.log("Time stamp: ", item.timestamp)
+      //   });
+      // }
+      
       setTransactions(transactions);
-      //   const transactionsData = transactions;
-
-      //   if (transactionsData) {
-      //     const formattedTransactions = transactionsData.map((transaction) => ({
-      //       tx_hash: transaction.txHash,
-      //       type: transaction.type,
-      //       url: transaction.url,
-      //       amount: transaction.amount,
-      //     }));
-
-      //   } else {
-      //     console.error("No transactions found for this wallet");
-      //   }
-      //   if (transactionsData) {
-      //     const formattedTransactions = transactionsData.map((transaction:Transaction) => ({
-      //       tx_hash: transaction.tx_hash,
-      //       type: transaction.type,
-      //       url: transaction.url,
-      //       amount: transaction.amount,
-      //     }));
-      //     setTransactions(formattedTransactions);
-      //   } else {
-      //     console.error("No transactions found for this wallet");
-      //   }
     };
 
-    fetchProducts().catch(console.log);
+    fetchTransactions().catch(console.log);
   }, []);
 
   return (
@@ -118,7 +106,7 @@ const Wallet = () => {
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                        11:59:00 09:00:00
+                        {transaction.timestamp}
                       </td>
                     </tr>
                     
@@ -130,6 +118,7 @@ const Wallet = () => {
           
         </div>
       ) : (
+
         <p>Loading transactions...</p>
       )}
     </div>
