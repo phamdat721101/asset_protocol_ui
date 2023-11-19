@@ -16,7 +16,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       <main className="overflow-hidden">
         <Header />
         <div className="container p-4 m-auto grid">
-          <AssetTitle title={"DigiTrust-Basic"} />
+          <AssetTitle title={"Gói Cơ Bản"} />
           <div className="flex flex-col lg:flex-row mt-4">
             <div className="basis-1/2 flex flex-wrap flex-col lg:flex-row lg:mt-0">
               <div className="w-full flex flex-wrap flex-col lg:flex-row bg-white p-2 rounded-lg">
@@ -39,8 +39,8 @@ export default function Page({ params }: { params: { slug: string } }) {
                   <li>
                   Gói cơ bản cung cấp danh mục đầu tư dành cho nhóm khách hàng mới <br/>
                     - Danh mục tài sản bao gồm những token có vốn hoá nhỏ<br/>
-                    - Yêu cầu vốn đầu tư nhỏ (bắt đầu từ 250000đ)<br/>
-                    - Sử dụng chiến lược giao dịch ngắn hạn đã được back-test trên các sàn CEX (binance, OKX)
+                    <b className="font-base">- Vốn đầu tư nhỏ</b> từ 250.000đ<br/>
+                    - Sử dụng chiến lược giao dịch ngắn hạn đã được kiểm chứng trên các sàn CEX (Binance, OKX)
                   </li>
                 </ul>
               </div>
