@@ -37,9 +37,9 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <h3 className="text-lg font-semibold mb-2">Đặc điểm</h3>
                 <ul>
                   <li>
-                  Gói cơ bản cung cấp danh mục đầu tư dành cho nhóm khách hàng mới bao gồm: <br/>
+                  Gói cơ bản cung cấp danh mục đầu tư dành cho nhóm khách hàng mới <br/>
                     - Danh mục tài sản bao gồm những token có vốn hoá nhỏ<br/>
-                    - Yêu cầu vốn đầu tư nhỏ (bắt đầu từ 10$)<br/>
+                    - Yêu cầu vốn đầu tư nhỏ (bắt đầu từ 250000đ)<br/>
                     - Sử dụng chiến lược giao dịch ngắn hạn đã được back-test trên các sàn CEX (binance, OKX)
                   </li>
                 </ul>
