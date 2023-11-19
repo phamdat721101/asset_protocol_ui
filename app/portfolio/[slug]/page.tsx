@@ -16,7 +16,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       <main className="overflow-hidden">
         <Header />
         <div className="container p-4 m-auto grid">
-          <AssetTitle title={"Gói may mắn"} />
+          <AssetTitle title={"DigiTrust-Basic"} />
           <div className="flex flex-col lg:flex-row mt-4">
             <div className="basis-1/2 flex flex-wrap flex-col lg:flex-row lg:mt-0">
               <div className="w-full flex flex-wrap flex-col lg:flex-row bg-white p-2 rounded-lg">
@@ -36,8 +36,12 @@ export default function Page({ params }: { params: { slug: string } }) {
               <div className="w-full flex flex-wrap flex-col bg-white p-2 rounded-lg mt-5">
                 <h6 className="text-lg font-semibold mb-2">Đặc điểm</h6>
                 <ul>
-                  <li>Tài sản</li>
-                  <li>afdsfdsf</li>
+                  <li>
+                  DigiTrust-basic cung cấp danh mục đầu tư dành cho nhóm khách hàng mới bao gồm:
+                    - Danh mục tài sản bao gồm những token có vốn hoá nhỏ<br/>
+                    - Yêu cầu vốn đầu tư nhỏ (bắt đầu từ 10$)<br/>
+                    - Sử dụng chiến lược giao dịch ngắn hạn đã được back-test trên các sàn CEX (binance, OKX)
+                  </li>
                 </ul>
               </div>
               <div className="w-full flex flex-wrap flex-col bg-white p-2 rounded-lg mt-5">
@@ -81,7 +85,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             <td className="whitespace-nowrap px-6 py-4">
                               29.38
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">-</td>
+                            <td className="whitespace-nowrap px-6 py-4">36</td>
                           </tr>
                           <tr className="border-b dark:border-neutral-500">
                             {/* <td className="whitespace-nowrap px-6 py-4 font-medium">2</td> */}
@@ -103,7 +107,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             <td className="whitespace-nowrap px-6 py-4">
                               31.57
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">-</td>
+                            <td className="whitespace-nowrap px-6 py-4">24</td>
                           </tr>
                           <tr className="border-b dark:border-neutral-500">
                             {/* <td className="whitespace-nowrap px-6 py-4 font-medium">3</td> */}
@@ -125,7 +129,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             <td className="whitespace-nowrap px-6 py-4">
                               39.05
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">25</td>
+                            <td className="whitespace-nowrap px-6 py-4">21</td>
                           </tr>
                         </tbody>
                       </table>

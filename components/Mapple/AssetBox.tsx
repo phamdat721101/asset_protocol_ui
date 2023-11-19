@@ -11,7 +11,7 @@ const AssetBox = () => {
   const assets = [
     {
       id: 1,
-      name: "Gói cân bằng",
+      name: "DigiTrust-Basic",
       fund: "DigiTrust",
       apy: 3.01,
       secured_by: "DigiTrust",
@@ -19,7 +19,7 @@ const AssetBox = () => {
     },
     {
       id: 2,
-      name: "Gói an toàn",
+      name: "DigiTrust-Stable",
       fund: "DigiTrust",
       apy: 4.75,
       secured_by: "DigiTrust",
@@ -27,7 +27,7 @@ const AssetBox = () => {
     },
     {
       id: 3,
-      name: "Gói tăng trưởng",
+      name: "DigiTrust-Pro",
       fund: "DigiTrust",
       apy: 3.15,
       secured_by: "DigiTrust",
