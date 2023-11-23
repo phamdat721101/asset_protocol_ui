@@ -1,4 +1,5 @@
 import { MappleAssetDetail } from '@/components';
+import DigiTrustRegister from '../../components/DigiTrust/Register'
 import React from 'react'
 
 interface User {
@@ -30,13 +31,14 @@ const UsersPage =  async () => {
   
     return (
     <>
-        <p>tokenId: {asset.data.tokenId}</p>
+        {/* <p>tokenId: {asset.data.tokenId}</p>
         <h1>Users</h1>
         <p>{new Date().toLocaleTimeString()}</p>
         <ul>
             {users.map(user => <li key={user.id}>{user.name}</li>)}
         </ul>
-        <MappleAssetDetail />
+        <MappleAssetDetail /> */}
+        <DigiTrustRegister />
     </>
   )
 }

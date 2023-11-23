@@ -1,6 +1,1 @@
-{
-  "/page": "app/page.js",
-  "/wallet/[slug]/page": "app/wallet/[slug]/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/portfolio/[slug]/page": "app/portfolio/[slug]/page.js"
-}
+{}
