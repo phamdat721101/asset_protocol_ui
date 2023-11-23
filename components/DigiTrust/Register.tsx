@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import TextInput from "./TextInput";
+import { useRouter } from 'next/navigation';
 
 interface IFormRegister {
   vault_name: string;
@@ -20,11 +21,11 @@ interface IFormRegister {
 }
 
 const Register = () => {
+  const router = useRouter();
   const { register, handleSubmit } = useForm<IFormRegister>();
   const onSubmit: SubmitHandler<IFormRegister> = async (data) => {
-    console.log("fkldajslfkjdslkfj", data.deposit_asset, data.vault_name);
-    console.log(data);
     try {
+      router.push("/")
       const response = await axios.post(
         "http://109.123.233.65:3002/api/create_vault",
         {
@@ -48,6 +49,7 @@ const Register = () => {
       if (xdata.success) {
         // Login successful
         console.log("Login successful");
+       
       } else {
         // Login failed
         alert(xdata.error);

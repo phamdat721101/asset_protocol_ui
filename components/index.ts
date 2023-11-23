@@ -6,6 +6,7 @@ import SuiWallet from './SuiWallet'
 import SuiButton from './SuiWallet'
 import DepositForm from './DepositForm'
 import DigiTrustWallet from './DigiTrust/Wallet'
+import DigiTrustRegister from './DigiTrust/Register'
 import MappleTab from "./Mapple/Tab";
 
 export {
@@ -16,5 +17,6 @@ export {
     SuiWallet,
     DepositForm,
     DigiTrustWallet,
+    DigiTrustRegister,
     MappleTab
 }

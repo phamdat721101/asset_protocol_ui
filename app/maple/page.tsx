@@ -22,12 +22,12 @@ interface Data {
 }
 
 const UsersPage =  async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    const users: User[] = await res.json();
+  //   const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  //   const users: User[] = await res.json();
 
-    const res1 = await fetch('https://test-vercel-seven-ivory.vercel.app/asset/detail?assetAdr=0x7930cD1F24B2f521187b277cdb630EFD5616A0e6');
-  console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", res1)
-  const asset: Data = await res1.json();
+  //   const res1 = await fetch('https://test-vercel-seven-ivory.vercel.app/asset/detail?assetAdr=0x7930cD1F24B2f521187b277cdb630EFD5616A0e6');
+  // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", res1)
+  // const asset: Data = await res1.json();
   
     return (
     <>
