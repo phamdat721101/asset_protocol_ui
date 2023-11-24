@@ -29,9 +29,9 @@ const Register = () => {
       const response = await axios.post(
         "https://test-vercel-seven-ivory.vercel.app/v1/create_vault",
         {
-          vault_name: data.deposit_asset,
+          vault_name: data.vault_name,
           manager: data.manager,
-          vault_desc: data.vault_name,
+          vault_desc: data.vault_desc,
           vault_adr: data.vault_adr,
           symbol: data.symbol,
           deposit_asset: data.deposit_asset,
