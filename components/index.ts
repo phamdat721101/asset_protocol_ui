@@ -1,4 +1,5 @@
 import MappleAssetBox from './Mapple/AssetBox';
+import VaultBox from './Mapple/VaultBox';
 import MappleAssetDetail from './Mapple/AssetDetail';
 import Header from './Header'
 import Footer from './Footer'
@@ -18,5 +19,6 @@ export {
     DepositForm,
     DigiTrustWallet,
     DigiTrustRegister,
-    MappleTab
+    MappleTab, 
+    VaultBox
 }
