@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Header, Footer, MappleTab } from "@/components";
+import { Header, Footer, MappleTab, ChartSimpleArea } from "@/components";
 import { ConnectButton } from "@suiet/wallet-kit";
 import { WalletProvider } from "@suiet/wallet-kit";
 import { WalletKitProvider } from "@mysten/wallet-kit";
@@ -32,6 +32,9 @@ export default function Page({ params }: { params: { slug: string } }) {
                   <span className="text-lg font-medium">Phí quản lý</span>
                   <p className="text-blue-400 font-semibold">2%</p>
                 </div>
+              </div>
+              <div className="w-full h-[300px] flex flex-wrap flex-col bg-white p-2 rounded-lg mt-5">
+                <ChartSimpleArea />
               </div>
               <div className="w-full flex flex-wrap flex-col bg-white p-2 rounded-lg mt-5">
                 <h3 className="text-lg font-semibold mb-2">Đặc điểm</h3>

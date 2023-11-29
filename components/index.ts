@@ -9,6 +9,9 @@ import DigiTrustWallet from './DigiTrust/Wallet'
 import DigiTrustRegister from './DigiTrust/Register'
 import MappleTab from "./Mapple/Tab";
 import MetaMaskWallet from "./MetaMask/Wallet"
+import ChartSimpleArea from "./Chart/SimpleArea"
+import ChartKassandra from "./Chart/Kassandra"
+
 
 export {
     MappleAssetBox,
@@ -21,5 +24,7 @@ export {
     DigiTrustRegister,
     MappleTab,
     SuiButton,
-    MetaMaskWallet
+    MetaMaskWallet,
+    ChartSimpleArea,
+    ChartKassandra
 }
