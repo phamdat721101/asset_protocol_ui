@@ -22,5 +22,6 @@ export {
     DigiTrustRegister,
     MappleTab,
     SuiButton,
-    MetaMaskWallet
+    MetaMaskWallet,
+    VaultBox
 }
