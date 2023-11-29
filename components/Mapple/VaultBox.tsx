@@ -16,7 +16,7 @@ const VaultBox = async () => {
   let vaults = response.data
   let assets = []
   for(let i = 0; i < vaults.length; i++){
-    console.log("vault item: ", vaults[i])
+    // console.log("vault item: ", vaults[i])
     let asset = {
       id: i + 1,
       name: vaults[i].vault_name,
