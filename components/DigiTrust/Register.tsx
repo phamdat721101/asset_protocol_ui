@@ -25,7 +25,6 @@ const Register = () => {
   const { register, handleSubmit } = useForm<IFormRegister>();
   const onSubmit: SubmitHandler<IFormRegister> = async (data) => {
     try {
-      router.push("/")
       const response = await axios.post(
         "https://test-vercel-seven-ivory.vercel.app/v1/create_vault",
         {
@@ -47,6 +46,7 @@ const Register = () => {
       const xdata = await response.data;
 
       if (xdata.success) {
+        router.push("/")
         // Login successful
         console.log("Login successful");
        

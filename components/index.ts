@@ -9,6 +9,7 @@ import DepositForm from './DepositForm'
 import DigiTrustWallet from './DigiTrust/Wallet'
 import DigiTrustRegister from './DigiTrust/Register'
 import MappleTab from "./Mapple/Tab";
+import MetaMaskWallet from "./MetaMask/Wallet"
 
 export {
     MappleAssetBox,
@@ -19,6 +20,7 @@ export {
     DepositForm,
     DigiTrustWallet,
     DigiTrustRegister,
-    MappleTab, 
-    VaultBox
+    MappleTab,
+    SuiButton,
+    MetaMaskWallet
 }
