@@ -1,5 +1,5 @@
 "use client";
-import { Header, Footer, MappleAssetBox } from "@/components";
+import { Header, Footer, MappleAssetBox, VaultBox } from "@/components";
 import { WalletKitProvider } from "@mysten/wallet-kit";
 
 export default function Home() {
@@ -9,6 +9,9 @@ export default function Home() {
       <Header />
       <div className="mb-auto">
         <MappleAssetBox />
+      </div>
+      <div className="mb-auto">
+        <VaultBox />
       </div>
       <Footer />
       </WalletKitProvider>
