@@ -11,7 +11,7 @@ const AssetBox = () => {
   const assets = [
     {
       id: 1,
-      name: "Gói Cơ Bản",
+      name: "DigiTrust - Basic",
       fund: "DigiTrust",
       apy: 3.01,
       secured_by: "DigiTrust",
@@ -19,7 +19,7 @@ const AssetBox = () => {
     },
     {
       id: 2,
-      name: "Gói Ổn Định",
+      name: "DigiTrust - Stable",
       fund: "DigiTrust",
       apy: 4.75,
       secured_by: "DigiTrust",
@@ -27,7 +27,7 @@ const AssetBox = () => {
     },
     {
       id: 3,
-      name: "Gói Tăng Trưởng",
+      name: "DigiTrust - Advanced",
       fund: "DigiTrust",
       apy: 3.15,
       secured_by: "DigiTrust",
@@ -36,7 +36,7 @@ const AssetBox = () => {
   ];
   return (
     <div className="container p-4 m-auto grid">
-      <AssetTitle title={"Khám phá các gói đầu tư"} />
+      <AssetTitle title={"Portfolio Explorer"} />
       {assets.map((asset) => (
         <a key={asset.id} href={"/portfolio/" + asset.id} className="rounded-lg mt-8">
           <div className="flex flex-col lg:flex-row css-yvpm9d lg:py-0 border-2 border-transparent hover:border-blue-300 hover:border-2">
@@ -212,19 +212,19 @@ const AssetBox = () => {
               <div className="w-1/3">
                 <AssetFactor
                   icon={<BarChart width={12} />}
-                  factor={{ name: "Lãi 30 ngày", value: asset.apy + "%" }}
+                  factor={{ name: "Monthly Return", value: asset.apy + "%" }}
                 />
               </div>
               <div className="w-1/3 border-x-[1px] lg:border-0">
                 <AssetFactor
                   icon={<SecuredBy width={12} />}
-                  factor={{ name: "Bảo trợ bởi", value: asset.secured_by }}
+                  factor={{ name: "Owner", value: asset.secured_by }}
                 />
               </div>
               <div className="w-1/3">
                 <AssetFactor
                   icon={<Liquidity width={12} />}
-                  factor={{ name: "Thanh khoản", value: asset.liquidity }}
+                  factor={{ name: "Liquidity", value: asset.liquidity }}
                 />
               </div>
             </div>
