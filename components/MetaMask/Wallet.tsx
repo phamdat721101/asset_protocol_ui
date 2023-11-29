@@ -2,6 +2,8 @@
 import React from "react";
 import Web3 from "web3";
 import { useState, useEffect } from "react";
+import { shortenAddress } from "../../utils/address";
+import Link from "next/link";
 
 declare global {
   interface Window {
@@ -14,7 +16,7 @@ const Wallet = () => {
   const [balance, setBalance] = useState(null);
   let accounts;
   let userAddress;
- // let privateKey = process.env.PRIVATE_KEY;
+  // let privateKey = process.env.PRIVATE_KEY;
 
   useEffect(() => {
     const fetchAccount = async () => {
@@ -100,7 +102,7 @@ const Wallet = () => {
           className="border-[1px] border-blue-500 hover:bg-blue-600 hover:text-white text-blue-500 font-medium py-2 px-4 rounded"
           onClick={() => window.ethereum.enable()}
         >
-          Kết nối ví MetaMask
+          Connect Wallet
         </button>
       ) : null}
       {account ? (
@@ -135,7 +137,22 @@ const Wallet = () => {
           >
             Get Price
           </button> */}
-          <p className="text-gray-700">Your account address: {account}</p>
+          <Link
+            href={"/maple"}
+            className="mr-2 hover:text-blue-400 text-black"
+          >
+            Create Vault
+          </Link>
+          <Link
+            href={"/wallet/" + account}
+            className="mr-2 hover:text-blue-400 text-black"
+          >
+            Transaction
+          </Link>
+
+          <button className="border-[1px] border-blue-500 hover:bg-blue-600 hover:text-white text-blue-500 font-medium py-2 px-4 rounded">
+            {shortenAddress(account)}
+          </button>
           {/* <p className="text-gray-700">Your account balance: {balance}</p> */}
         </>
       ) : null}
