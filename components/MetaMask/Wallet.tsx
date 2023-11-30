@@ -33,7 +33,7 @@ const Wallet = () => {
           var balance = await web3.eth.getBalance(userAddress); //Will give value in.
           const ethBalance = web3.utils.fromWei(balance, "ether");
           console.log(ethBalance);
-          setBalance(ethBalance);
+          setBalance(ethBalance as any);
           console.log(userAddress, "-------", balance);
           console.log("jfkldajsklfjadklsfjkldsjfkl", account);
           console.log(
@@ -41,7 +41,7 @@ const Wallet = () => {
             "window.ethereum.networkVersion"
           );
 
-          window.ethereum.on("accountsChanged", async (accounts) => {
+          window.ethereum.on("accountsChanged", async (accounts: any) => {
             // handle account change
             accounts = await web3.eth.getAccounts();
             userAddress = accounts[0];
@@ -49,7 +49,7 @@ const Wallet = () => {
             var balance = await web3.eth.getBalance(userAddress); //Will give value in.
             const ethBalance = web3.utils.fromWei(balance, "ether");
 
-            setBalance(ethBalance);
+            setBalance(ethBalance as any);
             console.log("change accounts", userAddress, "-------", balance);
           });
 
@@ -59,7 +59,7 @@ const Wallet = () => {
             setAccount(null);
           });
         });
-      } catch (error) {
+      } catch (error: any) {
         if (error.message === "User denied account authorization") {
           // handle the case where the user denied the connection request
         } else if (error.message === "MetaMask is not enabled") {

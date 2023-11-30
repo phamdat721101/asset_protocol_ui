@@ -55,7 +55,7 @@ const Wallet = (wallet:any) => {
             <div className="flex flex-wrap items-center">
               <div className="relative w-full px-4 max-w-full flex-grow flex-1">
                 <h3 className="font-semibold text-base text-blueGray-700">
-                  Lịch sử giao dịch
+                  Transaction History
                 </h3>
               </div>
               {/* <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
@@ -80,13 +80,13 @@ const Wallet = (wallet:any) => {
                         
                       </th>
                       <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
-                        Mã giao dịch
+                        Transaction Hash
                       </th>
                       <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
-                        Số lượng
+                        Amount
                       </th>
                       <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
-                        Vào lúc
+                        Created At
                       </th>
                     </tr>
                   </thead>
@@ -119,7 +119,7 @@ const Wallet = (wallet:any) => {
         </div>
       ) : (
 
-        <p>Dữ liêu đang được cập nhật...</p>
+        <p>Loading...</p>
       )}
     </div>
   );

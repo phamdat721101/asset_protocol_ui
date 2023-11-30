@@ -16,7 +16,7 @@ const VaultBox = async () => {
   let vaults = response.data
   let assets = []
   for(let i = 0; i < vaults.length; i++){
-    console.log("vault item: ", vaults[i])
+    // console.log("vault item: ", vaults[i])
     let asset = {
       id: i + 1,
       name: vaults[i].vault_name,
@@ -56,7 +56,7 @@ const VaultBox = async () => {
   // ];
   return (
     <div className="container p-4 m-auto grid">
-      <AssetTitle title={"Top danh mục đầu tư"} />
+      <AssetTitle title={"Top Performance"} />
       {assets.map((asset) => (
         <a key={asset.id} href={"/portfolio/" + asset.id} className="rounded-lg mt-8">
           <div className="flex flex-col lg:flex-row css-yvpm9d lg:py-0 border-2 border-transparent hover:border-blue-300 hover:border-2">
@@ -232,19 +232,19 @@ const VaultBox = async () => {
               <div className="w-1/3">
                 <AssetFactor
                   icon={<BarChart width={12} />}
-                  factor={{ name: "Lãi 30 ngày", value: asset.apy + "%" }}
+                  factor={{ name: "Monthly Return", value: asset.apy + "%" }}
                 />
               </div>
               <div className="w-1/3 border-x-[1px] lg:border-0">
                 <AssetFactor
                   icon={<SecuredBy width={12} />}
-                  factor={{ name: "Bảo trợ bởi", value: asset.secured_by }}
+                  factor={{ name: "Owner", value: asset.secured_by }}
                 />
               </div>
               <div className="w-1/3">
                 <AssetFactor
                   icon={<Liquidity width={12} />}
-                  factor={{ name: "Thanh khoản", value: asset.liquidity }}
+                  factor={{ name: "Liquidity", value: asset.liquidity }}
                 />
               </div>
             </div>

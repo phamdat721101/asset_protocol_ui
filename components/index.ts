@@ -28,4 +28,5 @@ export {
     MetaMaskWallet,
     ChartSimpleArea,
     ChartKassandra
+    VaultBox
 }

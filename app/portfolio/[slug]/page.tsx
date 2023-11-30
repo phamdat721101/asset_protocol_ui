@@ -16,7 +16,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       <main className="overflow-hidden">
         <Header />
         <div className="container p-4 m-auto grid">
-          <AssetTitle title={"Gói Cơ Bản"} />
+          <AssetTitle title={"DigiTrust - Basic"} />
           <div className="flex flex-col lg:flex-row mt-4">
             <div className="basis-1/2 flex flex-wrap flex-col lg:flex-row lg:mt-0">
               <div className="w-full flex flex-wrap flex-col lg:flex-row bg-white p-2 rounded-lg">
@@ -25,11 +25,11 @@ export default function Page({ params }: { params: { slug: string } }) {
                   <p className="text-blue-400 font-semibold">1.000.000</p>
                 </div>
                 <div className="w-full lg:w-1/3 lg:border-x-[1px] p-5 flex flex-col items-center">
-                  <span className="text-lg font-medium">Tham gia</span>
-                  <p className="text-blue-400 font-semibold">1.000</p>
+                  <span className="text-lg font-medium">DigiScore</span>
+                  <p className="text-blue-400 font-semibold">36</p>
                 </div>
                 <div className="w-full lg:w-1/3 p-5 flex flex-col items-center">
-                  <span className="text-lg font-medium">Phí quản lý</span>
+                  <span className="text-lg font-medium">Management Fee</span>
                   <p className="text-blue-400 font-semibold">2%</p>
                 </div>
               </div>
@@ -37,18 +37,18 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <ChartSimpleArea />
               </div>
               <div className="w-full flex flex-wrap flex-col bg-white p-2 rounded-lg mt-5">
-                <h3 className="text-lg font-semibold mb-2">Đặc điểm</h3>
+                <h3 className="text-lg font-semibold mb-2">Description</h3>
                 <ul>
                   <li>
-                  Gói cơ bản cung cấp danh mục đầu tư dành cho nhóm khách hàng mới <br/>
-                    - Danh mục tài sản bao gồm những token có vốn hoá nhỏ<br/>
-                    <b className="font-base">- Vốn đầu tư nhỏ</b> từ 250.000đ<br/>
-                    - Sử dụng chiến lược giao dịch ngắn hạn đã được kiểm chứng trên các sàn CEX (Binance, OKX)
+                  DigiTrust basic provides portfolio for new investors with low risk <br/>
+                    - Asset structure will be allocated to low-cap token<br/>
+                    <b className="font-base">- Min deposit</b> from 10$<br/>
+                    - Using profitable strategy, that already worked well in CEX (Binance, OKX)
                   </li>
                 </ul>
               </div>
               <div className="w-full flex flex-wrap flex-col bg-white p-2 rounded-lg mt-5">
-                <h6 className="text-lg font-semibold mb-2">Phân bổ tài sản</h6>
+                <h6 className="text-lg font-semibold mb-2">Asset Structure</h6>
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div className="overflow-hidden">
@@ -57,13 +57,13 @@ export default function Page({ params }: { params: { slug: string } }) {
                           <tr>
                             {/* <th scope="col" className="px-6 py-4">#</th> */}
                             <th scope="col" className="px-6 py-4">
-                              Tài sản
+                              Asset
                             </th>
                             <th scope="col" className="px-6 py-4">
-                              Phân bổ (%)
+                              Weight (%)
                             </th>
                             <th scope="col" className="px-6 py-4">
-                              Lãi suất năm (%)
+                              Interest-Rate (%)
                             </th>
                           </tr>
                         </thead>

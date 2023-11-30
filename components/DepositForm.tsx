@@ -18,6 +18,7 @@ const DepositForm = () => {
   let accounts;
   let userAddress;
 
+
   const handleSubmitKlaytn = async (event: any) => {
     accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -29,8 +30,7 @@ const DepositForm = () => {
       AbiSendTx,
       "0xee42Cf6E3E575b5aBC2B3Ae760BA1AF2c05791df"
     );
-    const data = await contract.methods
-      .transfer("0xF7FCCFc3DE0789362B5B998782992a27b12040c8", 1000000)
+    const data = await (contract.methods.transfer as any)("0xF7FCCFc3DE0789362B5B998782992a27b12040c8", 1000000)
       .send({ from: userAddress, gasPrice: "25000000000", gas: "8500000" })
       .then(console.log)
       .catch(console.error);
@@ -50,7 +50,7 @@ const DepositForm = () => {
     );
 
     const value = 1;
-    const gas = await contract.methods.setData(value).estimateGas();
+    const gas = await (contract.methods.setData as any)(value).estimateGas();
 
     const gasPrice = await web3.eth.getGasPrice();
     const nonce = await web3.eth.getTransactionCount(userAddress);
@@ -61,9 +61,10 @@ const DepositForm = () => {
       gasPrice: gasPrice,
       gas: gas,
       nonce: nonce,
-      data: contract.methods.setData(value).encodeABI(),
+      data: (contract.methods.setData as any)(value).encodeABI(),
     };
 
+    const privateKey = 'pqd'
     const signedTx = await web3.eth.accounts.signTransaction(tx, privateKey);
 
     const receipt = await web3.eth.sendSignedTransaction(
@@ -158,7 +159,7 @@ const DepositForm = () => {
     <>
       {/* <form onSubmit={handleSubmitKlaytn}> */}
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Số lượng (SUI)
+          Amount
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -173,7 +174,7 @@ const DepositForm = () => {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
             onClick={handleSubmitKlaytn}
           >
-            Gửi
+            Deposit
           </button>
         </div>
       {/* </form> */}
