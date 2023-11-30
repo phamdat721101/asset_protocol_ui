@@ -27,6 +27,6 @@ export {
     SuiButton,
     MetaMaskWallet,
     ChartSimpleArea,
-    ChartKassandra
+    ChartKassandra,
     VaultBox
 }
