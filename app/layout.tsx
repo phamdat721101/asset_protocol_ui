@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import { dir } from "i18next";
+
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components";
+
+const languages = ["vi", "en"];
+
+export async function generateStaticParams() {
+  return languages.map((lng) => ({ lng }));
+}
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,16 +17,18 @@ export const metadata: Metadata = {
   description: "Decentralized asset management protocol",
 };
 
-export default function RootLayout({
+function RootLayout({
   children,
+  params: { lng },
 }: {
   children: React.ReactNode;
+  params: any;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {children}
-      </body>
+    <html lang={lng}>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
+
+export default RootLayout;
