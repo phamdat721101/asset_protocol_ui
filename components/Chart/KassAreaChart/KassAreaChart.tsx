@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   Area,
   AreaChart,
-  ResponsiveContainer,
+  // ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -57,7 +57,7 @@ const KassAreaChart = (props: IKassAreaChartProp) => {
         <YAxis axisLine={false} tickLine={false} tickMargin={-28} />
         <Tooltip
           active={false}
-          cursor={{ fill: "#E843C4", stroke: "#fff", strokeWidth: 2 }}
+          cursor={{ fill: chartColor, stroke: "#fff", strokeWidth: 2 }}
         />
         <Area
           type="monotone"
