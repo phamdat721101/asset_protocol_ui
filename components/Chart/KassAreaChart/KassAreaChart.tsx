@@ -15,16 +15,17 @@ import { useTranslation } from "@/app/i18n/useTranslate";
 interface IKassAreaChartProp {
   data?: any;
   chartColor?: string;
+  isChartOnly?: boolean;
 }
 
 const KassAreaChart = (props: IKassAreaChartProp) => {
-  const { data, chartColor = "#E843C4" } = props;
+  const { data, chartColor = "#E843C4", isChartOnly = false } = props;
   const [activePayload, setActivePayload] = useState(data[data.length - 1]);
   const { t } = useTranslation("common");
 
   return (
     <div className={cn("flex flex-col gap-4", styles.root)}>
-      {activePayload && (
+      {!isChartOnly && activePayload && (
         <div className="flex flex-col gap-0.5">
           <div className="text-xl font-semibold">
             {t("currency")}
@@ -54,10 +55,11 @@ const KassAreaChart = (props: IKassAreaChartProp) => {
         </defs>
 
         <XAxis dataKey="name" hide />
-        <YAxis axisLine={false} tickLine={false} tickMargin={-28} />
-        <Tooltip
-          active={false}
-          cursor={{ fill: chartColor, stroke: "#fff", strokeWidth: 2 }}
+        <YAxis
+          axisLine={false}
+          tickLine={false}
+          tickMargin={-28}
+          hide={isChartOnly}
         />
         <Area
           type="monotone"
@@ -65,6 +67,12 @@ const KassAreaChart = (props: IKassAreaChartProp) => {
           stroke={chartColor}
           fill="url(#colorUv)"
         />
+        {!isChartOnly && (
+          <Tooltip
+            active={false}
+            cursor={{ fill: chartColor, stroke: "#fff", strokeWidth: 2 }}
+          />
+        )}
       </AreaChart>
     </div>
   );

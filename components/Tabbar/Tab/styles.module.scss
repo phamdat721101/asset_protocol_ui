@@ -13,15 +13,15 @@
   }
 
   &:not(.disabled).activated {
-    color: red;
+    color: rgb(232, 67, 196);
     font-weight: 500;
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid rgb(232, 67, 196);
   }
 
   &:not(.disabled):hover {
-    color: red;
+    color: rgb(232, 67, 196);
     font-weight: 500;
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid rgb(232, 67, 196);
   }
 
   &.disabled {

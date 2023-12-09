@@ -24,6 +24,7 @@ export const Tab = (props: any) => {
   const activated = context.value === index;
 
   const classOfComponent = cn(
+    'tab-item',
     styles.root,
     {
       [styles[`size-${size}`]]: size,
@@ -31,6 +32,7 @@ export const Tab = (props: any) => {
       [styles.disabled]: disabled,
       [styles["full-width"]]: fullWidth,
       [styles.border]: border,
+      activated: activated,
     },
     className
   );
@@ -41,18 +43,7 @@ export const Tab = (props: any) => {
     }
   }
 
-  const shouldUseTag = !!label || !!tag;
-
   let contentOfTab = children;
-
-  if (shouldUseTag) {
-    contentOfTab = [
-      <div key="label" className={styles.label}>
-        {label}
-      </div>,
-    ];
-  }
-
   return (
     <Component {...rest} onClick={handleClick} className={classOfComponent}>
       {contentOfTab}

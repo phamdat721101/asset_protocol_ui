@@ -5,6 +5,8 @@ import useTab from "@/components/Tabbar/useTab";
 import Tabs from "@/components/Tabbar/Tabs";
 import Tab from "@/components/Tabbar/Tab";
 
+import styles from "./SimpleArea.module.scss";
+
 type Props = {};
 
 const data = [
@@ -59,28 +61,52 @@ const data = [
 ];
 
 const ChartSimpleArea = (props: Props) => {
-  const [tabSelected, onTabChange] = useTab("price");
+  const [chartSelected, onSelectChartChange] = useTab("price");
+  const [periodSelected, onSelectedPeriod] = useTab("day-1D");
   const [chartData, setChartData] = useState(data);
 
   function handleTabChange(value: any) {
     // TODO: fetch api and change data here
-    onTabChange(value);
+    onSelectChartChange(value);
+  }
+
+  function handleChangePeriod(value: any) {
+    // TODO: fetch api and change data here
+    onSelectedPeriod(value);
   }
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-row gap-2 justify-between">
         <div>
-          <Tabs value={tabSelected} onChange={handleTabChange}>
+          <Tabs value={chartSelected} onChange={handleTabChange}>
             <Tab index="price">Price</Tab>
             <Tab index="tvl">TVL</Tab>
             <Tab index="allocation">Allowcation</Tab>
           </Tabs>
         </div>
-        <div></div>
+        <div>
+          <Tabs
+            className={styles["period-tabs"]}
+            value={periodSelected}
+            onChange={handleChangePeriod}
+          >
+            <Tab index="day-1D">1D</Tab>
+            <Tab index="day-1W">1W</Tab>
+            <Tab index="day-1M">1M</Tab>
+            <Tab index="day-3M">3M</Tab>
+            <Tab index="day-1Y">1Y</Tab>
+          </Tabs>
+        </div>
       </div>
       <div>
         <KassAreaChart data={data} />
+      </div>
+      <div className="flex flex-col gap-4">
+        <div>Chart only</div>
+        <div>
+          <KassAreaChart data={data} isChartOnly />
+        </div>
       </div>
     </div>
   );
