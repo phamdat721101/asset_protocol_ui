@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const { i18n } = require("./next-i18next.config");
+const withNextIntl = require("next-intl/plugin")();
 
 const nextConfig = {
   images: {
@@ -12,7 +12,6 @@ const nextConfig = {
       },
     ],
   },
-  i18n,
 };
 
-module.exports = nextConfig;
+module.exports = withNextIntl(nextConfig);

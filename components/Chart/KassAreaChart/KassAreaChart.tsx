@@ -10,7 +10,6 @@ import {
 } from "recharts";
 
 import styles from "./KassAreaChart.module.scss";
-import { useTranslation } from "@/app/i18n/useTranslate";
 
 interface IKassAreaChartProp {
   data?: any;
@@ -21,16 +20,12 @@ interface IKassAreaChartProp {
 const KassAreaChart = (props: IKassAreaChartProp) => {
   const { data, chartColor = "#E843C4", isChartOnly = false } = props;
   const [activePayload, setActivePayload] = useState(data[data.length - 1]);
-  const { t } = useTranslation("common");
 
   return (
     <div className={cn("flex flex-col gap-4", styles.root)}>
       {!isChartOnly && activePayload && (
         <div className="flex flex-col gap-0.5">
-          <div className="text-xl font-semibold">
-            {t("currency")}
-            {activePayload?.price}
-          </div>
+          <div className="text-xl font-semibold">${activePayload?.price}</div>
           <div className="text-sm text-light text-slate-500">
             {activePayload?.name}
           </div>
@@ -49,8 +44,8 @@ const KassAreaChart = (props: IKassAreaChartProp) => {
       >
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color={chartColor} stopOpacity="0.3"></stop>
-            <stop offset="100%" stop-color={chartColor} stopOpacity="0"></stop>
+            <stop offset="0%" stopColor={chartColor} stopOpacity="0.3"></stop>
+            <stop offset="100%" stopColor={chartColor} stopOpacity="0"></stop>
           </linearGradient>
         </defs>
 

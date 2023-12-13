@@ -1,5 +1,5 @@
 import { MappleAssetDetail } from '@/components';
-import DigiTrustRegister from '../../components/DigiTrust/Register'
+import DigiTrustRegister from '../../../components/DigiTrust/Register'
 import React from 'react'
 
 interface User {
