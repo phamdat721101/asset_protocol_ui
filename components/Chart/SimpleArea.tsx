@@ -6,6 +6,7 @@ import Tabs from "@/components/Tabbar/Tabs";
 import Tab from "@/components/Tabbar/Tab";
 
 import styles from "./SimpleArea.module.scss";
+import HorizontalBarChart from "./HorizontalBarChart";
 
 type Props = {};
 
@@ -106,6 +107,23 @@ const ChartSimpleArea = (props: Props) => {
         <div>Chart only</div>
         <div>
           <KassAreaChart data={data} isChartOnly />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <div>HorizontalBarChart</div>
+        <div>
+          <HorizontalBarChart
+            data={[
+              { name: "Item 1", color: "blue", percentage: 12 },
+              { name: "Item 2", color: "green", percentage: 5 },
+              { name: "Item 3", color: "red", percentage: 28 },
+              { name: "Item 4", color: "gray", percentage: 5 },
+              { name: "Item 5", color: "black", percentage: 25 },
+              { name: "Item 6", color: "yellow", percentage: 25 },
+            ]}
+            height={5}
+          />
         </div>
       </div>
     </div>
