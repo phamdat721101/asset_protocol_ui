@@ -1,15 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    images: {
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: 's2.coinmarketcap.com',
-            port: '',
-            pathname: '/static/img/coins/64x64/**',
-          },
-        ],
-      },
-}
+const withNextIntl = require("next-intl/plugin")();
 
-module.exports = nextConfig
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "s2.coinmarketcap.com",
+        port: "",
+        pathname: "/static/img/coins/64x64/**",
+      },
+    ],
+  },
+};
+
+module.exports = withNextIntl(nextConfig);

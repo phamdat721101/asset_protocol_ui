@@ -1,9 +1,13 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 import React from "react";
 import Web3 from "web3";
 import { useState, useEffect } from "react";
 import { shortenAddress } from "../../utils/address";
 import Link from "next/link";
+
+import LocalToggle from "@/locale/LocalToggle";
 
 declare global {
   interface Window {
@@ -17,6 +21,7 @@ const Wallet = () => {
   let accounts;
   let userAddress;
   // let privateKey = process.env.PRIVATE_KEY;
+  const t = useTranslations("Commons");
 
   useEffect(() => {
     const fetchAccount = async () => {
@@ -97,12 +102,13 @@ const Wallet = () => {
 
   return (
     <div className="p-4">
+      {<LocalToggle />}
       {!account ? (
         <button
           className="border-[1px] border-blue-500 hover:bg-blue-600 hover:text-white text-blue-500 font-medium py-2 px-4 rounded"
           onClick={() => window.ethereum.enable()}
         >
-          Connect Wallet
+          {t("Header.connect-wallet")}
         </button>
       ) : null}
       {account ? (
@@ -137,10 +143,7 @@ const Wallet = () => {
           >
             Get Price
           </button> */}
-          <Link
-            href={"/maple"}
-            className="mr-2 hover:text-blue-400 text-black"
-          >
+          <Link href={"/maple"} className="mr-2 hover:text-blue-400 text-black">
             Create Vault
           </Link>
           <Link

@@ -33,7 +33,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                   <p className="text-blue-400 font-semibold">2%</p>
                 </div>
               </div>
-              <div className="w-full h-[300px] flex flex-wrap flex-col bg-white p-2 rounded-lg mt-5">
+              <div className="w-full flex flex-wrap flex-col bg-white p-4 rounded-lg mt-5">
                 <ChartSimpleArea />
               </div>
               <div className="w-full flex flex-wrap flex-col bg-white p-2 rounded-lg mt-5">

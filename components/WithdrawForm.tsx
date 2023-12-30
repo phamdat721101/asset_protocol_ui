@@ -19,8 +19,8 @@ const WithdrawForm = () => {
   let accounts;
   let userAddress;
 
-  const withdrawKlay = async (event: any) =>{
-    console.log("Amount: ", amount)
+  const withdrawKlay = async (event: any) => {
+    console.log("Amount: ", amount);
     accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
@@ -31,13 +31,16 @@ const WithdrawForm = () => {
       "0xee42Cf6E3E575b5aBC2B3Ae760BA1AF2c05791df"
     );
 
-    const decimal = 10**17
-    const data = await (contract.methods.transfer as any)("0xF7FCCFc3DE0789362B5B998782992a27b12040c8", parseInt(amount) * decimal)
+    const decimal = 10 ** 17;
+    const data = await (contract.methods.transfer as any)(
+      "0xF7FCCFc3DE0789362B5B998782992a27b12040c8",
+      parseInt(amount) * decimal
+    )
       .send({ from: userAddress, gasPrice: "25000000000", gas: "8500000" })
       .then(console.log)
       .catch(console.error);
     console.log(data);
-  }
+  };
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -71,7 +74,7 @@ const WithdrawForm = () => {
     });
 
     await signAndExecuteTransactionBlock({
-      transactionBlock: txb,
+      transactionBlock: txb as any,
     });
 
     console.log(txb);
@@ -98,25 +101,25 @@ const WithdrawForm = () => {
   return (
     <>
       {/*<form onSubmit={handleSubmit}>*/}
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Amount
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          type="number"
-          id="amount"
-          value={amount}
-          onChange={(event) => setAmount(event.target.value)}
-        />
-        <div className="text-right">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
-            onClick={withdrawKlay}
-          >
-            Withdraw
-          </button>
-        </div>
+      <label className="block text-gray-700 text-sm font-bold mb-2">
+        Amount
+      </label>
+      <input
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="number"
+        id="amount"
+        value={amount}
+        onChange={(event) => setAmount(event.target.value)}
+      />
+      <div className="text-right">
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+          onClick={withdrawKlay}
+        >
+          Withdraw
+        </button>
+      </div>
       {/*</form>*/}
     </>
   );
