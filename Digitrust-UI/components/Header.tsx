@@ -3,32 +3,6 @@ import Link from "next/link";
 import Logo from "../public/assets/images/logo.png";
 import Button from "./Button";
 
-const navLinks = [
-    {
-        id: 1,
-        title: "Product",
-        link: "/product",
-    },
-
-    {
-        id: 2,
-        title: "Community",
-        link: "/community",
-    },
-
-    {
-        id: 3,
-        title: "Resources",
-        link: "/resources",
-    },
-
-    {
-        id: 4,
-        title: "About Us",
-        link: "/about-us",
-    },
-];
-
 export default function Header() {
     return (
         <header className="font-feature-settings bg-white text-sm font-medium capitalize leading-normal xl:text-base">
@@ -44,6 +18,7 @@ export default function Header() {
                             ></Image>
                         </Link>
                     </div>
+                    
                     {/* Navigations */}
                     <nav className="hidden lg:block">
                         <ul className="flex gap-x-10">

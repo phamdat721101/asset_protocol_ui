@@ -36,6 +36,10 @@ const config: Config = {
 
             boxShadow: {
                 primary: "0px 20px 95px 0px rgba(201, 203, 204, 0.30)",
+                cardMorePools: "0px 10px 60px 0px rgba(226, 236, 249, 0.50)",
+                currency: "0px 1px 2px -1px rgba(17, 12, 34, 0.08)",
+                elevation: "0px 2px 4px -2px rgba(17, 12, 34, 0.12)",
+                chart: "0px 1px 4px 0px rgba(0, 0, 0, 0.10)"
             },
         },
     },
