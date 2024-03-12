@@ -41,6 +41,10 @@ const config: Config = {
                 elevation: "0px 2px 4px -2px rgba(17, 12, 34, 0.12)",
                 chart: "0px 1px 4px 0px rgba(0, 0, 0, 0.10)"
             },
+
+            backgroundImage: {
+                details: "url('../public/assets/images/bg-details.png')",
+            }
         },
     },
     plugins: [require("@tailwindcss/aspect-ratio")],
