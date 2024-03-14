@@ -95,18 +95,18 @@ export default function MorePools() {
     });
 
     useEffect(() => {
-        let charts: any = [];
+        const chartMorePool: any = [];
         dataMorePools.map((data: any) => {
             const chart: any = new ApexCharts(
                 document.querySelector(`.line-chart-${data.vault_id}`),
                 chartOptions,
             );
             chart.render();
-            charts.push(chart);
+            chartMorePool.push(chart);
         });
 
         return () => {
-            charts.forEach((chart: any) => {
+            chartMorePool.forEach((chart: any) => {
                 chart.destroy();
             });
         };
@@ -205,23 +205,23 @@ export default function MorePools() {
                                                 <path
                                                     d="M8.0625 10.6219L12 14.5594L15.9375 10.6219"
                                                     stroke="white"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
                                                 />
                                                 <path
                                                     d="M12 4.05945V14.5594"
                                                     stroke="white"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
                                                 />
                                                 <path
                                                     d="M20.25 14.5594V19.8094C20.25 20.0084 20.171 20.1991 20.0303 20.3398C19.8897 20.4804 19.6989 20.5594 19.5 20.5594H4.5C4.30109 20.5594 4.11032 20.4804 3.96967 20.3398C3.82902 20.1991 3.75 20.0084 3.75 19.8094V14.5594"
                                                     stroke="white"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
                                                 />
                                             </svg>
                                         </span>

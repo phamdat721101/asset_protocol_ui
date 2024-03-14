@@ -60,9 +60,9 @@ export default function Banner() {
                                             <path
                                                 d="M5 9L7.8 12L13 6"
                                                 stroke="white"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
                                             />
                                         </svg>
                                     </span>
@@ -86,9 +86,9 @@ export default function Banner() {
                                             <path
                                                 d="M5 9L7.8 12L13 6"
                                                 stroke="white"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
                                             />
                                         </svg>
                                     </span>

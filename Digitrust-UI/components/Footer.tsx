@@ -86,12 +86,12 @@ export default function Footer() {
                             <nav>
                                 <ul className="font-feature-settings space-y-6 text-base font-medium capitalize leading-5 xl:space-y-12">
                                     {[
-                                        ["Work With Us", "/"],
-                                        ["Advertise With Us", "/"],
-                                        ["Support Us", "/"],
-                                        ["Business Advices", "/"],
-                                    ].map(([title, url]) => (
-                                        <li>
+                                        ["1", "Work With Us", "/"],
+                                        ["2", "Advertise With Us", "/"],
+                                        ["3", "Support Us", "/"],
+                                        ["4", "Business Advices", "/"],
+                                    ].map(([id, title, url]) => (
+                                        <li key={id}>
                                             <Link
                                                 className="hover:text-blue-600"
                                                 href={url}
@@ -106,12 +106,12 @@ export default function Footer() {
                             <nav>
                                 <ul className="font-feature-settings space-y-6 text-base font-medium capitalize leading-5 xl:space-y-12">
                                     {[
-                                        ["Private Coaching", "/"],
-                                        ["Our Work", "/"],
-                                        ["Our Commitment", "/"],
-                                        ["Our Team", "/"],
-                                    ].map(([title, url]) => (
-                                        <li>
+                                        ["1", "Private Coaching", "/"],
+                                        ["2", "Our Work", "/"],
+                                        ["3", "Our Commitment", "/"],
+                                        ["4", "Our Team", "/"],
+                                    ].map(([id, title, url]) => (
+                                        <li key={id}>
                                             <Link
                                                 className="hover:text-blue-600"
                                                 href={url}
@@ -126,11 +126,11 @@ export default function Footer() {
                             <nav>
                                 <ul className="font-feature-settings space-y-6 text-base font-medium capitalize leading-5 xl:space-y-12">
                                     {[
-                                        ["About Us", "/"],
-                                        ["FAQs", "/"],
-                                        ["Report a Bug", "/"],
-                                    ].map(([title, url]) => (
-                                        <li>
+                                        ["1", "About Us", "/"],
+                                        ["2", "FAQs", "/"],
+                                        ["3", "Report a Bug", "/"],
+                                    ].map(([id, title, url]) => (
+                                        <li key={id}>
                                             <Link
                                                 className="hover:text-blue-600"
                                                 href={url}
