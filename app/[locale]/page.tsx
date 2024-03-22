@@ -11,7 +11,7 @@ function Home() {
           <MappleAssetBox />
         </div>
         <div className="mb-auto">
-          <VaultBox />
+          {/* <VaultBox /> */}
         </div>
         <Footer />
       </WalletKitProvider>
