@@ -12,6 +12,7 @@ import MappleTab from "./Mapple/Tab";
 import MetaMaskWallet from "./MetaMask/Wallet";
 import ChartSimpleArea from "./Chart/SimpleArea";
 import ChartKassandra from "./Chart/Kassandra";
+import LandingPage from "./LandingPage/LandingPage";
 
 export {
   MappleAssetBox,
@@ -28,4 +29,5 @@ export {
   ChartSimpleArea,
   ChartKassandra,
   VaultBox,
+  LandingPage,
 };
