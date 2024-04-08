@@ -1,0 +1,124 @@
+
+.tl {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tl::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  background-color: #2563EB;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.tl-container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+
+.tl-oval::after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: 588px;
+    background-color: #fff;
+    border: 12px solid #2563EB;
+    top: 56.25rem;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.tl-oval1::after {
+    content: "";
+    position: absolute;
+    width: 25px ;
+    height: 25px;
+    right: -13px;
+    background-color: #fff;
+    border: 12px solid #2563EB;
+    top: -23px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.tl-left {
+  left: 0;
+}
+
+.tl-right {
+  left: 50%;
+}
+
+
+.tl-left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 20px;
+    border: medium solid #2563EB;
+    border-width: 20px 0 20px 20px;
+    border-color: transparent transparent transparent #2563EB;
+}
+.tl-right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 19px;
+    width: 0px;
+    z-index: 1;
+    left: 20px;
+    border: medium solid #2563EB;
+    border-width: 20px 20px 20px 0;
+    border-color: transparent #2563EB transparent transparent;
+}
+
+.tl-right::after {
+  left: -16px;
+}
+
+.tl-content {
+  padding: 20px 30px;
+  background-color: grey;
+  position: relative;
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 600px) {
+  .tl::after {
+    left: 31px;
+  }
+
+  .tl-container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .tl-container::before {
+    left: 60px;
+    border: medium solid #919191;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #888686 transparent transparent;
+  }
+
+  .tl-left::after,
+  .tl-right::after {
+    left: 15px;
+  }
+
+  .tl-right {
+    left: 0%;
+  }
+}

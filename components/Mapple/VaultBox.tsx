@@ -8,10 +8,15 @@ import Liquidity from "@/icons/Liquidity";
 import "@suiet/wallet-kit/style.css";
 import axios from "axios";
 
-const VaultBox = async () => {
-  const response = await axios.get(
-    "https://test-vercel-seven-ivory.vercel.app/v1/vaults"
-  );
+const fetchData = async () => {
+  const response = await fetch("https://test-vercel-seven-ivory.vercel.app/v1/vaults");
+
+  if (!response.ok) return {};
+  return response.json();
+}
+
+async function VaultBox(){
+  const response = await fetchData();
 
   let vaults = response.data
   let assets = []

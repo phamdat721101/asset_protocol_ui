@@ -152,6 +152,12 @@ const Wallet = () => {
           >
             Transaction
           </Link>
+          <Link
+            href={"/profile/" + account}
+            className="mr-2 hover:text-blue-400 text-black"
+          >
+            Profile
+          </Link>
 
           <button className="border-[1px] border-blue-500 hover:bg-blue-600 hover:text-white text-blue-500 font-medium py-2 px-4 rounded">
             {shortenAddress(account)}
