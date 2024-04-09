@@ -14,6 +14,7 @@ import ChartSimpleArea from "./Chart/SimpleArea";
 import ChartKassandra from "./Chart/Kassandra";
 import LandingPage from "./LandingPage/LandingPage";
 import HomePage from "./HomePage/HomePage";
+import PoolPageCreate from "./PoolPageCreate"
 
 export {
   MappleAssetBox,
@@ -32,4 +33,5 @@ export {
   VaultBox,
   LandingPage,
   HomePage,
+  PoolPageCreate
 };
