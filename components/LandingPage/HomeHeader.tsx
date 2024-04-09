@@ -111,9 +111,7 @@ export default function Header() {
       </nav>
 
       {/* Button */}
-      <Button>
-        <Link href="/home">Launch App</Link>
-      </Button>
+      <Button>Launch App</Button>
     </header>
   );
 }

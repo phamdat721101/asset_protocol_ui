@@ -69,9 +69,9 @@ export default function HomePage() {
                           <path
                             d="M5 9L7.8 12L13 6"
                             stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </span>
@@ -90,9 +90,9 @@ export default function HomePage() {
                           <path
                             d="M5 9L7.8 12L13 6"
                             stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </span>
@@ -333,65 +333,65 @@ export default function HomePage() {
                           <path
                             d="M9.375 35.9375V14.0625"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M40.625 14.0625V35.9375"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M18.75 25V28.125"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M25 23.4375V28.125"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M31.25 21.875V28.125"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M42.1875 7.8125H7.8125C6.94956 7.8125 6.25 8.51206 6.25 9.375V12.5C6.25 13.3629 6.94956 14.0625 7.8125 14.0625H42.1875C43.0504 14.0625 43.75 13.3629 43.75 12.5V9.375C43.75 8.51206 43.0504 7.8125 42.1875 7.8125Z"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M25 35.9375V42.1875"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M25 48.4375C26.7259 48.4375 28.125 47.0384 28.125 45.3125C28.125 43.5866 26.7259 42.1875 25 42.1875C23.2741 42.1875 21.875 43.5866 21.875 45.3125C21.875 47.0384 23.2741 48.4375 25 48.4375Z"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M6.25 35.9375H43.75"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -421,30 +421,30 @@ export default function HomePage() {
                           <path
                             d="M21.875 21.875H34.375"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M21.875 28.125H34.375"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M40.625 7.8125H9.375C8.51206 7.8125 7.8125 8.51206 7.8125 9.375V40.625C7.8125 41.4879 8.51206 42.1875 9.375 42.1875H40.625C41.4879 42.1875 42.1875 41.4879 42.1875 40.625V9.375C42.1875 8.51206 41.4879 7.8125 40.625 7.8125Z"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M15.625 7.8125V42.1875"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -474,16 +474,16 @@ export default function HomePage() {
                           <path
                             d="M15.625 25C15.625 21.9097 16.5414 18.8887 18.2583 16.3192C19.9752 13.7497 22.4155 11.747 25.2706 10.5644C28.1257 9.38177 31.2673 9.07234 34.2983 9.67524C37.3292 10.2781 40.1134 11.7663 42.2985 13.9515C44.4837 16.1367 45.9719 18.9208 46.5748 21.9517C47.1777 24.9827 46.8682 28.1243 45.6856 30.9794C44.503 33.8345 42.5003 36.2748 39.9308 37.9917C37.3613 39.7086 34.3403 40.625 31.25 40.625H14.0625C11.1617 40.625 8.3797 39.4727 6.32852 37.4215C4.27734 35.3703 3.125 32.5883 3.125 29.6875C3.125 26.7867 4.27734 24.0047 6.32852 21.9535C8.3797 19.9023 11.1617 18.75 14.0625 18.75C14.9776 18.7497 15.8893 18.8612 16.7773 19.082"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M37.5 22.6562L28.125 32.0312L23.4375 27.3438"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -526,23 +526,23 @@ export default function HomePage() {
                           <path
                             d="M43.75 40.625H6.25V9.375"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M40.625 12.5L25 28.125L18.75 21.875L6.25 34.375"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M40.625 20.3125V12.5H32.8125"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -572,30 +572,30 @@ export default function HomePage() {
                           <path
                             d="M32.8125 43.75H10.9375C10.5231 43.75 10.1257 43.5854 9.83265 43.2924C9.53962 42.9993 9.375 42.6019 9.375 42.1875V14.0625C9.375 13.6481 9.53962 13.2507 9.83265 12.9576C10.1257 12.6646 10.5231 12.5 10.9375 12.5H26.5625L34.375 20.3125V42.1875C34.375 42.6019 34.2104 42.9993 33.9174 43.2924C33.6243 43.5854 33.2269 43.75 32.8125 43.75Z"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M15.625 12.5V7.8125C15.625 7.3981 15.7896 7.00067 16.0826 6.70765C16.3757 6.41462 16.7731 6.25 17.1875 6.25H32.8125L40.625 14.0625V35.9375C40.625 36.3519 40.4604 36.7493 40.1674 37.0424C39.8743 37.3354 39.4769 37.5 39.0625 37.5H34.375"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M17.1875 29.6875H26.5625"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M17.1875 35.9375H26.5625"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -625,65 +625,65 @@ export default function HomePage() {
                           <path
                             d="M25 29.6875C27.5888 29.6875 29.6875 27.5888 29.6875 25C29.6875 22.4112 27.5888 20.3125 25 20.3125C22.4112 20.3125 20.3125 22.4112 20.3125 25C20.3125 27.5888 22.4112 29.6875 25 29.6875Z"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M18.75 15.625C21.3388 15.625 23.4375 13.5263 23.4375 10.9375C23.4375 8.34867 21.3388 6.25 18.75 6.25C16.1612 6.25 14.0625 8.34867 14.0625 10.9375C14.0625 13.5263 16.1612 15.625 18.75 15.625Z"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M39.0625 25C41.6513 25 43.75 22.9013 43.75 20.3125C43.75 17.7237 41.6513 15.625 39.0625 15.625C36.4737 15.625 34.375 17.7237 34.375 20.3125C34.375 22.9013 36.4737 25 39.0625 25Z"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M39.0625 40.625C41.6513 40.625 43.75 38.5263 43.75 35.9375C43.75 33.3487 41.6513 31.25 39.0625 31.25C36.4737 31.25 34.375 33.3487 34.375 35.9375C34.375 38.5263 36.4737 40.625 39.0625 40.625Z"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M10.9375 42.1875C13.5263 42.1875 15.625 40.0888 15.625 37.5C15.625 34.9112 13.5263 32.8125 10.9375 32.8125C8.34867 32.8125 6.25 34.9112 6.25 37.5C6.25 40.0888 8.34867 42.1875 10.9375 42.1875Z"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M23.105 20.723L20.644 15.2152"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M34.6099 21.7965L29.4536 23.5153"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M35.3716 33.0664L28.6919 27.8711"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M21.5044 28.1058L14.4341 34.3949"
                             stroke="#2563EB"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>

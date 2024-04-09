@@ -17,6 +17,7 @@
     "@mysten/sui.js": "^0.46.1",
     "@mysten/wallet-kit": "^0.8.6",
     "@suiet/wallet-kit": "^0.2.24",
+    "apexcharts": "^3.48.0",
     "axios": "^1.6.2",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",

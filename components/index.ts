@@ -31,7 +31,7 @@ export {
   ChartSimpleArea,
   ChartKassandra,
   VaultBox,
-  LandingPage,
   HomePage,
-  PoolPageCreate
+  PoolPageCreate,
+  LandingPage
 };
