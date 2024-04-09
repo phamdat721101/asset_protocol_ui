@@ -4,9 +4,13 @@ import cn from "classnames";
 import styles from "./styles.module.scss";
 import { STEPS } from "../const";
 
-type Props = {};
+type Props = {
+  active?: number;
+  onChangeStep?: (e: number) => void;
+};
 
 const PoolSteps = (props: Props) => {
+  const { active, onChangeStep } = { ...props };
   return (
     <div className={cn("flex flex-col rounded-lg", styles.root)}>
       <div className="text-base text-center px-4 py-4">
@@ -22,10 +26,13 @@ const PoolSteps = (props: Props) => {
           const activeCircleClassName =
             "relative text-sm rounded-full w-7 h-7 flex justify-center items-center border-2 border-none bg-gradient-from-l bg-gradient-to-r from-blue-600 to-blue-400 text-white active circle-line mr-2";
           const activeClassName = "text-blue-600 font-semibold";
-          const isActive = idx === 0;
+          const isActive = idx === active;
           return (
-            <div className="flex items-center mb-4">
-              <button className="">
+            <div
+              className="flex items-center mb-4"
+              onClick={() => onChangeStep?.(idx)}
+            >
+              <button className="" type="button">
                 <div className="flex flex-row items-center">
                   <div
                     className={cn(

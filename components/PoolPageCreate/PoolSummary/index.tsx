@@ -10,6 +10,8 @@ import {
 } from "recharts";
 
 import styles from "./styles.module.scss";
+import { useTypedForm } from "@/hooks/useTypedForm";
+import Tokens from "../Step1TokenAndWeights/const";
 
 type Props = {};
 
@@ -21,6 +23,17 @@ const list = [
 ];
 
 const PoolSummary = (props: Props) => {
+  const { watch } = useTypedForm("CreateVaults");
+  const tokensValues = watch("tokens")?.filter(
+    (x) => x?.name && x?.percent > 0
+  );
+  const list = tokensValues?.map((x) => ({
+    ...x,
+    value: x?.percent,
+    icon: Tokens?.find(y => y.value === x.name)?.icon,
+    marketPrice: Tokens?.find(y => y.value === x.name)?.marketPrice,
+  }));
+
   return (
     <div className={cn("flex flex-col", styles.root)}>
       <div className="flex flex-col bal-card rounded-lg overflow-hidden bg-white dark:bg-gray-850 shadow-xl content styles_root__XCc9d">
@@ -76,19 +89,20 @@ const PoolSummary = (props: Props) => {
           <div className={styles["divider"]}></div>
         </div>
         <div className="px-4 py-4">
-          <div className="flex items-center justify-between text-white">
-            <span className="mr-4">RAI</span>
-            <div className="flex flex-row justify-center">
-              <div className="mr-4">
-                <span>$2.80</span>
+          {list.map((x, idx) => (
+            <div
+              className="flex items-center justify-between text-white py-1"
+              key={idx}
+            >
+              <span className="mr-4">{x?.name}</span>
+              <div className="flex flex-row justify-center">
+                <div className="mr-4">
+                  <span>${x?.marketPrice}</span>
+                </div>
+                <img alt="" src={x?.icon} className="h-5" />
               </div>
-              <img
-                alt=""
-                src="https://app.balancer.fi/assets/coingecko-f7da7809.svg"
-                className="h-5"
-              />
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

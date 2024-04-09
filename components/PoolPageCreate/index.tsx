@@ -1,27 +1,25 @@
-import cn from "classnames";
+"use client";
 
-import PoolSteps from "./PoolSteps";
-import Step1TokenAndWeights from "./Step1TokenAndWeights";
-import styles from "./styles.module.scss";
-import PoolSummary from "./PoolSummary";
+import ReactHookForm from "@/providers/ReactHookForm";
+import { createVaultsSchema } from "@/react-hook-form/validations/CreateVaults";
+import FormWrapper from "./FormWrapper";
 
 type Props = {};
 
 const PoolPageCreate = (props: Props) => {
   return (
-    <div className="layout-container mt-8">
-      <div className="flex justify-center	">
-        <div className="flex-none w-64">
-          <PoolSteps />
-        </div>
-        <div className={cn("flex-initial w-80 mx-5", styles.center)}>
-          <Step1TokenAndWeights />
-        </div>
-        <div className="flex-initial w-64">
-          <PoolSummary />
-        </div>
-      </div>
-    </div>
+    <ReactHookForm
+      validateSchema={createVaultsSchema}
+      defaultValues={{
+        tokens: [
+          {
+            percent: 100,
+          },
+        ],
+      }}
+    >
+      <FormWrapper />
+    </ReactHookForm>
   );
 };
 
