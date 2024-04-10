@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  onClick?: (e) => void;
+  onClick?: (e: any) => void;
 };
 
 const TrashButton = (props: Props) => {
