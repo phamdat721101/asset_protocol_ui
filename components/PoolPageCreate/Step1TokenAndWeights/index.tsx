@@ -48,7 +48,7 @@ const Step1TokenAndWeights = (props: Props) => {
     });
 
     await signAndExecuteTransactionBlock({
-      transactionBlock: txb,
+      transactionBlock: txb as any,
     });
 
     console.log(txb);
