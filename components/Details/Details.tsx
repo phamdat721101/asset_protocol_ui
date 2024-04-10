@@ -705,7 +705,7 @@ export default function Details() {
                                                                         </svg>
                                                                     </span>
                                                                     <div>
-                                                                        USDC
+                                                                        USDCT
                                                                     </div>
                                                                     <span>
                                                                         <svg
@@ -780,7 +780,7 @@ export default function Details() {
                                                                         </svg>
                                                                     </span>
                                                                     <div>
-                                                                        USDC
+                                                                        USDCT
                                                                     </div>
                                                                     <span>
                                                                         <svg
@@ -966,7 +966,7 @@ export default function Details() {
                                                                         </svg>
                                                                     </span>
                                                                     <div>
-                                                                        USDC
+                                                                        USDCT
                                                                     </div>
                                                                     <span>
                                                                         <svg
