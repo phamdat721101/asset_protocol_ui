@@ -4,12 +4,18 @@ import ApexCharts from "apexcharts";
 import { Tab } from "@headlessui/react";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
+import { getFullnodeUrl, SuiClient } from "@mysten/sui.js/client";
+import { TransactionBlock } from "@mysten/sui.js/transactions";
+import { useWalletKit } from "@mysten/wallet-kit";
+import SuiButton from "@/components/SuiButton";
 
 // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function Details() {
     // Call Api
     const [dataDetails, setDataDetails] = useState<any[]>([]);
+    const { signAndExecuteTransactionBlock } = useWalletKit();
+
 
     useEffect(() => {
         const fetchDataDetails = async () => {
@@ -25,6 +31,32 @@ export default function Details() {
         fetchDataDetails();
     }, []);
     // End call api
+
+    async function deposit(event: any){
+        event.preventDefault();
+    
+        const client = new SuiClient({ url: getFullnodeUrl("testnet") });
+        const txb = new TransactionBlock();
+        const contractAddress = "0xe733afcdbcd61f8a795342dfb3cf4ea8977b3426a0f1df7a2bd3c50d23d1c99c";
+        const contractModule = "dgt";
+        const contractMethod = "mint";
+        txb.moveCall({
+          target: `${contractAddress}::${contractModule}::${contractMethod}`,
+          arguments: [
+            txb.pure("0x016b9a6e8e171665973eff12f701058ddb37c2dcaaf0e9616949b82d88521453")
+          ],
+          typeArguments:[
+            "0x2::sui::SUI", //QUOTE_COIN_TYPE,
+            "0xe733afcdbcd61f8a795342dfb3cf4ea8977b3426a0f1df7a2bd3c50d23d1c99c::dgt::DGT" //BASE_COIN_TYPE
+          ]
+        });
+    
+        await signAndExecuteTransactionBlock({
+          transactionBlock: txb as any,
+        });
+    
+        console.log(txb);
+      }
 
     // Chart
 
@@ -705,7 +737,7 @@ export default function Details() {
                                                                         </svg>
                                                                     </span>
                                                                     <div>
-                                                                        USDC
+                                                                        VAULT_1
                                                                     </div>
                                                                     <span>
                                                                         <svg
@@ -780,7 +812,7 @@ export default function Details() {
                                                                         </svg>
                                                                     </span>
                                                                     <div>
-                                                                        USDC
+                                                                        DGT
                                                                     </div>
                                                                     <span>
                                                                         <svg
@@ -871,7 +903,7 @@ export default function Details() {
                                                         </button>
                                                     </div>
 
-                                                    <button className="flex w-full items-center justify-center gap-x-3 rounded-[10px] bg-blue-600 py-4 text-white duration-200 hover:bg-blue-500">
+                                                    <button onClick={deposit} className="flex w-full items-center justify-center gap-x-3 rounded-[10px] bg-blue-600 py-4 text-white duration-200 hover:bg-blue-500">
                                                         <span>
                                                             <svg
                                                                 width="24"

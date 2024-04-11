@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import SuiButton from "../SuiButton";
 
 export default function HeaderSecond() {
     return (
@@ -68,7 +69,7 @@ export default function HeaderSecond() {
                                     />
                                 </svg>
                             </span>
-                            Connect Wallet
+                            <SuiButton />
                         </button>
                     </div>
                 </div>

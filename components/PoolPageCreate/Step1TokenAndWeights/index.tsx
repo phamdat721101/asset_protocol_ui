@@ -25,26 +25,22 @@ const Step1TokenAndWeights = (props: Props) => {
   );
 
   async function createPool(event: any){
-    console.log("Create pool")
     event.preventDefault();
 
     const client = new SuiClient({ url: getFullnodeUrl("testnet") });
     const txb = new TransactionBlock();
-    console.log("Txb info: ", txb)
-    const contractAddress = "0xdea5c3de4ca5d410923b58c76fe2713bc90fcca7dc11f8cc0ac4853f00e60e73";
-    const contractModule = "wbtc";
-    const contractMethod = "mint";
+    const contractAddress = "0xe733afcdbcd61f8a795342dfb3cf4ea8977b3426a0f1df7a2bd3c50d23d1c99c";
+    const contractModule = "book";
+    const contractMethod = "new_pool";
     txb.moveCall({
       target: `${contractAddress}::${contractModule}::${contractMethod}`,
       arguments: [
-        txb.object("0x75a3aae8f3ce70249920d623adaccf6affac26137755ffb8b1bae014170ee672"),
-        txb.pure(2411),
-        txb.pure("0x4cc7eac61ace69d47b64b974b15d3dee7277e34abc57de69228106e393418dcd")
+        txb.pure("0x016b9a6e8e171665973eff12f701058ddb37c2dcaaf0e9616949b82d88521453")
+      ],
+      typeArguments:[
+        "0x2::sui::SUI", //QUOTE_COIN_TYPE,
+        "0xe733afcdbcd61f8a795342dfb3cf4ea8977b3426a0f1df7a2bd3c50d23d1c99c::dgt::DGT" //BASE_COIN_TYPE
       ]
-      // typeArguments:[
-      //   "0xe1e0726a0dcb178dac48363f9c4101162ec07409d4f9742f2c3bae823503cb34::wbtc::WBTC", //BASE_COIN_TYPE
-      //   "0x2::sui::SUI" //QUOTE_COIN_TYPE
-      // ]
     });
 
     await signAndExecuteTransactionBlock({
@@ -64,14 +60,14 @@ const Step1TokenAndWeights = (props: Props) => {
       <SuiButton />
       <div className="flex flex-col">
         {/* title */}
-        <div className="flex flex-col mb-2">
+        {/* <div className="flex flex-col mb-2">
           <span className="text-xs text-secondary mb-1 text-white">
             Polygon Mainnet
           </span>
           <h5 className="font-semibold dark:text-gray-300">
             Choose tokens &amp; weights
           </h5>
-        </div>
+        </div> */}
         {/* title */}
         {/* card */}
         <div className="mb-2">
@@ -94,12 +90,12 @@ const Step1TokenAndWeights = (props: Props) => {
               type="button"
               onClick={createPool}
             >
-              Next
+              Create Pool
             </button>
             {/* row */}
           </div>
         </div>
-        {/* card */}
+        {/* card */} 
       </div>
     </div>
   );
