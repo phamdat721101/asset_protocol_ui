@@ -8,7 +8,7 @@ function SuiButton() {
     <div>
       {currentAccount?.address ? (
         <div>
-          <Link href={"/digitrust/wallet"}  className="mr-2 hover:text-blue-400"> Lịch sử giao dịch</Link>
+          <Link href={"/wallet"}  className="mr-2 hover:text-blue-400"> Lịch sử giao dịch</Link>
           <Link href={"/profile/abc"}>Profile</Link>
         </div>
       ):(<div></div>)}
