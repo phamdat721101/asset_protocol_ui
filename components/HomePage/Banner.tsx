@@ -20,7 +20,7 @@ const Banner: React.FC<{ time: number }> = ({ time }) => {
           Block any trader in easy 3 steps
         </h1>
         <p className="mt-4 text-xl text-white font-medium tracking-tight text-center">
-          Valio is non-custodial. Withdraw any time - no lockups
+          DigiTrust is non-custodial. Withdraw any time - no lockups
         </p>
 
         <div className="mx-auto mt-[46px] w-[70%] flex justify-between gap-[93px]">
