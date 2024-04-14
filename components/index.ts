@@ -15,9 +15,13 @@ import ChartKassandra from "./Chart/Kassandra";
 import LandingPage from "./LandingPage/LandingPage";
 import HomePage from "./HomePage/HomePage";
 import PoolPageCreate from "./PoolPageCreate"
+import FooterDetail from "./Details/Footer";
+import HeaderSecond from "./Details/HeaderSecond";
 
 export {
   MappleAssetBox,
+  FooterDetail,
+  HeaderSecond,
   MappleAssetDetail,
   Footer,
   Header,

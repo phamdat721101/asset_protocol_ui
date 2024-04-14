@@ -7,6 +7,8 @@ import Telegram from "@/icons/Telegram";
 import TwitterWithoutTitle from "@/icons/TwitterWithoutTitle";
 import X from "@/icons/X";
 import React from "react";
+import { HeaderSecond } from "@/components";
+import { WalletKitProvider } from "@mysten/wallet-kit";
 
 type TProfileProps = {
   params: { userAddress: string };
@@ -32,18 +34,18 @@ async function Profile(props: TProfileProps) {
   }
 
   return (
-    <div className="py-10">
-      <ProfileContainer
-        name={profile.name}
-        holdingAmount={profile.holding_amount}
-        managedAmount={profile.managed_amount}
-        description={profile.des}
-        wallet={profile.wallet}
-        logoUrl={profile.logo_url}
-        vaults={profile.vaults}
-        dgtAmount={profile.dgt_amount}
-      />
-    </div>
+      <div>
+        <ProfileContainer
+          name={profile.name}
+          holdingAmount={profile.holding_amount}
+          managedAmount={profile.managed_amount}
+          description={profile.des}
+          wallet={profile.wallet}
+          logoUrl={profile.logo_url}
+          vaults={profile.vaults}
+          dgtAmount={profile.dgt_amount}
+        />
+      </div>
   );
 }
 

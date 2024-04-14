@@ -1,18 +1,16 @@
 "use client"
 
 import { Header, Footer, SuiWallet, DigiTrustWallet } from '@/components'
+import LayoutSecond from '@/components/Details/LayoutSecond';
 import { WalletKitProvider } from "@mysten/wallet-kit";
 
 export default function Page({ params }: { params: { slug: string } }) {
 
   return (
-   < WalletKitProvider>
-    <main className="overflow-hidden">
-      <Header />
-        <DigiTrustWallet/>
-      <Footer />
-    </main>
+    <WalletKitProvider>
+      <LayoutSecond>
+          <DigiTrustWallet/>
+      </LayoutSecond>
     </WalletKitProvider>
-
   );
 }
