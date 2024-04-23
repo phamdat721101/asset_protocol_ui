@@ -2,6 +2,7 @@ import { formatNumberByCurrency } from "@/utils";
 import React from "react";
 import BlockBalance from "./BlockBalance";
 import GeneralInfo from "./GeneralInfo";
+import TabInfoProfile from "./Tab";
 
 type TVault = {
   name: string;
@@ -59,6 +60,7 @@ const ProfileContainer = (props: TProfileContainerProps) => {
           value={formatNumberByCurrency(dgtAmount, "USD")}
         />
       </div>
+      <TabInfoProfile />
     </div>
   );
 };
