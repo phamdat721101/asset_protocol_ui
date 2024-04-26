@@ -1,5 +1,4 @@
-import { Footer, Header } from "@/components";
-import LayoutSecond from "@/components/Details/LayoutSecond";
+
 export default function LocaleLayout(props: { children: React.ReactNode }) {
   const { children } = props;
   return (

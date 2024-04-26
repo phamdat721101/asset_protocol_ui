@@ -7,8 +7,6 @@ import Telegram from "@/icons/Telegram";
 import TwitterWithoutTitle from "@/icons/TwitterWithoutTitle";
 import X from "@/icons/X";
 import React from "react";
-import { HeaderSecond } from "@/components";
-import { WalletKitProvider } from "@mysten/wallet-kit";
 
 // type TProfileProps = {
 //   params: { userAddress: string };

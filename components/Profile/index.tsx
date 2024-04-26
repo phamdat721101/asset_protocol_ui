@@ -3,6 +3,8 @@ import React from "react";
 import BlockBalance from "./BlockBalance";
 import GeneralInfo from "./GeneralInfo";
 import TabInfoProfile from "./Tab";
+import ProfileHeader from "./ProfileHeader/ProfileHeader";
+import Footer from "@/components/HomePage/Layout/HomeFooter";
 
 type TVault = {
   name: string;
@@ -39,29 +41,31 @@ const ProfileContainer = (props: TProfileContainerProps) => {
     dgtAmount,
   } = props;
   return (
-    <div>
-      <GeneralInfo
-        name={name}
-        userAddress={wallet}
-        description={description}
-        avatar={logoUrl}
-      />
-      <div className="md:grid-cols-3 gap-3 grid mt-6">
-        <BlockBalance
-          title="HOLDINGS"
-          value={formatNumberByCurrency(holdingAmount, "USD")}
+      <div>
+        <ProfileHeader/>
+        <GeneralInfo
+          name={name}
+          userAddress={wallet}
+          description={description}
+          avatar={logoUrl}
         />
-        <BlockBalance
-          title="TOTAL MANAGED"
-          value={formatNumberByCurrency(managedAmount, "USD")}
-        />
-        <BlockBalance
-          title="VOTING POWER"
-          value={formatNumberByCurrency(dgtAmount, "USD")}
-        />
+        <div className="md:grid-cols-3 gap-3 grid mt-6">
+          <BlockBalance
+            title="HOLDINGS"
+            value={formatNumberByCurrency(holdingAmount, "USD")}
+          />
+          <BlockBalance
+            title="TOTAL MANAGED"
+            value={formatNumberByCurrency(managedAmount, "USD")}
+          />
+          <BlockBalance
+            title="VOTING POWER"
+            value={formatNumberByCurrency(dgtAmount, "USD")}
+          />
+        </div>
+        <TabInfoProfile />
+        <Footer />
       </div>
-      <TabInfoProfile />
-    </div>
   );
 };
 
