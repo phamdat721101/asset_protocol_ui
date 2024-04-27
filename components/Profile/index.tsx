@@ -3,9 +3,8 @@ import React,{useEffect} from "react";
 import BlockBalance from "./BlockBalance";
 import GeneralInfo from "./GeneralInfo";
 import TabInfoProfile from "./Tab";
-import ProfileHeader from "./ProfileHeader/ProfileHeader";
-import Footer from "@/components/HomePage/Layout/HomeFooter";
 import {useWallet} from '@suiet/wallet-kit'
+import SkeletonProfile from "./SkeletonProfile/SkeletonProfile";
 
 type TVault = {
   name: string;
@@ -52,7 +51,6 @@ const ProfileContainer = (props: TProfileContainerProps) => {
 
   return (
       <div>
-        <ProfileHeader/>
         {suiwallet.status == 'connected' &&
               <div>
                 <GeneralInfo
@@ -79,7 +77,12 @@ const ProfileContainer = (props: TProfileContainerProps) => {
               </div> 
                         
         }
-        <Footer />
+        {
+          suiwallet.status == 'disconnected' &&
+          <div>
+            <SkeletonProfile/>
+          </div>
+        }
       </div>
   );
 };

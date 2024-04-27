@@ -17,11 +17,13 @@ import HomePage from "./HomePage/HomePage";
 import PoolPageCreate from "./PoolPageCreate"
 import FooterDetail from "./Details/Footer";
 import HeaderSecond from "./Details/HeaderSecond";
+import ProfileHeader from "./Profile/ProfileHeader/ProfileHeader";
 
 export {
   MappleAssetBox,
   FooterDetail,
   HeaderSecond,
+  ProfileHeader,
   MappleAssetDetail,
   Footer,
   Header,
