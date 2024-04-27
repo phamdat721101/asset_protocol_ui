@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 import { WalletProvider } from "@suiet/wallet-kit";
 import '@suiet/wallet-kit/style.css';
+import { useEffect } from "react";
 
 const ProfileChild = dynamic(() => import("@/components/Profile/index"), {
   ssr: false,
@@ -27,16 +28,16 @@ export default async function profile() {
   }
     return (
       <WalletProvider>
-        <ProfileChild
-            name={profile.name}
-            holdingAmount={profile.holding_amount}
-            managedAmount={profile.managed_amount}
-            description={profile.des}
-            wallet={profile.wallet}
-            logoUrl={profile.logo_url}
-            vaults={profile.vaults}
-            dgtAmount={profile.dgt_amount}
-        ></ProfileChild>
+          <ProfileChild
+          name={profile.name}
+          holdingAmount={profile.holding_amount}
+          managedAmount={profile.managed_amount}
+          description={profile.des}
+          wallet={profile.wallet}
+          logoUrl={profile.logo_url}
+          vaults={profile.vaults}
+          dgtAmount={profile.dgt_amount}
+          ></ProfileChild>
       </WalletProvider>
     );
 }
