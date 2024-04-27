@@ -2,8 +2,17 @@
 import Link from "next/link";
 import {ConnectButton} from '@suiet/wallet-kit';
 import styles from '../Profile.module.css';
+import {useWallet} from '@suiet/wallet-kit'
+import { useEffect } from "react";
 
 export default function ProfileHeader() {
+    const wallet = useWallet();
+
+    useEffect(() => {
+        console.log('wallet status', wallet.status)
+        console.log('connected wallet name', wallet.name)
+        console.log('connected account info', wallet.account)
+      }, [wallet.connected])
     return (
         <header className="font-feature-settings bg-blue-600 text-sm font-medium capitalize leading-normal text-white xl:text-base">
             <div className="container mx-auto py-[18px] xl:px-0">
@@ -70,7 +79,7 @@ export default function ProfileHeader() {
                                     />
                                 </svg>
                             </span>
-                            <ConnectButton className={styles.wallet}>Connect Wallet</ConnectButton>
+                            <ConnectButton className={wallet.status == 'disconnected'?styles.wallet:styles.connected}>Connect Wallet</ConnectButton>
                         </div>
                     </div>
                 </div>
