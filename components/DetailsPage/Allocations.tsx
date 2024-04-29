@@ -1,20 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import TabDetails from "./TabDetails";
 import btc from "@/assets/images/crypto/bitcoin.svg";
 import PieChart from "@/components/Chart/PieChart/PieChart";
 import usdc from "@/assets/images/crypto/usdc.svg";
+import { useWalletKit } from "@mysten/wallet-kit";
 
-const DetailAlloc: React.FC<{ memId: any; assets: string[] }> = ({
-  memId,
-  assets,
-}) => {
+interface Asset {
+  asset: string;
+  symbol: string;
+  contract: string;
+  chain: string;
+  invest_amount: number;
+  weight: string;
+  holding: string;
+  price_change: {
+    "24h": string;
+  };
+  dgt_score: number;
+  status: boolean;
+}
+
+const Allocations = () => {
+  const { currentAccount } = useWalletKit();
+  let assets: Asset[];
+
+  // Call Api
+  const [dataDetails, setDataDetails] = useState<any>();
+
+  useEffect(() => {
+    const fetchDataDetails = async () => {
+      // Api Default
+      const response = await fetch(
+        "https://dgt-dev.vercel.app/v1/vault_allocation?vault_id=dgt1"
+      );
+      const data = await response.json();
+
+      setDataDetails(data);
+    };
+
+    fetchDataDetails();
+  }, []);
+  // End call api
+
+  assets = dataDetails?.assets || [];
+
   return (
-    <main className="px-[90px]">
-      <div>
-        <TabDetails />
-      </div>
+    <>
       <div className="mt-11 mb-32">
         <div className="flex justify-between">
           <div className="flex items-center w-[67%] h-[297px] bg-white border border-[#C3D4E9] rounded-[10px]">
@@ -90,14 +122,14 @@ const DetailAlloc: React.FC<{ memId: any; assets: string[] }> = ({
                 <td className="w-[30%] h-12 pl-6 py-6">
                   <div className="flex items-center ">
                     <Image className="w-8	h-8" src={btc} alt="bitcoin" />
-                    <span className="ml-4">{asset}</span>
+                    <span className="ml-4">{asset.symbol}</span>
                   </div>
                 </td>
                 <td className="w-[30%] h-12 py-6">
-                  {memId == null ? "--" : "39.11%"}
+                  {currentAccount?.address ? asset.weight : "--"}
                 </td>
                 <td className="w-[30%] h-12 py-6">
-                  {memId == null ? "--" : "$ 1956.77"}
+                  {currentAccount?.address ? asset.holding : "--"}
                 </td>
                 <td className="w-[10%] h-12 pr-6 py-[18px]">
                   <div>$ 6.35</div>
@@ -108,8 +140,8 @@ const DetailAlloc: React.FC<{ memId: any; assets: string[] }> = ({
           </tbody>
         </table>
       </div>
-    </main>
+    </>
   );
 };
 
-export default DetailAlloc;
+export default Allocations;
