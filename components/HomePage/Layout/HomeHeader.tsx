@@ -31,7 +31,7 @@ const navLinks = [
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-[60px] py-[18px] text-sm xl:px-[120px] xl:text-base">
+    <header className="flex items-center justify-between px-[60px] py-[18px] text-sm xl:px-[120px] xl:text-base bg-white">
       {/* Logo */}
       <div>
         <Link href="/">

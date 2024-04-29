@@ -16,6 +16,72 @@ import downloadIc from "@/assets/images/icons/download-icon.svg";
 import chartAPY1 from "@/assets/images/icons/chart-apy1.png";
 import chartAPY2 from "@/assets/images/icons/chart-apy2.png";
 
+const vaults = [
+  {
+    logo: bitcoin,
+    asset: "Bitcoin",
+    symbol: "BTC",
+    price: "$2,000.00",
+    tvl: "$118.42",
+    apy: chartAPY1,
+    return: "24,32%",
+  },
+  {
+    logo: ethereum,
+    asset: "Ethereum",
+    symbol: "ETH",
+    price: "$2,000.00",
+    tvl: "$118.42",
+    apy: chartAPY1,
+    return: "24,32%",
+  },
+  {
+    logo: bnb,
+    asset: "BNB",
+    symbol: "BNB",
+    price: "$2,000.00",
+    tvl: "$118.42",
+    apy: chartAPY2,
+    return: "-1.57%",
+  },
+  {
+    logo: tether,
+    asset: "Tether",
+    symbol: "USDT",
+    price: "$2,000.00",
+    tvl: "$118.42",
+    apy: chartAPY1,
+    return: "24,32%",
+  },
+  {
+    logo: usdc,
+    asset: "USDC",
+    symbol: "USDC",
+    price: "$2,000.00",
+    tvl: "$118.42",
+    apy: chartAPY1,
+    return: "24,32%",
+  },
+  {
+    logo: ethereum,
+    asset: "Ethereum",
+    symbol: "ETH",
+    price: "$2,000.00",
+    tvl: "$118.42",
+    apy: chartAPY2,
+    return: "-1.57%",
+  },
+  {
+    logo: bitcoin,
+    asset: "Bitcoin",
+    symbol: "BTC",
+    price: "$2,000.00",
+    tvl: "$118.42",
+    apy: chartAPY2,
+    return: "-1.57%",
+  },
+];
+
 export default function VaultsList() {
   return (
     <div className="pt-[80px]">
@@ -93,422 +159,70 @@ export default function VaultsList() {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-[#C3D4E9]">
-              <td className="w-[20%] pl-6 py-6">
-                <div className="flex items-center gap-4">
-                  <Image
-                    className="h-[32px] w-[32px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <span>Bitcoin</span>
-                  <span className="text-[#90A3BF]">BTC</span>
-                </div>
-              </td>
-              <td className="w-[14%] py-6">$2,000.00</td>
-              <td className="w-[13%] py-6">$118.42</td>
-              <td className="w-[14%] py-6">
-                <div className="w-full flex items-center">
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                </div>
-              </td>
-              <td className="w-[13%] py-6">
-                <Image src={chartAPY1} alt="chart" />
-              </td>
-              <td className="w-[12%] py-6 text-[#10B981]">24,32%</td>
-              <td className="pr-6 py-6">
-                <button className="border rounded-[10px] border-[#2563EB]">
-                  <div className="flex items-center px-[26px] gap-2 py-[5px] text-[#2563EB]">
+            {vaults.map((vault) => (
+              <tr className="border-b border-[#C3D4E9]">
+                <td className="w-[20%] pl-6 py-6">
+                  <div className="flex items-center gap-4">
                     <Image
-                      className="w-[18px] h-[18px]"
-                      src={depositIc}
-                      alt="deposit-icon"
+                      className="h-[32px] w-[32px]"
+                      src={vault.logo}
+                      alt="bitcoin"
                     />
-                    <span className="font-normal"><a href="/details">Deposit</a></span>
+                    <span>{vault.asset}</span>
+                    <span className="text-[#90A3BF]">{vault.symbol}</span>
                   </div>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-b border-[#C3D4E9]">
-              <td className="w-[20%] pl-6 py-6">
-                <div className="flex items-center gap-4">
-                  <Image
-                    className="h-[32px] w-[32px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <span>Ethereum</span>
-                  <span className="text-[#90A3BF]">ETH</span>
-                </div>
-              </td>
-              <td className="w-[14%] py-6">$2,000.00</td>
-              <td className="w-[13%] py-6">$118.42</td>
-              <td className="w-[14%] py-6">
-                <div className="w-full flex items-center">
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                </div>
-              </td>
-              <td className="w-[13%] py-6">
-                <Image src={chartAPY1} alt="chart" />
-              </td>
-              <td className="w-[12%] py-6 text-[#10B981]">24,32%</td>
-              <td className="pr-6 py-6">
-                <button className="border rounded-[10px] border-[#2563EB]">
-                  <div className="flex items-center px-[26px] gap-2 py-[5px] text-[#2563EB]">
+                </td>
+                <td className="w-[14%] py-6">{vault.price}</td>
+                <td className="w-[13%] py-6">{vault.tvl}</td>
+                <td className="w-[14%] py-6">
+                  <div className="w-full flex items-center">
                     <Image
-                      className="w-[18px] h-[18px]"
-                      src={depositIc}
-                      alt="deposit-icon"
+                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white"
+                      src={bitcoin}
+                      alt="bitcoin"
                     />
-                    <span className="font-normal">Deposit</span>
-                  </div>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-b border-[#C3D4E9]">
-              <td className="w-[20%] pl-6 py-6">
-                <div className="flex items-center gap-4">
-                  <Image
-                    className="h-[32px] w-[32px]"
-                    src={bnb}
-                    alt="bnbcoin"
-                  />
-                  <span>BNB</span>
-                  <span className="text-[#90A3BF]">BNB</span>
-                </div>
-              </td>
-              <td className="w-[14%] py-6">$2,000.00</td>
-              <td className="w-[13%] py-6">$118.42</td>
-              <td className="w-[14%] py-6">
-                <div className="w-full flex items-center">
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                </div>
-              </td>
-              <td className="w-[13%] py-6">
-                <Image src={chartAPY2} alt="chart" />
-              </td>
-              <td className="w-[12%] py-6 text-[#DC2626]">-1,57%</td>
-              <td className="pr-6 py-6">
-                <button className="border rounded-[10px] border-[#2563EB]">
-                  <div className="flex items-center px-[26px] gap-2 py-[5px] text-[#2563EB]">
                     <Image
-                      className="w-[18px] h-[18px]"
-                      src={depositIc}
-                      alt="deposit-icon"
+                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
+                      src={ethereum}
+                      alt="ethereum"
                     />
-                    <span className="font-normal">Deposit</span>
-                  </div>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-b border-[#C3D4E9]">
-              <td className="w-[20%] pl-6 py-6">
-                <div className="flex items-center gap-4">
-                  <Image
-                    className="h-[32px] w-[32px]"
-                    src={tether}
-                    alt="tether"
-                  />
-                  <span>Tether</span>
-                  <span className="text-[#90A3BF]">USDT</span>
-                </div>
-              </td>
-              <td className="w-[14%] py-6">$2,000.00</td>
-              <td className="w-[13%] py-6">$118.42</td>
-              <td className="w-[14%] py-6">
-                <div className="w-full flex items-center">
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                </div>
-              </td>
-              <td className="w-[13%] py-6">
-                <Image src={chartAPY1} alt="chart" />
-              </td>
-              <td className="w-[12%] py-6 text-[#10B981]">24,32%</td>
-              <td className="pr-6 py-6">
-                <button className="border rounded-[10px] border-[#2563EB]">
-                  <div className="flex items-center px-[26px] gap-2 py-[5px] text-[#2563EB]">
                     <Image
-                      className="w-[18px] h-[18px]"
-                      src={depositIc}
-                      alt="deposit-icon"
+                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
+                      src={bitcoin}
+                      alt="bitcoin"
                     />
-                    <span className="font-normal">Deposit</span>
-                  </div>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-b border-[#C3D4E9]">
-              <td className="w-[20%] pl-6 py-6">
-                <div className="flex items-center gap-4">
-                  <Image className="h-[32px] w-[32px]" src={usdc} alt="usdc" />
-                  <span>USDC</span>
-                  <span className="text-[#90A3BF]">USDC</span>
-                </div>
-              </td>
-              <td className="w-[14%] py-6">$2,000.00</td>
-              <td className="w-[13%] py-6">$118.42</td>
-              <td className="w-[14%] py-6">
-                <div className="w-full flex items-center">
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                </div>
-              </td>
-              <td className="w-[13%] py-6">
-                <Image src={chartAPY1} alt="chart" />
-              </td>
-              <td className="w-[12%] py-6 text-[#10B981]">24,32%</td>
-              <td className="pr-6 py-6">
-                <button className="border rounded-[10px] border-[#2563EB]">
-                  <div className="flex items-center px-[26px] gap-2 py-[5px] text-[#2563EB]">
                     <Image
-                      className="w-[18px] h-[18px]"
-                      src={depositIc}
-                      alt="deposit-icon"
+                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
+                      src={ethereum}
+                      alt="ethereum"
                     />
-                    <span className="font-normal">Deposit</span>
-                  </div>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-b border-[#C3D4E9]">
-              <td className="w-[20%] pl-6 py-6">
-                <div className="flex items-center gap-4">
-                  <Image
-                    className="h-[32px] w-[32px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <span>Ethereum</span>
-                  <span className="text-[#90A3BF]">ETH</span>
-                </div>
-              </td>
-              <td className="w-[14%] py-6">$2,000.00</td>
-              <td className="w-[13%] py-6">$118.42</td>
-              <td className="w-[14%] py-6">
-                <div className="w-full flex items-center">
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                </div>
-              </td>
-              <td className="w-[13%] py-6">
-                <Image src={chartAPY2} alt="chart" />
-              </td>
-              <td className="w-[12%] py-6 text-[#DC2626]">-1,57%</td>
-              <td className="pr-6 py-6">
-                <button className="border rounded-[10px] border-[#2563EB]">
-                  <div className="flex items-center px-[26px] gap-2 py-[5px] text-[#2563EB]">
                     <Image
-                      className="w-[18px] h-[18px]"
-                      src={depositIc}
-                      alt="deposit-icon"
+                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
+                      src={bitcoin}
+                      alt="bitcoin"
                     />
-                    <span className="font-normal">Deposit</span>
                   </div>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-[20%] pl-6 py-6">
-                <div className="flex items-center gap-4">
-                  <Image
-                    className="h-[32px] w-[32px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <span>Bitcoin</span>
-                  <span className="text-[#90A3BF]">BTC</span>
-                </div>
-              </td>
-              <td className="w-[14%] py-6">$2,000.00</td>
-              <td className="w-[13%] py-6">$118.42</td>
-              <td className="w-[14%] py-6">
-                <div className="w-full flex items-center">
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={ethereum}
-                    alt="ethereum"
-                  />
-                  <Image
-                    className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  />
-                </div>
-              </td>
-              <td className="w-[13%] py-6">
-                <Image src={chartAPY2} alt="chart" />
-              </td>
-              <td className="w-[12%] py-6 text-[#DC2626]">-1,57%</td>
-              <td className="pr-6 py-6">
-                <button className="border rounded-[10px] border-[#2563EB]">
-                  <div className="flex items-center px-[26px] gap-2 py-[5px] text-[#2563EB]">
-                    <Image
-                      className="w-[18px] h-[18px]"
-                      src={depositIc}
-                      alt="deposit-icon"
-                    />
-                    <span className="font-normal">Deposit</span>
-                  </div>
-                </button>
-              </td>
-            </tr>
+                </td>
+                <td className="w-[13%] py-6">
+                  <Image src={vault.apy} alt="chart" />
+                </td>
+                <td className="w-[12%] py-6 text-[#10B981]">{vault.return}</td>
+                <td className="pr-6 py-6">
+                  <button className="border rounded-[10px] border-[#2563EB]">
+                    <div className="flex items-center px-[26px] gap-2 py-[5px] text-[#2563EB]">
+                      <Image
+                        className="w-[18px] h-[18px]"
+                        src={depositIc}
+                        alt="deposit-icon"
+                      />
+                      <span className="font-normal">
+                        <a href="/details">Deposit</a>
+                      </span>
+                    </div>
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

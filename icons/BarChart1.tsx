@@ -10,19 +10,19 @@ const BarChart1 = (props: any) => (
       fill-rule="evenodd"
       clip-rule="evenodd"
       d="M2.75 7.33331H7.33333V20.1666H2.75V7.33331Z"
-      fill="#90A3BF"
+      fill="currentColor"
     />
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
       d="M9.16667 1.83331H13.75V20.1666H9.16667V1.83331Z"
-      fill="#90A3BF"
+      fill="currentColor"
     />
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
       d="M15.5833 10.0833H20.1667V20.1666H15.5833V10.0833Z"
-      fill="#90A3BF"
+      fill="currentColor"
     />
   </svg>
 );
