@@ -1,3 +1,4 @@
+"use client";
 import { formatNumberByCurrency } from "@/utils";
 import React,{useEffect} from "react";
 import BlockBalance from "./BlockBalance";
