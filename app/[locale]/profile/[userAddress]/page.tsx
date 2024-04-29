@@ -7,12 +7,10 @@ import Telegram from "@/icons/Telegram";
 import TwitterWithoutTitle from "@/icons/TwitterWithoutTitle";
 import X from "@/icons/X";
 import React from "react";
-import { HeaderSecond } from "@/components";
-import { WalletKitProvider } from "@mysten/wallet-kit";
 
-type TProfileProps = {
-  params: { userAddress: string };
-};
+// type TProfileProps = {
+//   params: { userAddress: string };
+// };
 
 const fetchProfile = async () => {
   const response = await fetch(
@@ -26,7 +24,8 @@ const fetchProfile = async () => {
   return response.json();
 };
 
-async function Profile(props: TProfileProps) {
+// async function Profile(props: TProfileProps) {
+async function Profile() {
   const profile = await fetchProfile();
 
   if (!profile || Object.keys(profile).length === 0) {
