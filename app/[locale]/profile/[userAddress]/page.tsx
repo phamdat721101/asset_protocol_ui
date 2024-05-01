@@ -1,3 +1,4 @@
+"use client";
 import ProfileContainer from "@/components/Profile";
 import Copy from "@/icons/Copy";
 import Discord from "@/icons/Discord";
