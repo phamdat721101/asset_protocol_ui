@@ -4,6 +4,7 @@ import { WalletProvider } from "@suiet/wallet-kit";
 import '@suiet/wallet-kit/style.css';
 import ProfileLayout from "@/components/Profile/ProfileLayout";
 
+
 const ProfileChild = dynamic(() => import("@/components/Profile/index"), {
   ssr: false,
 });
@@ -29,16 +30,20 @@ export default async function profile() {
     return (
       <WalletProvider>
         <ProfileLayout>
-          <ProfileChild
-              name={profile.name}
-              holdingAmount={profile.holding_amount}
-              managedAmount={profile.managed_amount}
-              description={profile.des}
-              wallet={profile.wallet}
-              logoUrl={profile.logo_url}
-              vaults={profile.vaults}
-              dgtAmount={profile.dgt_amount}
-            ></ProfileChild>
+          <main className="overflow-hidden flex flex-col min-h-screen">
+            <div className="container mx-auto px-4">
+              <ProfileChild
+                  name={profile.name}
+                  holdingAmount={profile.holding_amount}
+                  managedAmount={profile.managed_amount}
+                  description={profile.des}
+                  wallet={profile.wallet}
+                  logoUrl={profile.logo_url}
+                  vaults={profile.vaults}
+                  dgtAmount={profile.dgt_amount}
+                ></ProfileChild>
+            </div> 
+          </main>
         </ProfileLayout>
       </WalletProvider>
     );

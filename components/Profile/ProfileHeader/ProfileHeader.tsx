@@ -18,7 +18,7 @@ export default function ProfileHeader() {
             <div className="container mx-auto py-[18px] xl:px-0">
                 <div className="flex items-center">
                     {/* Logo */}
-                    <div className="flex flex-1 justify-start ml-4">
+                    <div className="flex flex-1 justify-start">
                         <Link className="h-auto w-32 xl:w-44" href="/">
                             <svg
                                 viewBox="0 0 171 22"
@@ -56,7 +56,7 @@ export default function ProfileHeader() {
                     </nav>
 
                     {/* Button */}
-                    <div className="flex flex-1 justify-end mr-4">
+                    <div className="flex flex-1 justify-end">
                         <div className="flex items-center gap-x-[10px] rounded-lg bg-white px-6 py-4 text-blue-600">
                             <span>
                                 <svg
@@ -79,7 +79,7 @@ export default function ProfileHeader() {
                                     />
                                 </svg>
                             </span>
-                            <ConnectButton className={wallet.status == 'disconnected'?styles.wallet:styles.connected}>Connect Wallet</ConnectButton>
+                            <ConnectButton>Connect Wallet</ConnectButton>
                         </div>
                     </div>
                 </div>
