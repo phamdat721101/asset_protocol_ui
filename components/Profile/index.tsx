@@ -5,6 +5,7 @@ import GeneralInfo from "./GeneralInfo";
 import TabInfoProfile from "./Tab";
 import {useWallet} from '@suiet/wallet-kit'
 import SkeletonProfile from "./SkeletonProfile/SkeletonProfile";
+import { useWalletInfo } from '@web3modal/wagmi/react';
 
 type TVault = {
   name: string;
@@ -42,6 +43,7 @@ const ProfileContainer = (props: TProfileContainerProps) => {
   } = props;
 
   const suiwallet = useWallet();
+  const EVMWallet = useWalletInfo().walletInfo;
 
   useEffect(() => {
       console.log('wallet status', suiwallet.status)
@@ -51,7 +53,7 @@ const ProfileContainer = (props: TProfileContainerProps) => {
 
   return (
       <div>
-        {suiwallet.status == 'connected' &&
+        {(suiwallet.connected || EVMWallet != undefined) &&
               <div>
                 <GeneralInfo
                     name={name}
