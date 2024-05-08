@@ -216,7 +216,7 @@ export default function VaultsList() {
                         alt="deposit-icon"
                       />
                       <span className="font-normal">
-                        <a href="/details">Deposit</a>
+                        <a href="/detail">Deposit</a>
                       </span>
                     </div>
                   </button>
