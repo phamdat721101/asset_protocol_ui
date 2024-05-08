@@ -3,27 +3,64 @@ import Link from "next/link";
 import styles from '../Profile.module.css';
 import {useWallet, ConnectModal,ConnectButton} from '@suiet/wallet-kit'
 import { Fragment, useEffect, useState } from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, modal} from "@nextui-org/react";
 import EVMWalletIcon from "@/icons/EVMWalletIcon";
 import SUIWalletIcon from "@/icons/SUIWalletIcon";
+import MetaMaskIcon from "@/icons/MetaMaskIcon";
 import { useWalletInfo, useWeb3Modal } from '@web3modal/wagmi/react'
+import KlayIcon from "@/icons/KlayIcon";
 
 export default function ProfileHeader() {
     const wallet = useWallet();
+    const [showMore, setShowMore] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const { open } = useWeb3Modal();
     const EVMWallet = useWalletInfo().walletInfo;
     console.log(EVMWallet);
 
-    useEffect(() => {
-        console.log('wallet status', wallet.status)
-        console.log('connected wallet name', wallet.name)
-        console.log('connected account info', wallet.account)
-      }, [wallet.connected])
+    const { 
+        select, 
+        configuredWallets,  
+        detectedWallets,  
+      } = useWallet();
+
+    // useEffect(() => {
+    //     console.log('wallet status', wallet.status)
+    //     console.log('connected wallet name', wallet.name)
+    //     console.log('connected account info', wallet.account)
+    //   }, [wallet.connected])
 
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    
+
+    const listSuiWallet = [...configuredWallets, ...detectedWallets].map((wallet) => (
+    //     <Button color="primary"  key={wallet.name} startContent={wallet.iconUrl} onPress={() => {
+    //         // check if user installed the wallet
+    //         if (!wallet.installed) {
+    //           // do something like guiding users to install
+    //           window.open(wallet.downloadUrl.browserExtension); 
+    //           //return;
+    //         }
+    //         select(wallet.name);
+    //         onOpenChange()
+    //       }}>
+    //        {wallet.name}
+    //    </Button>
+       <button className="bg-blue-900 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded inline-flex items-left"
+        onClick={() => {
+            // check if user installed the wallet
+            if (!wallet.installed) {
+              // do something like guiding users to install
+              window.open(wallet.downloadUrl.browserExtension); 
+              //return;
+            }
+            select(wallet.name);
+            onOpenChange()
+          }}>
+            <img src={wallet.iconUrl} alt="Icon" className="w-4 h-4 mr-2"></img>
+            <span>{wallet.name}</span>
+        </button>
+      ));
     
 
     return (
@@ -105,23 +142,41 @@ export default function ProfileHeader() {
                     </div>
                 </div>
             </header>
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} 
+                isKeyboardDismissDisabled={true} scrollBehavior={'inside'} size="3xl">
                 <ModalContent>
                     {(onClose) => (
                         <>
-                        <ModalHeader className="flex flex-col gap-1">Select Wallet type</ModalHeader>
+                        <ModalHeader className="flex flex-col gap-1">Select Wallet</ModalHeader>
                         <ModalBody>
-                            <Button color="primary" startContent={<EVMWalletIcon/>} onPress={() => open()}>
-                                EVM Wallet
-                            </Button>
-                            <ConnectModal
-                                open={showModal}
-                                onOpenChange={(open) => setShowModal(open)}
-                                >
-                                <Button color="primary" startContent={<SUIWalletIcon/>}>
-                                    SUI Wallet
+                            <div className="grid grid-rows-1 grid-flow-col gap-4">
+                                <Button className="text-align: left" color="primary" startContent={<MetaMaskIcon/>} onPress={() => open({ view: 'Networks' })}>
+                                    MetaMask
+                                </Button> 
+                            </div>
+                            <div className="grid grid-rows-1 grid-flow-col gap-4">
+                                <ConnectModal
+                                    open={showModal}
+                                    onOpenChange={(open) => setShowModal(open)}
+                                    >
+                                    <Button size="md" color="primary" startContent={<SUIWalletIcon/>}>
+                                        SUI Connect
+                                    </Button>
+                                </ConnectModal>
+                                <Button color="primary" startContent={<KlayIcon/>} onPress={() => open({ view: 'Networks' })}>
+                                    Klaytn Connect
                                 </Button>
-                            </ConnectModal>
+                            </div>
+                             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                            <Button color="primary" variant="light" onPress={()=>{setShowMore(!showMore) }}>
+                                   {showMore?'Show less':'Show more'}
+                            </Button> 
+                            { showMore &&
+                                <div className="grid grid-rows-4 grid-flow-col gap-4">
+                                    {listSuiWallet}
+                                </div>
+                            }
+                            
                         </ModalBody>
                         <ModalFooter>
                         </ModalFooter>
