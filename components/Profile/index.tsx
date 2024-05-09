@@ -80,7 +80,7 @@ const ProfileContainer = (props: TProfileContainerProps) => {
                         
         }
         {
-          suiwallet.status == 'disconnected' &&
+          suiwallet.status == 'disconnected' && EVMWallet == undefined &&
           <div>
             <SkeletonProfile/>
           </div>
