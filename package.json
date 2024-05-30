@@ -25,6 +25,7 @@
     "@suiet/wallet-kit": "^0.2.24",
     "@tanstack/react-query": "^5.35.1",
     "@web3modal/wagmi": "^4.1.11",
+    "algosdk": "^2.7.0",
     "apexcharts": "^3.48.0",
     "axios": "^1.6.2",
     "canvas-confetti": "^1.9.3",
