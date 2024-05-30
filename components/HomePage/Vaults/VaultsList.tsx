@@ -1,12 +1,32 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 import bitcoin from "@/assets/images/crypto/bitcoin.svg";
-import usdc from "@/assets/images/crypto/usdc.svg";
 import ethereum from "@/assets/images/crypto/ethereum.svg";
-import optimism from "@/assets/images/crypto/optimism.svg";
-import tether from "@/assets/images/crypto/tether.svg";
-import ripple from "@/assets/images/crypto/ripple.svg";
 import bnb from "@/assets/images/crypto/bnb.svg";
+import tether from "@/assets/images/crypto/tether.svg";
+import usdc from "@/assets/images/crypto/usdc.svg";
+import optimism from "@/assets/images/crypto/optimism.svg";
+import dot from "@/assets/images/crypto/dot.svg";
+import yfi from "@/assets/images/crypto/yfi.svg";
+import bat from "@/assets/images/crypto/bat.svg";
+import btt from "@/assets/images/crypto/btt.svg";
+import dash from "@/assets/images/crypto/dash.svg";
+import doge from "@/assets/images/crypto/doge.svg";
+import uma from "@/assets/images/crypto/uma.svg";
+import uni from "@/assets/images/crypto/uni.svg";
+import sushi from "@/assets/images/crypto/sushi.svg";
+import xtz from "@/assets/images/crypto/xtz.svg";
+import sys from "@/assets/images/crypto/sys.svg";
+import stx from "@/assets/images/crypto/stx.svg";
+import ripple from "@/assets/images/crypto/ripple.svg";
+import ont from "@/assets/images/crypto/ont.svg";
+import eos from "@/assets/images/crypto/eos.svg";
+import chz from "@/assets/images/crypto/chz.svg";
+import enj from "@/assets/images/crypto/enj.svg";
+
 import depositIc from "@/assets/images/icons/deposit-icon.png";
 import downIc from "@/assets/images/icons/down-ic.png";
 import arrowDownUpIc from "@/assets/images/icons/arrow-up-down-ic.png";
@@ -16,73 +36,232 @@ import downloadIc from "@/assets/images/icons/download-icon.svg";
 import chartAPY1 from "@/assets/images/icons/chart-apy1.png";
 import chartAPY2 from "@/assets/images/icons/chart-apy2.png";
 
+interface Vault {
+  url: string;
+  vault_id: string;
+  vault_name: string;
+  symbol: string;
+  price: string;
+  return: number;
+  tvl: number;
+  monthly_return: string;
+  daily_return: string;
+  manager: string;
+  des: string;
+  timestamp: number;
+  chain: string;
+  period: any;
+  asset?: string[];
+  assets: {
+    name: string;
+    img: string;
+  }[];
+}
+
 const vaults = [
   {
-    logo: bitcoin,
-    asset: "Bitcoin",
-    symbol: "BTC",
-    price: "$2,000.00",
-    tvl: "$118.42",
+    assets: [
+      {
+        name: "bitcoin",
+        img: "https://dd.dexscreener.com/ds-data/tokens/sui/0x76cb819b01abed502bee8a702b4c2d547532c12f25001c9dea795a5e631c26f1::fud::fud.png",
+      },
+      {
+        name: "yfi",
+        img: yfi,
+      },
+      {
+        name: "bat",
+        img: bat,
+      },
+      {
+        name: "btt",
+        img: btt,
+      },
+      {
+        name: "dash",
+        img: dash,
+      },
+    ],
     apy: chartAPY1,
-    return: "24,32%",
   },
   {
-    logo: ethereum,
-    asset: "Ethereum",
-    symbol: "ETH",
-    price: "$2,000.00",
-    tvl: "$118.42",
+    assets: [
+      {
+        name: "ethereum",
+        img: ethereum,
+      },
+      {
+        name: "uni",
+        img: uni,
+      },
+      {
+        name: "doge",
+        img: doge,
+      },
+      {
+        name: "uma",
+        img: uma,
+      },
+      {
+        name: "sushi",
+        img: sushi,
+      },
+    ],
     apy: chartAPY1,
-    return: "24,32%",
   },
   {
-    logo: bnb,
-    asset: "BNB",
-    symbol: "BNB",
-    price: "$2,000.00",
-    tvl: "$118.42",
+    assets: [
+      {
+        name: "bnb",
+        img: bnb,
+      },
+      {
+        name: "sys",
+        img: sys,
+      },
+      {
+        name: "ripple",
+        img: ripple,
+      },
+      {
+        name: "xtz",
+        img: xtz,
+      },
+      {
+        name: "stx",
+        img: stx,
+      },
+    ],
     apy: chartAPY2,
-    return: "-1.57%",
   },
   {
-    logo: tether,
-    asset: "Tether",
-    symbol: "USDT",
-    price: "$2,000.00",
-    tvl: "$118.42",
+    assets: [
+      {
+        name: "tether",
+        img: tether,
+      },
+      {
+        name: "enj",
+        img: enj,
+      },
+      {
+        name: "ont",
+        img: ont,
+      },
+      {
+        name: "eos",
+        img: eos,
+      },
+      {
+        name: "chz",
+        img: chz,
+      },
+    ],
     apy: chartAPY1,
-    return: "24,32%",
   },
-  {
-    logo: usdc,
-    asset: "USDC",
-    symbol: "USDC",
-    price: "$2,000.00",
-    tvl: "$118.42",
-    apy: chartAPY1,
-    return: "24,32%",
-  },
-  {
-    logo: ethereum,
-    asset: "Ethereum",
-    symbol: "ETH",
-    price: "$2,000.00",
-    tvl: "$118.42",
-    apy: chartAPY2,
-    return: "-1.57%",
-  },
-  {
-    logo: bitcoin,
-    asset: "Bitcoin",
-    symbol: "BTC",
-    price: "$2,000.00",
-    tvl: "$118.42",
-    apy: chartAPY2,
-    return: "-1.57%",
-  },
+  // {
+  //   assets: [
+  //     {
+  //       name: "usdc",
+  //       img: usdc,
+  //     },
+  //     {
+  //       name: "uni",
+  //       img: uni,
+  //     },
+  //     {
+  //       name: "sushi",
+  //       img: sushi,
+  //     },
+  //     {
+  //       name: "bat",
+  //       img: bat,
+  //     },
+  //     {
+  //       name: "ethereum",
+  //       img: ethereum,
+  //     },
+  //   ],
+  //   apy: chartAPY1,
+  // },
+  // {
+  //   assets: [
+  //     {
+  //       name: "btt",
+  //       img: btt,
+  //     },
+  //     {
+  //       name: "uma",
+  //       img: uma,
+  //     },
+  //     {
+  //       name: "yfi",
+  //       img: yfi,
+  //     },
+  //     {
+  //       name: "doge",
+  //       img: doge,
+  //     },
+  //     {
+  //       name: "dash",
+  //       img: dash,
+  //     },
+  //   ],
+  //   apy: chartAPY2,
+  // },
+  // {
+  //   assets: [
+  //     {
+  //       name: "enj",
+  //       img: enj,
+  //     },
+  //     {
+  //       name: "chz",
+  //       img: chz,
+  //     },
+  //     {
+  //       name: "bnb",
+  //       img: bnb,
+  //     },
+  //     {
+  //       name: "xtz",
+  //       img: xtz,
+  //     },
+  //     {
+  //       name: "ont",
+  //       img: ont,
+  //     },
+  //   ],
+  //   apy: chartAPY2,
+  // },
 ];
 
 export default function VaultsList() {
+  const [data, setData] = useState<any>();
+
+  let vaultsList: Vault[];
+
+  // Call Api
+  useEffect(() => {
+    const fetchDataDetails = async () => {
+      // Api Default
+      const response = await fetch("https://dgt-dev.vercel.app/v1/vaults");
+      const data = await response.json();
+
+      setData(data);
+    };
+
+    fetchDataDetails();
+  }, []);
+  // End call api
+
+  vaultsList = data || [];
+
+  const mergedData = vaults.map((obj1, index) => {
+    return { ...obj1, ...vaultsList[index] };
+  });
+  console.log(mergedData);
+
   return (
     <div className="pt-[80px]">
       <div className="flex items-start justify-between">
@@ -153,22 +332,24 @@ export default function VaultsList() {
                 />
               </th>
               <th className="w-[14%] py-6">Asset</th>
-              <th className="w-[13%] py-6">APY</th>
+              <th className="w-[13%] py-6">7 Days</th>
               <th className="w-[12%] py-6">Return</th>
               <th className="pr-6 py-6"></th>
             </tr>
           </thead>
           <tbody>
-            {vaults.map((vault) => (
+            {mergedData.map((vault) => (
               <tr className="border-b border-[#C3D4E9]">
                 <td className="w-[20%] pl-6 py-6">
                   <div className="flex items-center gap-4">
                     <Image
                       className="h-[32px] w-[32px]"
-                      src={vault.logo}
-                      alt="bitcoin"
+                      src={vault.url}
+                      alt={vault.vault_name}
+                      width={32}
+                      height={32}
                     />
-                    <span>{vault.asset}</span>
+                    <span>{vault.vault_name}</span>
                     <span className="text-[#90A3BF]">{vault.symbol}</span>
                   </div>
                 </td>
@@ -176,39 +357,25 @@ export default function VaultsList() {
                 <td className="w-[13%] py-6">{vault.tvl}</td>
                 <td className="w-[14%] py-6">
                   <div className="w-full flex items-center">
-                    <Image
-                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white"
-                      src={bitcoin}
-                      alt="bitcoin"
-                    />
-                    <Image
-                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                      src={ethereum}
-                      alt="ethereum"
-                    />
-                    <Image
-                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                      src={bitcoin}
-                      alt="bitcoin"
-                    />
-                    <Image
-                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                      src={ethereum}
-                      alt="ethereum"
-                    />
-                    <Image
-                      className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white -ml-[8px]"
-                      src={bitcoin}
-                      alt="bitcoin"
-                    />
+                    {vault.assets.map((asset) => (
+                      <Image
+                        className="w-[26px] h-[26px] object-cover rounded-[50%] bg-white [&:not(:first-child)]:-ml-[8px]"
+                        src={asset.img}
+                        alt={asset.name}
+                        width={26}
+                        height={26}
+                      />
+                    ))}
                   </div>
                 </td>
                 <td className="w-[13%] py-6">
                   <Image src={vault.apy} alt="chart" />
                 </td>
-                <td className="w-[12%] py-6 text-[#10B981]">{vault.return}</td>
+                <td className="w-[12%] py-6 text-[#10B981]">
+                  {vault.monthly_return}
+                </td>
                 <td className="pr-6 py-6">
-                  <button className="border rounded-[10px] border-[#2563EB]">
+                  <button className="border rounded-[10px] border-[#2563EB]" id="onborda-step1">
                     <div className="flex items-center px-[26px] gap-2 py-[5px] text-[#2563EB]">
                       <Image
                         className="w-[18px] h-[18px]"

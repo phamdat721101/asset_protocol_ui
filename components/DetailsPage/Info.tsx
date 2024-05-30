@@ -1,9 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
+import { toast } from 'react-hot-toast';
+import {copyVault} from "@/constants/suiSignTransaction";
+import { useWallet } from '@suiet/wallet-kit';
+import { useOnborda } from "onborda";
 
 export default function Info() {
   // Call Api
   const [dataDetails, setDataDetails] = useState<any[]>([]);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [isUnFollowedDisplayed, setIsUnFollowedDisplayed] = useState(false);
+  const { isOnbordaVisible } = useOnborda();
+
+  //Value for copy vault
+  const wallet = useWallet();
+  const [vault,setVault] = useState('');
+  const [addr,setAddr] = useState('');
+
+  function clickHandler() {
+    setIsFollowing((prevState) => !prevState);
+  }
 
   useEffect(() => {
     const fetchDataDetails = async () => {
@@ -18,6 +34,36 @@ export default function Info() {
     fetchDataDetails();
   }, []);
   // End call api
+
+  const goToCopyVault = async() => {
+    if(isOnbordaVisible)
+      return
+    setVault("1997");
+    setAddr("0x4cc7eac61ace69d47b64b974b15d3dee7277e34abc57de69228106e393418dcd")
+    const res = await copyVault(wallet,vault,addr);
+    if(res != 'fall' && res != null)
+      toast.success("Transaction Success!\n Hash transaction block is "+res,
+      {style:{
+        maxWidth: '800px',
+        },
+        duration:5000
+      });
+    if (res == 'fall')
+      toast.error("Transaction fail!")
+  };
+
+  useEffect(() => {
+    async function doWork3() {
+      if(isOnbordaVisible)
+        return
+      else
+      {
+        await goToCopyVault();
+      }
+    }
+    doWork3();
+  }, []);
+
 
   return (
     <section className="px-[90px] bg-blue-50 lg:bg-details xl:object-contain 2xl:bg-none">
@@ -72,7 +118,7 @@ export default function Info() {
               aHYPE
           </div> */}
             <div className="rounded-full border border-blue-600 bg-indigo-100 px-[10px] py-1 text-base font-medium leading-6 text-gray-800 shadow-elevation">
-              Live on Avalanche
+              Live on SUI
             </div>
           </div>
 
@@ -170,16 +216,28 @@ export default function Info() {
           </div>
 
           <div className="flex items-center gap-x-[14px]">
-            <button className="rounded-[10px] bg-blue-600 px-12 py-3 text-white">
-              Buy
+            <button
+              onClick={clickHandler}
+              className={`w-36 py-3 rounded-[10px] border ${
+                isFollowing && !isUnFollowedDisplayed
+                  ? "border-blue-600 text-blue-600"
+                  : "bg-blue-600 text-white"
+              } ${
+                isFollowing && isUnFollowedDisplayed
+                  ? "bg-red-300 text-white"
+                  : ""
+              } text-xl leading-normal font-medium tracking-tight`}
+              onMouseEnter={() => setIsUnFollowedDisplayed(true)}
+              onMouseLeave={() => setIsUnFollowedDisplayed(false)}
+            >
+              {/* {isFollowing ? "Following" : "Follow"} */}
+              {isFollowing && !isUnFollowedDisplayed && "Following"}
+              {isFollowing && isUnFollowedDisplayed && "Unfollow"}
+              {!isFollowing && "Follow"}
             </button>
 
-            <button className="rounded-[10px] border border-blue-600 px-12 py-3 text-blue-600">
-              Sell
-            </button>
-
-            <button className="rounded-[10px] border border-green-600 px-12 py-3 text-green-600">
-              Stake
+            <button id="onborda-step2" className="w-36 py-3 rounded-[10px] border border-green-600 text-xl leading-normal font-medium tracking-tight text-green-600" onClick={async()=> goToCopyVault()}>
+              Invest
             </button>
           </div>
         </div>
