@@ -1,7 +1,16 @@
 'use client'
 
-import React from 'react'
+declare global {
+  interface Window {
+    ethereum: {
+      request: (args: { method: string }) => Promise<any>;
+    };
+  }
+}
+
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { ethers } from 'ethers'
 import { motion } from 'framer-motion'
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Badge } from "./ui/badge"
@@ -17,7 +26,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
-import { Award, BarChart2, DollarSign, TrendingUp, Users } from "lucide-react"
+import { Input } from "./ui/input"
+import { Label } from "./ui/label"
+import { Award, BarChart2, DollarSign, TrendingUp, Users, Wallet } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -28,6 +39,10 @@ import {
 } from "./ui/table"
 
 export default function TraderProfile() {
+  const [account, setAccount] = useState<string | null>(null)
+  const [balance, setBalance] = useState<string | null>(null)
+  const [isFollowing, setIsFollowing] = useState(false)
+
   const fadeIn = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.5 } }
@@ -47,6 +62,46 @@ export default function TraderProfile() {
     { month: 'June', value: 1.5 },
   ]
 
+  const connectWallet = async () => {
+    if (typeof window.ethereum !== 'undefined') {
+      try {
+        await window.ethereum.request({ method: 'eth_requestAccounts' })
+        const provider = new ethers.BrowserProvider(window.ethereum)
+        const signer = await provider.getSigner()
+        const address = (await signer).address
+        setAccount(address)
+        const balance = await provider.getBalance(address)
+        setBalance(ethers.formatEther(balance))
+      } catch (error) {
+        console.error('Failed to connect wallet:', error)
+      }
+    } else {
+      console.log('Please install MetaMask!')
+    }
+  }
+
+  const handleDeposit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const form = event.target as HTMLFormElement
+    const amount = form.amount.value
+    // Implement deposit logic here
+    console.log('Deposit:', amount)
+  }
+
+  const handleWithdraw = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const form = event.target as HTMLFormElement
+    const amount = form.amount.value
+    // Implement withdraw logic here
+    console.log('Withdraw:', amount)
+  }
+
+  const handleFollow = () => {
+    setIsFollowing(!isFollowing)
+    // Implement follow logic here
+    console.log(isFollowing ? 'Unfollowed' : 'Followed')
+  }
+
   return (
     <div className="container mx-auto p-4">
       <motion.div
@@ -55,7 +110,7 @@ export default function TraderProfile() {
         variants={fadeIn}
         className="w-full max-w-4xl mx-auto bg-card rounded-lg shadow-lg overflow-hidden"
       >
-        <CardHeader className="p-6 border-b">
+        <CardHeader className="p-6 border-b border-gray-200">
           <div className="flex items-center justify-between w-full">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LeoFi_4x4-qV8iHK5K8IxONkFo4Fe4Hwu9AwMHf0.jpg"
@@ -64,9 +119,24 @@ export default function TraderProfile() {
               height={100}
               className="h-12 w-auto"
             />
-            <Button variant="outline">
-              <Users className="mr-2 h-4 w-4" /> Follow
-            </Button>
+            <div className="flex items-center space-x-2">
+              <Button
+                variant={isFollowing ? "secondary" : "default"}
+                onClick={handleFollow}
+              >
+                {isFollowing ? 'Following' : 'Follow'}
+              </Button>
+              {account ? (
+                <div className="flex items-center space-x-2">
+                  <Wallet className="h-4 w-4 text-green-500" />
+                  <span className="text-sm text-gray-600">{`${account.slice(0, 6)}...${account.slice(-4)}`}</span>
+                </div>
+              ) : (
+                <Button variant="outline" onClick={connectWallet}>
+                  <Wallet className="mr-2 h-4 w-4" /> Connect Wallet
+                </Button>
+              )}
+            </div>
           </div>
         </CardHeader>
 
@@ -88,10 +158,11 @@ export default function TraderProfile() {
 
         <CardContent>
           <Tabs defaultValue="performance" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="performance">Performance</TabsTrigger>
               <TabsTrigger value="background">Background</TabsTrigger>
               <TabsTrigger value="strategy">Strategy</TabsTrigger>
+              <TabsTrigger value="deposit-withdraw">Deposit/Withdraw</TabsTrigger>
             </TabsList>
             <TabsContent value="performance">
               <motion.div variants={fadeIn} className="grid gap-4 mt-4">
@@ -178,6 +249,48 @@ export default function TraderProfile() {
                     </ul>
                   </CardContent>
                 </Card>
+              </motion.div>
+            </TabsContent>
+            <TabsContent value="deposit-withdraw">
+              <motion.div variants={fadeIn} className="mt-4 grid gap-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Deposit</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleDeposit} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="deposit-amount">Amount</Label>
+                        <Input id="deposit-amount" name="amount" type="number" step="0.01" min="0" required />
+                      </div>
+                      <Button type="submit" disabled={!account}>Deposit</Button>
+                    </form>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Withdraw</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleWithdraw} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="withdraw-amount">Amount</Label>
+                        <Input id="withdraw-amount" name="amount" type="number" step="0.01" min="0" required />
+                      </div>
+                      <Button type="submit" disabled={!account}>Withdraw</Button>
+                    </form>
+                  </CardContent>
+                </Card>
+                {account && balance && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Wallet Balance</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-2xl font-bold">{parseFloat(balance).toFixed(4)} ETH</p>
+                    </CardContent>
+                  </Card>
+                )}
               </motion.div>
             </TabsContent>
           </Tabs>
