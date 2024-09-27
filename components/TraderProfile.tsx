@@ -37,6 +37,7 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table"
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 
 export default function TraderProfile() {
   const [account, setAccount] = useState<string | null>(null)
@@ -61,6 +62,31 @@ export default function TraderProfile() {
     { month: 'May', value: -0.8 },
     { month: 'June', value: 1.5 },
   ]
+
+  const strategyPerformance = [
+    { date: '2023-01-01', strategy: 105, benchmark: 100 },
+    { date: '2023-02-01', strategy: 108, benchmark: 102 },
+    { date: '2023-03-01', strategy: 112, benchmark: 104 },
+    { date: '2023-04-01', strategy: 110, benchmark: 103 },
+    { date: '2023-05-01', strategy: 115, benchmark: 106 },
+    { date: '2023-06-01', strategy: 120, benchmark: 108 },
+    { date: '2023-07-01', strategy: 118, benchmark: 107 },
+    { date: '2023-08-01', strategy: 125, benchmark: 110 },
+    { date: '2023-09-01', strategy: 130, benchmark: 112 },
+    { date: '2023-10-01', strategy: 128, benchmark: 111 },
+    { date: '2023-11-01', strategy: 135, benchmark: 114 },
+    { date: '2023-12-01', strategy: 140, benchmark: 116 },
+  ]
+
+  const dexAllocation = [
+    { name: 'Uniswap', value: 35 },
+    { name: 'SushiSwap', value: 25 },
+    { name: 'Curve', value: 20 },
+    { name: 'Balancer', value: 15 },
+    { name: 'Others', value: 5 },
+  ]
+
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
 
   const connectWallet = async () => {
     if (typeof window.ethereum !== 'undefined') {
@@ -228,7 +254,7 @@ export default function TraderProfile() {
                       <li>Specializes in global macro strategies and algorithmic trading</li>
                     </ul>
                   </CardContent>
-                </Card>
+                </Card>                
               </motion.div>
             </TabsContent>
             <TabsContent value="strategy">
@@ -247,6 +273,62 @@ export default function TraderProfile() {
                       <li>Event-driven strategies for capitalizing on corporate actions</li>
                       <li>Advanced risk management using proprietary algorithms</li>
                     </ul>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Strategy Performance</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="w-full h-[400px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart
+                          data={strategyPerformance}
+                          margin={{
+                            top: 5,
+                            right: 30,
+                            left: 20,
+                            bottom: 5,
+                          }}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis dataKey="date" />
+                          <YAxis />
+                          <Tooltip />
+                          <Legend />
+                          <Line type="monotone" dataKey="strategy" stroke="#8884d8" activeDot={{ r: 8 }} />
+                          <Line type="monotone" dataKey="benchmark" stroke="#82ca9d" />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>DEX Protocol Funding Allocation</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="w-full h-[400px] flex items-center justify-center">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                          <Pie
+                            data={dexAllocation}
+                            cx="50%"
+                            cy="50%"
+                            labelLine={false}
+                            outerRadius={150}
+                            fill="#8884d8"
+                            dataKey="value"
+                            label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                          >
+                            {dexAllocation.map((entry, index) =>
+                              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            )}
+                          </Pie>
+                          <Tooltip />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
