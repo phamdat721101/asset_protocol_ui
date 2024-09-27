@@ -28,7 +28,8 @@ import {
 } from "./ui/dialog"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { Award, BarChart2, DollarSign, TrendingUp, Users, Wallet } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
+import { Award, BarChart2, DollarSign, TrendingUp, Users, Wallet, ArrowRightLeft } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -43,6 +44,11 @@ export default function TraderProfile() {
   const [account, setAccount] = useState<string | null>(null)
   const [balance, setBalance] = useState<string | null>(null)
   const [isFollowing, setIsFollowing] = useState(false)
+  const [fromToken, setFromToken] = useState('ETH')
+  const [toToken, setToToken] = useState('USDC')
+  const [fromAmount, setFromAmount] = useState('')
+  const [toAmount, setToAmount] = useState('')
+  const [exchangeRate, setExchangeRate] = useState(1800)
 
   const fadeIn = {
     hidden: { opacity: 0 },
@@ -106,26 +112,32 @@ export default function TraderProfile() {
     }
   }
 
-  const handleDeposit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const form = event.target as HTMLFormElement
-    const amount = form.amount.value
-    // Implement deposit logic here
-    console.log('Deposit:', amount)
-  }
-
-  const handleWithdraw = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const form = event.target as HTMLFormElement
-    const amount = form.amount.value
-    // Implement withdraw logic here
-    console.log('Withdraw:', amount)
-  }
-
   const handleFollow = () => {
     setIsFollowing(!isFollowing)
     // Implement follow logic here
     console.log(isFollowing ? 'Unfollowed' : 'Followed')
+  }
+
+  const handleFromAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setFromAmount(value)
+    setToAmount((parseFloat(value) * exchangeRate).toFixed(2))
+  }
+
+  const handleToAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setToAmount(value)
+    setFromAmount((parseFloat(value) / exchangeRate).toFixed(6))
+  }
+
+  const handleSwap = async () => {
+    if (!account) {
+      alert('Please connect your wallet first')
+      return
+    }
+    // Implement swap logic here
+    console.log(`Swapping ${fromAmount} ${fromToken} for ${toAmount} ${toToken}`)
+    // In a real implementation, you would interact with a smart contract here
   }
 
   return (
@@ -188,7 +200,7 @@ export default function TraderProfile() {
               <TabsTrigger value="performance">Performance</TabsTrigger>
               <TabsTrigger value="background">Background</TabsTrigger>
               <TabsTrigger value="strategy">Strategy</TabsTrigger>
-              <TabsTrigger value="deposit-withdraw">Deposit/Withdraw</TabsTrigger>
+              <TabsTrigger value="deposit-withdraw">Swap</TabsTrigger>
             </TabsList>
             <TabsContent value="performance">
               <motion.div variants={fadeIn} className="grid gap-4 mt-4">
@@ -335,44 +347,67 @@ export default function TraderProfile() {
             </TabsContent>
             <TabsContent value="deposit-withdraw">
               <motion.div variants={fadeIn} className="mt-4 grid gap-4">
-                <Card>
+              <Card>
                   <CardHeader>
-                    <CardTitle>Deposit</CardTitle>
+                    <CardTitle>Swap Tokens</CardTitle>
+                    <CardDescription>Exchange your tokens at the best rates</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <form onSubmit={handleDeposit} className="space-y-4">
+                    <div className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="deposit-amount">Amount</Label>
-                        <Input id="deposit-amount" name="amount" type="number" step="0.01" min="0" required />
+                        <Label htmlFor="from-token">From</Label>
+                        <div className="flex space-x-2">
+                          <Select value={fromToken} onValueChange={setFromToken}>
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Select token" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="ETH">ETH</SelectItem>
+                              <SelectItem value="USDC">USDC</SelectItem>
+                              <SelectItem value="DAI">DAI</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <Input
+                            id="from-amount"
+                            placeholder="0.0"
+                            value={fromAmount}
+                            onChange={handleFromAmountChange}
+                          />
+                        </div>
                       </div>
-                      <Button type="submit" disabled={!account}>Deposit</Button>
-                    </form>
+                      <div className="flex justify-center">
+                        <ArrowRightLeft className="text-gray-400" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="to-token">To</Label>
+                        <div className="flex space-x-2">
+                          <Select value={toToken} onValueChange={setToToken}>
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Select token" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="ETH">ETH</SelectItem>
+                              <SelectItem value="USDC">USDC</SelectItem>
+                              <SelectItem value="DAI">DAI</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <Input
+                            id="to-amount"
+                            placeholder="0.0"
+                            value={toAmount}
+                            onChange={handleToAmountChange}
+                          />
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        1 {fromToken} = {exchangeRate} {toToken}
+                      </div>
+                      <Button className="w-full" onClick={handleSwap} disabled={!account || !fromAmount}>
+                        {account ? 'Swap' : 'Connect Wallet to Swap'}
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Withdraw</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <form onSubmit={handleWithdraw} className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="withdraw-amount">Amount</Label>
-                        <Input id="withdraw-amount" name="amount" type="number" step="0.01" min="0" required />
-                      </div>
-                      <Button type="submit" disabled={!account}>Withdraw</Button>
-                    </form>
-                  </CardContent>
-                </Card>
-                {account && balance && (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Wallet Balance</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-2xl font-bold">{parseFloat(balance).toFixed(4)} ETH</p>
-                    </CardContent>
-                  </Card>
-                )}
               </motion.div>
             </TabsContent>
           </Tabs>
