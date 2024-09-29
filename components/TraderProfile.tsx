@@ -49,6 +49,9 @@ export default function TraderProfile() {
   const [fromAmount, setFromAmount] = useState('')
   const [toAmount, setToAmount] = useState('')
   const [exchangeRate, setExchangeRate] = useState(1800)
+  const [selectedToken, setSelectedToken] = useState('ETH')
+  const [tradeType, setTradeType] = useState('buy')
+  const [amount, setAmount] = useState('')
 
   const fadeIn = {
     hidden: { opacity: 0 },
@@ -140,6 +143,25 @@ export default function TraderProfile() {
     // In a real implementation, you would interact with a smart contract here
   }
 
+  const handleTrade = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log(`${tradeType.toUpperCase()} ${amount} ${selectedToken}`)
+    // Implement actual trading logic here
+  }
+
+  const recommendedTokens = ['ETH', 'USDC', 'BTC', 'LINK', 'UNI']
+
+  // Mock data for the trading chart
+  const tradingChartData = [
+    { time: '09:00', price: 3000 },
+    { time: '10:00', price: 3050 },
+    { time: '11:00', price: 3025 },
+    { time: '12:00', price: 3075 },
+    { time: '13:00', price: 3100 },
+    { time: '14:00', price: 3090 },
+    { time: '15:00', price: 3110 },
+  ]
+
   return (
     <div className="container mx-auto p-4">
       <motion.div
@@ -200,7 +222,7 @@ export default function TraderProfile() {
               <TabsTrigger value="performance">Performance</TabsTrigger>
               <TabsTrigger value="background">Background</TabsTrigger>
               <TabsTrigger value="strategy">Strategy</TabsTrigger>
-              <TabsTrigger value="deposit-withdraw">Swap</TabsTrigger>
+              <TabsTrigger value="trading">Trading</TabsTrigger>
             </TabsList>
             <TabsContent value="performance">
               <motion.div variants={fadeIn} className="grid gap-4 mt-4">
@@ -345,66 +367,80 @@ export default function TraderProfile() {
                 </Card>
               </motion.div>
             </TabsContent>
-            <TabsContent value="deposit-withdraw">
+            <TabsContent value="trading">
               <motion.div variants={fadeIn} className="mt-4 grid gap-4">
               <Card>
                   <CardHeader>
-                    <CardTitle>Swap Tokens</CardTitle>
-                    <CardDescription>Exchange your tokens at the best rates</CardDescription>
+                    <CardTitle>Trading</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="from-token">From</Label>
-                        <div className="flex space-x-2">
-                          <Select value={fromToken} onValueChange={setFromToken}>
-                            <SelectTrigger className="w-[180px]">
-                              <SelectValue placeholder="Select token" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="ETH">ETH</SelectItem>
-                              <SelectItem value="USDC">USDC</SelectItem>
-                              <SelectItem value="DAI">DAI</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <Input
-                            id="from-amount"
-                            placeholder="0.0"
-                            value={fromAmount}
-                            onChange={handleFromAmountChange}
-                          />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Price Chart</h3>
+                        <div className="w-full h-[300px]">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <LineChart data={tradingChartData}>
+                              <CartesianGrid strokeDasharray="3 3" />
+                              <XAxis dataKey="time" />
+                              <YAxis />
+                              <Tooltip />
+                              <Line type="monotone" dataKey="price" stroke="#8884d8" />
+                            </LineChart>
+                          </ResponsiveContainer>
                         </div>
                       </div>
-                      <div className="flex justify-center">
-                        <ArrowRightLeft className="text-gray-400" />
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Trade</h3>
+                        <form onSubmit={handleTrade} className="space-y-4">
+                          <div>
+                            <Label htmlFor="token">Token</Label>
+                            <Select value={selectedToken} onValueChange={setSelectedToken}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select token" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {recommendedTokens.map((token) => (
+                                  <SelectItem key={token} value={token}>{token}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label htmlFor="tradeType">Trade Type</Label>
+                            <Select value={tradeType} onValueChange={setTradeType}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select trade type" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="buy">Buy</SelectItem>
+                                <SelectItem value="sell">Sell</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label htmlFor="amount">Amount</Label>
+                            <Input
+                              id="amount"
+                              type="number"
+                              placeholder="Enter amount"
+                              value={amount}
+                              onChange={(e) => setAmount(e.target.value)}
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            <ArrowRightLeft className="mr-2 h-4 w-4" /> 
+                            {tradeType === 'buy' ? 'Buy' : 'Sell'} {selectedToken}
+                          </Button>
+                        </form>
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="to-token">To</Label>
-                        <div className="flex space-x-2">
-                          <Select value={toToken} onValueChange={setToToken}>
-                            <SelectTrigger className="w-[180px]">
-                              <SelectValue placeholder="Select token" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="ETH">ETH</SelectItem>
-                              <SelectItem value="USDC">USDC</SelectItem>
-                              <SelectItem value="DAI">DAI</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <Input
-                            id="to-amount"
-                            placeholder="0.0"
-                            value={toAmount}
-                            onChange={handleToAmountChange}
-                          />
-                        </div>
+                    </div>
+                    <div className="mt-6">
+                      <h3 className="font-semibold mb-2">Recommended Tokens:</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {recommendedTokens.map((token) => (
+                          <Badge key={token} variant="secondary">{token}</Badge>
+                        ))}
                       </div>
-                      <div className="text-sm text-gray-500">
-                        1 {fromToken} = {exchangeRate} {toToken}
-                      </div>
-                      <Button className="w-full" onClick={handleSwap} disabled={!account || !fromAmount}>
-                        {account ? 'Swap' : 'Connect Wallet to Swap'}
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
