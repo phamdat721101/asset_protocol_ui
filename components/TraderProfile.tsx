@@ -5,6 +5,10 @@ declare global {
     ethereum: {
       request: (args: { method: string }) => Promise<any>;
     };
+    aptos: {
+      connect: () => Promise<any>;
+      getAccountResources: (args: { method: string }) => Promise<any>;
+    };
   }
 }
 
@@ -98,22 +102,35 @@ export default function TraderProfile() {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
 
   const connectWallet = async () => {
-    if (typeof window.ethereum !== 'undefined') {
+    if ('aptos' in window) {
       try {
-        await window.ethereum.request({ method: 'eth_requestAccounts' })
-        const provider = new ethers.BrowserProvider(window.ethereum)
-        const signer = await provider.getSigner()
-        const address = (await signer).address
-        setAccount(address)
-        const balance = await provider.getBalance(address)
-        setBalance(ethers.formatEther(balance))
+        // Request connection to Petra wallet
+        const response = await window.aptos.connect();
+        
+        if (response.address) {
+          // Set the connected account address
+          setAccount(response.address);
+          
+          // Get the account balance
+          const resource = await window.aptos.getAccountResources(response.address);
+          const accountResource = resource.find((r) => r.type === '0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>');
+          if (accountResource) {
+            const balance = accountResource.data.coin.value;
+            setBalance(JSON.stringify(balance / 100000000)); // Convert octas to APT
+          }
+        }
       } catch (error) {
-        console.error('Failed to connect wallet:', error)
+        console.error('Failed to connect wallet:', error);
       }
     } else {
-      console.log('Please install MetaMask!')
-    }
+      console.log('Please install Petra wallet!');
+    }   
   }
+
+  // Helper function to format address for display
+  const formatAddress = (address: string): string => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
 
   const handleFollow = () => {
     setIsFollowing(!isFollowing)
