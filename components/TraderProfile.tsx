@@ -6,7 +6,6 @@ declare global {
       request: (args: { method: string }) => Promise<any>;
     };
     aptos: {
-      connect: () => Promise<any>;
       getAccountResources: (args: { method: string }) => Promise<any>;
     };
   }
@@ -33,7 +32,7 @@ import {
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Award, BarChart2, DollarSign, TrendingUp, Users, Wallet, ArrowRightLeft } from "lucide-react"
+import { Award, BarChart2, DollarSign, TrendingUp, Users, Wallet, ArrowRightLeft, ExternalLink } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -43,9 +42,33 @@ import {
   TableRow,
 } from "./ui/table"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
+import {
+  useWallet,
+  InputTransactionData,
+  AptosWalletAdapterProvider,
+  WalletName
+} from "@aptos-labs/wallet-adapter-react";
+
+import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
+
+const aptosConfig = new AptosConfig({ network: Network.DEVNET });
+const aptos = new Aptos(aptosConfig);
 
 export default function TraderProfile() {
-  const [account, setAccount] = useState<string | null>(null)
+  const {
+    account,
+    network,
+    connected,
+    disconnect,
+    wallet,
+    wallets,
+    connect,
+    signAndSubmitTransaction,
+    signTransaction,
+    signMessage,
+    signMessageAndVerify 
+  } = useWallet();
+  const [setAccount] = useState<any>(null)
   const [balance, setBalance] = useState<string | null>(null)
   const [isFollowing, setIsFollowing] = useState(false)
   const [fromToken, setFromToken] = useState('ETH')
@@ -101,30 +124,41 @@ export default function TraderProfile() {
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
 
-  const connectWallet = async () => {
-    if ('aptos' in window) {
-      try {
-        // Request connection to Petra wallet
-        const response = await window.aptos.connect();
+  let txHash: string = "";
+
+  const connectWallet = () => {
+    try {
+      // Change below to the desired wallet name instead of "Petra"
+      connect("Petra" as WalletName<"Petra">); 
+      console.log('Connected to wallet:', account);
+
+      setAccount(account?.address)
+    } catch (error) {
+      console.error('Failed to connect to wallet:', error);
+    }
+    // if ('aptos' in window) {
+    //   try {
+    //     // Request connection to Petra wallet
         
-        if (response.address) {
-          // Set the connected account address
-          setAccount(response.address);
+        
+    //     // if (response) {
+    //     //   // Set the connected account address
+    //     //   setAccount(account);
           
-          // Get the account balance
-          const resource = await window.aptos.getAccountResources(response.address);
-          const accountResource = resource.find((r) => r.type === '0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>');
-          if (accountResource) {
-            const balance = accountResource.data.coin.value;
-            setBalance(JSON.stringify(balance / 100000000)); // Convert octas to APT
-          }
-        }
-      } catch (error) {
-        console.error('Failed to connect wallet:', error);
-      }
-    } else {
-      console.log('Please install Petra wallet!');
-    }   
+    //     //   // Get the account balance
+    //     //   const resource = await window.aptos.getAccountResources(response.address);
+    //     //   const accountResource = resource.find((r) => r.type === '0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>');
+    //     //   if (accountResource) {
+    //     //     const balance = accountResource.data.coin.value;
+    //     //     setBalance(JSON.stringify(balance / 100000000)); // Convert octas to APT
+    //     //   }
+    //     // }
+    //   } catch (error) {
+    //     console.error('Failed to connect wallet:', error);
+    //   }
+    // } else {
+    //   console.log('Please install Petra wallet!');
+    // }   
   }
 
   // Helper function to format address for display
@@ -150,20 +184,29 @@ export default function TraderProfile() {
     setFromAmount((parseFloat(value) / exchangeRate).toFixed(6))
   }
 
-  const handleSwap = async () => {
-    if (!account) {
-      alert('Please connect your wallet first')
-      return
-    }
-    // Implement swap logic here
-    console.log(`Swapping ${fromAmount} ${fromToken} for ${toAmount} ${toToken}`)
-    // In a real implementation, you would interact with a smart contract here
-  }
-
-  const handleTrade = (e: React.FormEvent) => {
+  const handleTrade = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log(`${tradeType.toUpperCase()} ${amount} ${selectedToken}`)
     // Implement actual trading logic here
+
+    const moduleAddress = "0xe8ec9945a78a48452def46207e65a0a4ed6acd400306b977020924ae3652ab85"
+    const transaction: InputTransactionData = {
+      data: {
+        function:`${moduleAddress}::allocate_funding_v4::buy_asset`,
+        functionArguments:['XLM', 'Stellar sector', 'Aptos', '0x8a6058ad56fb07015ac9db9221c14e56ce9db6655ff94edd6439ac6bf565b856']
+      }
+    }
+    try {
+      // sign and submit transaction to chain
+      const response = await signAndSubmitTransaction(transaction);
+      // wait for transaction
+      await aptos.waitForTransaction({transactionHash:response.hash});
+      txHash = response.hash
+    } catch (error: any) {
+      console.log("Sign error: ", error)
+    }finally{
+      alert(`Transaction successfully: ${txHash}`)
+    }
   }
 
   const recommendedTokens = ['ETH', 'USDC', 'BTC', 'LINK', 'UNI']
@@ -178,6 +221,21 @@ export default function TraderProfile() {
     { time: '14:00', price: 3090 },
     { time: '15:00', price: 3110 },
   ]
+
+  const [tradingHistory, setTradingHistory] = useState<Array<{
+    date: string;
+    token: string;
+    type: string;
+    amount: string;
+    price: string;
+    txHash: string;
+  }>>([
+    { date: '2023-10-01', token: 'APT', type: 'Buy', amount: '100', price: '$10.50', txHash: '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef' },
+    { date: '2023-09-28', token: 'BTC', type: 'Sell', amount: '0.5', price: '$27,000', txHash: '0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890' },
+    { date: '2023-09-25', token: 'ETH', type: 'Buy', amount: '2', price: '$1,600', txHash: '0x9876543210fedcba9876543210fedcba9876543210fedcba9876543210fedcba' },
+    { date: '2023-09-20', token: 'USDC', type: 'Buy', amount: '1000', price: '$1.00', txHash: '0xfedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210' },
+    { date: '2023-09-15', token: 'APT', type: 'Sell', amount: '50', price: '$11.20', txHash: '0x5432109876fedcba5432109876fedcba5432109876fedcba5432109876fedcba' },
+  ])
 
   return (
     <div className="container mx-auto p-4">
@@ -206,7 +264,7 @@ export default function TraderProfile() {
               {account ? (
                 <div className="flex items-center space-x-2">
                   <Wallet className="h-4 w-4 text-green-500" />
-                  <span className="text-sm text-gray-600">{`${account.slice(0, 6)}...${account.slice(-4)}`}</span>
+                  <span className="text-sm text-gray-600">{`${account?.address.slice(0, 6)}...${account?.address.slice(-4)}`}</span>
                 </div>
               ) : (
                 <Button variant="outline" onClick={connectWallet}>
@@ -459,6 +517,46 @@ export default function TraderProfile() {
                         ))}
                       </div>
                     </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Trading History</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Date</TableHead>
+                          <TableHead>Token</TableHead>
+                          <TableHead>Type</TableHead>
+                          <TableHead>Amount</TableHead>
+                          <TableHead>Price</TableHead>
+                          <TableHead>Action</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {tradingHistory.map((trade, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{trade.date}</TableCell>
+                            <TableCell>{trade.token}</TableCell>
+                            <TableCell>{trade.type}</TableCell>
+                            <TableCell>{trade.amount}</TableCell>
+                            <TableCell>{trade.price}</TableCell>
+                            <TableCell>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => window.open(`https://explorer.aptoslabs.com/txn/${trade.txHash}`, '_blank')}
+                              >
+                                <ExternalLink className="h-4 w-4 mr-2" />
+                                View
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
                   </CardContent>
                 </Card>
               </motion.div>
