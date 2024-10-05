@@ -6,7 +6,9 @@ declare global {
       request: (args: { method: string }) => Promise<any>;
     };
     aptos: {
+      connect: () => Promise<any>;
       getAccountResources: (args: { method: string }) => Promise<any>;
+      signAndSubmitTransaction: (args: any) => Promise<any>;
     };
   }
 }
@@ -51,12 +53,10 @@ import {
 
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
 
-const aptosConfig = new AptosConfig({ network: Network.DEVNET });
-const aptos = new Aptos(aptosConfig);
-
-export default function TraderProfile() {
-  const {
-    account,
+export default function TraderProfile() {  
+  const aptosConfig = new AptosConfig({ network: Network.DEVNET });
+  const aptos = new Aptos(aptosConfig);
+  const {    
     network,
     connected,
     disconnect,
@@ -68,15 +68,15 @@ export default function TraderProfile() {
     signMessage,
     signMessageAndVerify 
   } = useWallet();
-  const [setAccount] = useState<any>(null)
+  const [account, setAccount] = useState<string | null>(null)
   const [balance, setBalance] = useState<string | null>(null)
   const [isFollowing, setIsFollowing] = useState(false)
-  const [fromToken, setFromToken] = useState('ETH')
+  const [fromToken, setFromToken] = useState('APT')
   const [toToken, setToToken] = useState('USDC')
   const [fromAmount, setFromAmount] = useState('')
   const [toAmount, setToAmount] = useState('')
   const [exchangeRate, setExchangeRate] = useState(1800)
-  const [selectedToken, setSelectedToken] = useState('ETH')
+  const [selectedToken, setSelectedToken] = useState('APT')
   const [tradeType, setTradeType] = useState('buy')
   const [amount, setAmount] = useState('')
 
@@ -126,39 +126,30 @@ export default function TraderProfile() {
 
   let txHash: string = "";
 
-  const connectWallet = () => {
-    try {
-      // Change below to the desired wallet name instead of "Petra"
-      connect("Petra" as WalletName<"Petra">); 
-      console.log('Connected to wallet:', account);
-
-      setAccount(account?.address)
-    } catch (error) {
-      console.error('Failed to connect to wallet:', error);
-    }
-    // if ('aptos' in window) {
-    //   try {
-    //     // Request connection to Petra wallet
+  const connectWallet = async () => {
+    if ('aptos' in window) {
+      try {
+        // Request connection to Petra wallet
+        const response = await window.aptos.connect();
         
-        
-    //     // if (response) {
-    //     //   // Set the connected account address
-    //     //   setAccount(account);
+        if (response.address) {
+          // Set the connected account address
+          setAccount(response.address);
           
-    //     //   // Get the account balance
-    //     //   const resource = await window.aptos.getAccountResources(response.address);
-    //     //   const accountResource = resource.find((r) => r.type === '0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>');
-    //     //   if (accountResource) {
-    //     //     const balance = accountResource.data.coin.value;
-    //     //     setBalance(JSON.stringify(balance / 100000000)); // Convert octas to APT
-    //     //   }
-    //     // }
-    //   } catch (error) {
-    //     console.error('Failed to connect wallet:', error);
-    //   }
-    // } else {
-    //   console.log('Please install Petra wallet!');
-    // }   
+          // Get the account balance
+          const resource = await window.aptos.getAccountResources(response.address);
+          const accountResource = resource.find((r) => r.type === '0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>');
+          if (accountResource) {
+            const balance = accountResource.data.coin.value;
+            setBalance(JSON.stringify(balance / 100000000)); // Convert octas to APT
+          }
+        }
+      } catch (error) {
+        console.error('Failed to connect wallet:', error);
+      }
+    } else {
+      console.log('Please install Petra wallet!');
+    }   
   }
 
   // Helper function to format address for display
@@ -189,27 +180,25 @@ export default function TraderProfile() {
     console.log(`${tradeType.toUpperCase()} ${amount} ${selectedToken}`)
     // Implement actual trading logic here
 
-    const moduleAddress = "0xe8ec9945a78a48452def46207e65a0a4ed6acd400306b977020924ae3652ab85"
-    const transaction: InputTransactionData = {
-      data: {
-        function:`${moduleAddress}::allocate_funding_v4::buy_asset`,
-        functionArguments:['XLM', 'Stellar sector', 'Aptos', '0x8a6058ad56fb07015ac9db9221c14e56ce9db6655ff94edd6439ac6bf565b856']
-      }
-    }
-    try {
-      // sign and submit transaction to chain
-      const response = await signAndSubmitTransaction(transaction);
-      // wait for transaction
-      await aptos.waitForTransaction({transactionHash:response.hash});
-      txHash = response.hash
-    } catch (error: any) {
-      console.log("Sign error: ", error)
-    }finally{
-      alert(`Transaction successfully: ${txHash}`)
-    }
+    const moduleAddress = "0xf1a29176e0690487a0d8e10aec8d681935fe678ddc96165800d5f6f2b25b0c6f"
+    const addr = "0xe8ec9945a78a48452def46207e65a0a4ed6acd400306b977020924ae3652ab85"
+    const symbol = 'PQD'
+    const type = `${addr}::${symbol}::${symbol}`
+    const transaction = {
+      function: `${moduleAddress}::leofi_module::buy`,
+      type: 'entry_function_payload',
+      type_arguments: [type],
+      arguments: [
+        24,
+        11
+      ],
+    };
+
+    const response = await window.aptos.signAndSubmitTransaction(transaction);
+    alert(`Transaction successfully: ${response.hash}`)
   }
 
-  const recommendedTokens = ['ETH', 'USDC', 'BTC', 'LINK', 'UNI']
+  const recommendedTokens = ['APT', 'MOJO', 'TORT', 'HIPPO', 'ZAPT'];
 
   // Mock data for the trading chart
   const tradingChartData = [
@@ -264,7 +253,7 @@ export default function TraderProfile() {
               {account ? (
                 <div className="flex items-center space-x-2">
                   <Wallet className="h-4 w-4 text-green-500" />
-                  <span className="text-sm text-gray-600">{`${account?.address.slice(0, 6)}...${account?.address.slice(-4)}`}</span>
+                  <span className="text-sm text-gray-600">{`${account.slice(0, 6)}...${account.slice(-4)}`}</span>
                 </div>
               ) : (
                 <Button variant="outline" onClick={connectWallet}>
