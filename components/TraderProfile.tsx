@@ -20,6 +20,8 @@ import { motion } from 'framer-motion'
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
+import { Switch } from "./ui/switch"
+import { Slider } from "./ui/slider"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
 import { Progress } from "./ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
@@ -34,7 +36,7 @@ import {
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Award, BarChart2, DollarSign, TrendingUp, Users, Wallet, ArrowRightLeft, ExternalLink } from "lucide-react"
+import { Award, BarChart2, DollarSign, TrendingUp, Users, Wallet, ArrowRightLeft, ExternalLink, RefreshCw, Percent, Globe } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -46,9 +48,6 @@ import {
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 import {
   useWallet,
-  InputTransactionData,
-  AptosWalletAdapterProvider,
-  WalletName
 } from "@aptos-labs/wallet-adapter-react";
 
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
@@ -79,6 +78,8 @@ export default function TraderProfile() {
   const [selectedToken, setSelectedToken] = useState('APT')
   const [tradeType, setTradeType] = useState('buy')
   const [amount, setAmount] = useState('')
+  const [showCrossChainPopup, setShowCrossChainPopup] = useState(false)
+  const [selectedChain, setSelectedChain] = useState('Aptos')
 
   const fadeIn = {
     hidden: { opacity: 0 },
@@ -175,6 +176,11 @@ export default function TraderProfile() {
     setFromAmount((parseFloat(value) / exchangeRate).toFixed(6))
   }
 
+  const handleCompound = () => {
+    console.log(`Compounding ${compoundAmount} ${compoundToken} via ${compoundMethod}`)
+    // Here you would typically call an API or smart contract function to execute the compounding
+  }
+
   const handleTrade = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log(`${tradeType.toUpperCase()} ${amount} ${selectedToken}`)
@@ -196,6 +202,31 @@ export default function TraderProfile() {
 
     const response = await window.aptos.signAndSubmitTransaction(transaction);
     alert(`Transaction successfully: ${response.hash}`)
+  }
+
+  const handleCrossChainSwap = async (e: React.FormEvent) => {
+    console.log(`Initiating cross-chain swap to ${selectedChain}`)
+    // Here you would typically initiate the cross-chain swap process
+
+    console.log(`${tradeType.toUpperCase()} ${amount} ${selectedToken}`)
+    // Implement actual trading logic here
+
+    const moduleAddress = "0xf1a29176e0690487a0d8e10aec8d681935fe678ddc96165800d5f6f2b25b0c6f"
+    const addr = "0xe8ec9945a78a48452def46207e65a0a4ed6acd400306b977020924ae3652ab85"
+    const symbol = 'PQD'
+    const type = `${addr}::${symbol}::${symbol}`
+    const transaction = {
+      function: `${moduleAddress}::leofi_module::buy`,
+      type: 'entry_function_payload',
+      type_arguments: [type],
+      arguments: [
+        24,
+        11
+      ],
+    };
+    const response = await window.aptos.signAndSubmitTransaction(transaction);
+    alert(`Transaction successfully: ${response.hash}`)
+    setShowCrossChainPopup(false)
   }
 
   const recommendedTokens = ['APT', 'MOJO', 'TORT', 'HIPPO', 'ZAPT'];
@@ -225,6 +256,12 @@ export default function TraderProfile() {
     { date: '2023-09-20', token: 'USDC', type: 'Buy', amount: '1000', price: '$1.00', txHash: '0xfedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210' },
     { date: '2023-09-15', token: 'APT', type: 'Sell', amount: '50', price: '$11.20', txHash: '0x5432109876fedcba5432109876fedcba5432109876fedcba5432109876fedcba' },
   ])
+
+  const [compoundAmount, setCompoundAmount] = useState<number>(1000) // Assuming $1000 profit for demonstration
+  const [compoundToken, setCompoundToken] = useState<string>('APT')
+  const [compoundMethod, setCompoundMethod] = useState<string>('stake')
+  const [autoCompound, setAutoCompound] = useState<boolean>(false)
+  const [compoundFrequency, setCompoundFrequency] = useState<number>(7) // days
 
   return (
     <div className="container mx-auto p-4">
@@ -282,11 +319,12 @@ export default function TraderProfile() {
 
         <CardContent>
           <Tabs defaultValue="performance" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="performance">Performance</TabsTrigger>
               <TabsTrigger value="background">Background</TabsTrigger>
               <TabsTrigger value="strategy">Strategy</TabsTrigger>
               <TabsTrigger value="trading">Trading</TabsTrigger>
+              <TabsTrigger value="compound">Compound</TabsTrigger>
             </TabsList>
             <TabsContent value="performance">
               <motion.div variants={fadeIn} className="grid gap-4 mt-4">
@@ -550,6 +588,110 @@ export default function TraderProfile() {
                 </Card>
               </motion.div>
             </TabsContent>
+            <TabsContent value="compound">
+              <motion.div variants={fadeIn} className="mt-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Compound Your Profits</CardTitle>
+                    <CardDescription>Grow your investments by reinvesting your profits</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Tabs defaultValue="manual" className="w-full">
+                      <TabsList className="grid w-full grid-cols-2">
+                        <TabsTrigger value="manual">Manual Compound</TabsTrigger>
+                        <TabsTrigger value="auto">Auto-Compound</TabsTrigger>
+                      </TabsList>
+                      <TabsContent value="manual">
+                        <div className="space-y-4">
+                          <div>
+                            <Label htmlFor="compound-amount">Amount to Compound</Label>
+                            <Input
+                              id="compound-amount"
+                              type="number"
+                              value={compoundAmount}
+                              onChange={(e) => setCompoundAmount(Number(e.target.value))}
+                              max={1000} // Assuming $1000 profit for demonstration
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="compound-token">Select Token</Label>
+                            <Select value={compoundToken} onValueChange={setCompoundToken}>
+                              <SelectTrigger id="compound-token">
+                                <SelectValue placeholder="Select token" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {recommendedTokens.map((token) => (
+                                  <SelectItem key={token} value={token}>{token}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label htmlFor="compound-method">Compound Method</Label>
+                            <Select value={compoundMethod} onValueChange={setCompoundMethod}>
+                              <SelectTrigger id="compound-method">
+                                <SelectValue placeholder="Select method" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="stake">Stake</SelectItem>
+                                <SelectItem value="farm">Farm</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+                      </TabsContent>
+                      <TabsContent value="auto">
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="auto-compound">Enable Auto-Compound</Label>
+                            <Switch
+                              id="auto-compound"
+                              checked={autoCompound}
+                              onCheckedChange={setAutoCompound}
+                            />
+                          </div>
+                          {autoCompound && (
+                            <div>
+                              <Label htmlFor="compound-frequency">Compound Frequency (days)</Label>
+                              <div className="flex items-center space-x-2">
+                                <Slider
+                                  id="compound-frequency"
+                                  min={1}
+                                  max={30}
+                                  step={1}
+                                  value={[compoundFrequency]}
+                                  onValueChange={(value) => setCompoundFrequency(value[0])}
+                                />
+                                <span>{compoundFrequency} days</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </TabsContent>
+                    </Tabs>
+                  </CardContent>
+                  <CardFooter>
+                    <Button onClick={handleCompound} className="w-full">
+                      {autoCompound ? (
+                        <>
+                          <RefreshCw className="mr-2 h-4 w-4" />
+                          Set Auto-Compound
+                        </>
+                      ) : (
+                        <>
+                          <ArrowRightLeft className="mr-2 h-4 w-4" />
+                          Compound Now
+                        </>
+                      )}
+                    </Button>
+                  </CardFooter>
+                </Card>
+                <div className="mt-4 text-center text-sm text-gray-500">
+                  <p>Estimated Annual Yield: <span className="font-bold text-green-600">12%</span></p>
+                  <p>Compound Effect: <span className="font-bold text-green-600">+2.3%</span> <Percent className="inline h-4 w-4 text-green-600" /></p>
+                </div>
+              </motion.div>
+            </TabsContent>
           </Tabs>
         </CardContent>
 
@@ -649,6 +791,62 @@ export default function TraderProfile() {
                   </CardContent>
                 </Card>
               </motion.div>
+            </DialogContent>
+          </Dialog>
+          <Dialog open={showCrossChainPopup} onOpenChange={setShowCrossChainPopup}>
+            <DialogTrigger asChild>
+              <Button variant="outline">
+                <Globe className="mr-2 h-4 w-4" /> Cross-Chain
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Cross-Chain Opportunities</DialogTitle>
+                <DialogDescription>
+                  Explore and execute cross-chain swaps and investments
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="chain-select">Select Target Chain</Label>
+                  <Select value={selectedChain} onValueChange={setSelectedChain}>
+                    <SelectTrigger id="chain-select">
+                      <SelectValue placeholder="Select chain" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Ethereum">Ethereum</SelectItem>
+                      <SelectItem value="Binance Smart Chain">Binance Smart Chain</SelectItem>
+                      <SelectItem value="Solana">Solana</SelectItem>
+                      <SelectItem value="Polygon">Polygon</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="cross-chain-amount">Amount</Label>
+                  <Input
+                    id="cross-chain-amount"
+                    type="number"
+                    placeholder="Enter amount"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="cross-chain-token">Token</Label>
+                  <Select>
+                    <SelectTrigger id="cross-chain-token">
+                      <SelectValue placeholder="Select token" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {recommendedTokens.map((token) => (
+                        <SelectItem key={token} value={token}>{token}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <Button onClick={handleCrossChainSwap} className="w-full">
+                  <ArrowRightLeft className="mr-2 h-4 w-4" />
+                  Initiate Cross-Chain Swap
+                </Button>
+              </div>
             </DialogContent>
           </Dialog>
         </CardFooter>
