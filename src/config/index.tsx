@@ -1,7 +1,7 @@
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
 
 import { cookieStorage, createStorage } from 'wagmi'
-import { mainnet, sepolia } from 'wagmi/chains'
+import { mainnet, sepolia, baseSepolia, opBNBTestnet } from 'wagmi/chains'
 import { defineChain } from 'viem'
 
 
@@ -17,22 +17,22 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886']
 }
 
-const metisSepolia = defineChain({
-  id: 59902,
-  name: 'Metis Sepolia',
+const uniTestnet = defineChain({
+  id: 1301,
+  name: 'Unichain Sepolia',
   nativeCurrency: {
     decimals: 18,
-    name: 'Metis Sepolia',
+    name: 'Unichain Sepolia',
     symbol: 'METIS',
   },
   rpcUrls: {
-    default: { http: ['https://sepolia.metisdevops.link'] },
+    default: { http: ['https://sepolia.unichain.org'] },
   },
   blockExplorers: {
     default: {
-      name: 'Metis Sepolia Explorer',
-      url: 'https://sepolia-explorer.metisdevops.link',
-      apiUrl: 'https://sepolia-explorer.metisdevops.link/api',
+      name: 'Unichain Sepolia Explorer',
+      url: 'https://sepolia.uniscan.xyz/',
+      apiUrl: 'https://sepolia.uniscan.xyz/api',
     },
   },
   contracts: {
@@ -40,7 +40,7 @@ const metisSepolia = defineChain({
 });
 
 // Create wagmiConfig
-const chains = [mainnet, sepolia, metisSepolia] as const
+const chains = [mainnet, sepolia, baseSepolia, opBNBTestnet, uniTestnet] as const
 export const config = defaultWagmiConfig({
   chains,
   projectId,
